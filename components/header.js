@@ -36,7 +36,7 @@ export default function Header() {
     };
 
     return (
-        <Navbar className="bg-body-tertiary">
+        <Navbar className="bg-body-tertiary" id="mainNav">
             <Container>
                 <Navbar.Brand href="#home">
                     <Image src={logoPossumus} width={180} height={32} alt="Picture of the author" /> <span>Blog</span>
