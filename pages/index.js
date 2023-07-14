@@ -1,13 +1,9 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row } from "react-bootstrap";
+import Header from "../components/header";
 
 export default function Home() {
     return (
-        <Container>
-            <Row>
-                <Col md={6}>Hola</Col>
-                <Col md={6}>Hola</Col>
-            </Row>
-        </Container>
+        <>
+            <Header />
+        </>
     );
 }
