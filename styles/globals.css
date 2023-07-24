@@ -101,11 +101,22 @@ p {
 
 /******************Featured News*/
 
-#featuredNews h6, #featuredNews h1 {
+#featuredNews h6, #featuredNews h1, #listBlog h6, #listBlog h1 {
   margin: 0 0 15px 0
 }
 
 .textContent {
   margin:25px 0 0 0
+}
+
+
+/********************List Blog*/
+
+#listBlog {
+  margin-top:80px
+}
+
+.blogItem {
+  margin-bottom: 50px;
 }
   
