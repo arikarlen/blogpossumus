@@ -4,7 +4,6 @@ import moment from "moment";
 import "moment/locale/es";
 
 export default function FeaturedNews({ dataNews }) {
-    console.log(dataNews);
     return (
         <Container id="featuredNews">
             {dataNews.map(

@@ -13,7 +13,6 @@ export default function Header() {
     const [logoPossumus, setLogoPossumus] = useState();
 
     useEffect(() => {
-        // Perform localStorage action
         setTheme(localStorage.getItem("theme"));
         setChecked(theme === "dark" ? true : false);
         setLogoPossumus(theme === "dark" ? LogoWhite : LogoBlack);
