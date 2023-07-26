@@ -13,30 +13,55 @@
 :root {
     --color-yellow: #fcd702;
     --color-black: #2e2d31;
+    --colog-grey-ligth: #F5F5F5;
     --header-background: #fff;
-    --text-color:#262B36
+    --text-color:#262B36;
+    --background-color:#fff
 }
 
 html[data-theme="dark"] {
-    --header-background: #2e2d31;
-    --text-color:#fff
+    --header-background: #000000;
+    --color-black: #fff;
+    --colog-grey-ligth: #000000;
+    --text-color:#fff;
+    --background-color:#2e2d31
+}
+
+
+body {
+  background-color: var(--background-color);
+  color: var(--color-black);
 }
 
 p {
     font-family: "Mulish", sans-serif;
-    color: var(--color-black);
+    
     font-size: 17px;
   }
+
+
 
   h1 {
     font-family: "Gotham", sans-serif;
     font-size: 24px!important;
     letter-spacing: -2px;
-    color: var(--color-black);
+  
+ 
+  }
+  h4 {
+    font-family: "Gotham", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    line-height: 21px; 
+ 
     font-weight: bold;
   }
 
 
+  ul {
+    list-style: none;
+    padding: 0;
+  }
 
 /******************Header*/
 #mainNav {
@@ -119,4 +144,50 @@ p {
 .blogItem {
   margin-bottom: 50px;
 }
-  
+
+
+
+/*************************Footer*/
+
+#footer {
+  margin-top: 110px;
+  padding-top: 80px;
+  background-color: var(--colog-grey-ligth);
+}
+
+
+#footer a {
+  text-decoration: none;
+  color:var(--text-color)
+}
+
+#footer a:hover {
+  color: var(--color-black);
+}
+
+#secondaryFooter {
+  margin-top: 90px;
+}
+
+#subFooter {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #D8D8D8;
+}
+
+#subFooter p {
+  font-size: 13px;
+}
+
+#subFooter h4 {
+  font-family: "Mulish", sans-serif;
+  font-size: 20px;
+}
+
+#subFooter img {
+  margin-left: 20px;
+}
+
+.text-right {
+  text-align: right;
+}

@@ -1,5 +1,4 @@
 import { Col, Row, Image, Container } from "react-bootstrap";
-import featuredImage from "../assets/newsImage/featured.jpg";
 import moment from "moment";
 import "moment/locale/es";
 
