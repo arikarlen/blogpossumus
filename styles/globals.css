@@ -47,7 +47,17 @@ p {
     letter-spacing: -2px;
   
  
+    
   }
+
+  h2 {
+  font-family: "Mulish", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+}
+  
+ 
   h4 {
     font-family: "Gotham", sans-serif;
     font-size: 18px;
@@ -65,7 +75,9 @@ p {
 
 /******************Header*/
 #mainNav {
-  margin: 0 0 75px 0 ;
+  margin: 0 0 75px 0;
+  position: sticky;
+  top: 0;
 }
 .navbar-brand {
   color:var(--text-color)
@@ -130,6 +142,20 @@ p {
   margin: 0 0 15px 0
 }
 
+#featuredNews {
+  padding-top:10px;
+  transition: all 150ms ease-in-out;
+  box-shadow: none;
+}
+
+#featuredNews:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.29);
+-moz-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.29);
+box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.29);
+transition: all 150ms ease-in-out;
+}
+
 .textContent {
   margin:25px 0 0 0
 }
@@ -143,6 +169,82 @@ p {
 
 .blogItem {
   margin-bottom: 50px;
+  padding-top:10px;
+  transition: all 150ms ease-in-out;
+  box-shadow: none;
+}
+
+.blogItem:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.29);
+-moz-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.29);
+box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.29);
+transition: all 150ms ease-in-out;
+}
+
+/**************************Full New*/
+
+.breadcrumb-item a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+#fullNew h1 {
+  font-size: 68px!important;
+  margin-top: 65px;
+}
+
+.contentDate {
+  margin-top: 30px;
+}
+
+.newsContent {
+  margin-top: 40px;
+}
+
+.title {
+  margin-bottom: 25px;
+}
+
+.outstandingImg {
+  margin-top: 80px;
+  margin-bottom: 120px;
+}
+
+blockquote {
+  margin: 0 0 1rem;
+  padding-left: 23px;
+  box-shadow: rgb(36, 36, 36) 3px 0px 0px 0px inset;
+  font-weight: bold;
+}
+
+#newsContent h1 {
+  font-size: 24px!important;
+  font-style: normal;
+  font-weight: normal;
+  margin-top: 100px;
+  margin-bottom: 40px;
+}
+
+#newsContent img {
+  margin: 50px 0
+}
+
+.sharedLinks img {
+  margin-left: 6%;
+}
+
+#share {
+  border-top: 1px solid #D8D8D8;
+  border-bottom: 1px solid #D8D8D8;
+  padding: 35px 0;
+  margin-top: 60px;
+}
+
+#share p {
+  padding: 0;
+  margin: 0;
 }
 
 

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Container, Navbar } from "react-bootstrap";
-import LogoBlack from "../assets/LogoBlack.svg";
-import LogoWhite from "../assets/LogoWhite.svg";
+import LogoBlack from "../../assets/LogoBlack.svg";
+import LogoWhite from "../../assets/LogoWhite.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun } from "@fortawesome/free-solid-svg-icons";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
