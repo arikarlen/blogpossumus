@@ -278,6 +278,9 @@ blockquote {
 
 #searchButton {
   border-radius: 0 50px 50px 0;
+  background-color: var(--color-yellow);
+  border: none;
+  color:var(--color-black)
 }
 
 .resultNotFound {
