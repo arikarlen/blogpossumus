@@ -5,13 +5,11 @@ import "moment/locale/es";
 import ShareNews from "./share";
 
 export default function SingleNew({ singleNew, absoluteUrl }) {
-    // console.log(singleNew);
-    // console.log(absoluteUrl);
     return (
         <Container id="fullNewContent">
             <Breadcrumb>
                 <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
-                <Breadcrumb.Item href="/">News</Breadcrumb.Item>
+                <Breadcrumb.Item href="/news">News</Breadcrumb.Item>
                 <Breadcrumb.Item active>{singleNew.Titulo}</Breadcrumb.Item>
             </Breadcrumb>
             <Container id="fullNew">
