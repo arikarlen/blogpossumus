@@ -10,8 +10,8 @@ export default function FeaturedNews({ dataNews }) {
             {dataNews.map(
                 (data) =>
                     data.attributes.Destacada == true && (
-                        <Row onClick={() => router.push("/news/" + data.attributes.slug)}>
-                            <Image src={data.attributes.Imagen_Destacada?.data.attributes.url} fluid />
+                        <Row onClick={() => router.push("/news/" + data.attributes.slug)} key={data.attributes.slug}>
+                            <Image src={data.attributes.Imagen_Destacada?.data.attributes.url} fluid alt={data.attributes.Titulo} />
                             <Col className="textContent">
                                 <h6>{moment(data.attributes.publishedAt).format("DD MMMM YYYY")}</h6>
                                 <h1>{data.attributes.Titulo}</h1>
