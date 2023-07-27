@@ -1,13 +1,30 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row } from "react-bootstrap";
+import FeaturedNews from "../components/news/featuredNews";
+import Header from "../components/commons/header";
+import ListNews from "../components/news/blogList";
+import Footer from "../components/commons/footer";
 
-export default function Home() {
+export async function getServerSideProps() {
+    const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*`;
+    const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
+
+    const resBlog = await fetch(URLBLOG);
+    const dataBlog = await resBlog.json();
+    const dataNews = dataBlog;
+
+    const resInstitucional = await fetch(URLINSTITUCIONAL);
+    const dataInstitucional = await resInstitucional.json();
+    const data = dataInstitucional;
+
+    return { props: { dataNews, data } };
+}
+
+export default function Home({ dataNews, data }) {
     return (
-        <Container>
-            <Row>
-                <Col md={6}>Hola</Col>
-                <Col md={6}>Hola</Col>
-            </Row>
-        </Container>
+        <>
+            <Header />
+            <FeaturedNews dataNews={dataNews.data} />
+            <ListNews dataNews={dataNews.data} />
+            <Footer dataInstitutional={data} />
+        </>
     );
 }
