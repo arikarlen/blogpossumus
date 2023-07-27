@@ -1,5 +1,5 @@
 import { Row, Image, Col, Container } from "react-bootstrap";
-import featuredImage from "../assets/newsImage/featured.jpg";
+import featuredImage from "../../assets/newsImage/featured.jpg";
 import moment from "moment";
 import "moment/locale/es";
 
@@ -9,7 +9,7 @@ export default function FeaturedNews({ dataNews }) {
             {dataNews.map(
                 (data) =>
                     data.attributes.Destacada == true && (
-                        <Row>
+                        <Row onClick={() => console.log(data.attributes.slug)}>
                             <Image src={data.attributes.Imagen_Destacada?.data.attributes.url} fluid />
                             <Col className="textContent">
                                 <h6>{moment(data.attributes.publishedAt).format("DD MMMM YYYY")}</h6>

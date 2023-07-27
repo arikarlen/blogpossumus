@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
-import clutchImage from "../assets/clutch.svg";
-import certificaction from "../assets/certification.svg";
-import LinkedinBlack from "../assets/LinkedInIcon.svg";
-import InstagramBlack from "../assets/InstagramIcon.svg";
-import TwitterBlack from "../assets/twitterIcon.svg";
-import FacebookBlack from "../assets/FaceBookIcon.png";
+import clutchImage from "../../assets/clutch.svg";
+import certificaction from "../../assets/certification.svg";
+import LinkedinBlack from "../../assets/LinkedInIcon.svg";
+import InstagramBlack from "../../assets/InstagramIcon.svg";
+import TwitterBlack from "../../assets/twitterIcon.svg";
+import FacebookBlack from "../../assets/FaceBookIcon.png";
 
 export default function Footer({ dataInstitutional }) {
     const [linkedin, setLinkedin] = useState(LinkedinBlack);
