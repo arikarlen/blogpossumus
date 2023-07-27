@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
 import Header from "../../components/commons/header";
 import { useForm } from "react-hook-form";
@@ -8,9 +8,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import ResultsNotFound from "../../components/commons/resultNotFound";
 import StartSearch from "../../components/commons/startSearch";
+import Footer from "../../components/commons/footer";
 
 export default function Search() {
     const [dataNews, setDataNews] = useState();
+    const [dataInstitucional, setDataInstitucional] = useState();
 
     const { register, handleSubmit } = useForm({
         mode: "onTouched",
@@ -22,6 +24,12 @@ export default function Search() {
             setDataNews(res.data);
         });
     };
+
+    useEffect(() => {
+        axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`).then((res) => {
+            setDataInstitucional(res.data);
+        });
+    }, []);
 
     return (
         <>
@@ -41,6 +49,7 @@ export default function Search() {
 
                 {dataNews ? dataNews.data == "" ? <ResultsNotFound /> : <ListNews dataNews={dataNews.data} title="Resultados de la busqueda" /> : <StartSearch />}
             </Container>
+            <Footer dataInstitutional={dataInstitucional} />
         </>
     );
 }
