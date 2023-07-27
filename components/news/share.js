@@ -41,22 +41,22 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
                     <p>
                         Compartir:
                         <a href={urlFacebook} target="_blank">
-                            <Image src={facebook.src} />
+                            <Image src={facebook.src} alt="Facebook" />
                         </a>
                         <a href={urlTwitter} target="_blank">
-                            <Image src={twitter.src} />
+                            <Image src={twitter.src} alt="Twitter" />
                         </a>
                         <a href={urlLinkedin} target="_blank">
-                            <Image src={linkedin.src} />
+                            <Image src={linkedin.src} alt="Linkedin" />
                         </a>
                         <a href={urlWhatsApp} target="_blank">
-                            <Image src={whatsApp.src} />
+                            <Image src={whatsApp.src} alt="WhatsApp" />
                         </a>
                         <a href={urlTelegram} target="_blank">
-                            <Image src={telegram.src} />
+                            <Image src={telegram.src} alt="Telegram" />
                         </a>
                         <a href={urlMail} target="_blank">
-                            <Image src={mail.src} />
+                            <Image src={mail.src} alt="Mail" />
                         </a>
                         <a
                             onClick={() => {
@@ -64,7 +64,7 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
                             }}
                             target="_blank"
                         >
-                            <Image src={copyLink.src} />
+                            <Image src={copyLink.src} alt="Compartir" />
                         </a>
                     </p>
                 </Col>

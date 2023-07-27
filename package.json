@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "develop": "env-cmd -e DEV npm run dev",
+    "local": "env-cmd -e DEV npm run dev",
+    "develop": "env-cmd -e DEV next build && npm run start",
     "staging": " env-cmd -e STAGING next build && npm run start",
-    "prod": " env-cmd -e PROD next build && PORT=3002 npm run start",
+    "prod": " env-cmd -e DEV next build && npm run start",
     "build": "env-cmd -e PROD next build",
-    "start": "next start",
+    "start": "next start ",
     "lint": "next lint"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "react": "18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.2",
     "react-markdown": "^8.0.7",
     "react-moment": "^1.1.3",
     "react-router-dom": "^6.14.2"

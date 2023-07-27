@@ -4,7 +4,7 @@ import ListNews from "../components/news/blogList";
 import Footer from "../components/commons/footer";
 
 export async function getServerSideProps() {
-    const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*`;
+    const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&sort=id:desc`;
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
 
     const resBlog = await fetch(URLBLOG);

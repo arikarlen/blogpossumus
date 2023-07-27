@@ -6,7 +6,7 @@ export async function getServerSideProps(context) {
     const { params } = context;
     const { slug } = params;
 
-    const URL = `http://localhost:1337/api/blogs?filters[slug][$eq]=${slug}&populate=*`;
+    const URL = `http://localhost:1337/api/blogs?filters[slug][$eq]=${slug}&populate=*&sort=id:desc`;
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
 
     const res = await fetch(URL);

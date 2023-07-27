@@ -11,8 +11,8 @@ export default function ListNews({ dataNews }) {
                 {dataNews.map(
                     (data) =>
                         data.attributes.Destacada == false && (
-                            <Col md={6} className="blogItem" onClick={() => router.push("/news/" + data.attributes.slug)}>
-                                <Image src={data.attributes.Imagen_Destacada?.data.attributes.url} fluid />
+                            <Col md={6} className="blogItem" onClick={() => router.push("/news/" + data.attributes.slug)} key={data.attributes.slug}>
+                                <Image src={data.attributes.Imagen_Destacada?.data.attributes.url} alt={data.attributes.Titulo} fluid />
 
                                 <div className="textContent ">
                                     <h6>{moment(data.attributes.publishedAt).format("DD MMMM YYYY")}</h6>

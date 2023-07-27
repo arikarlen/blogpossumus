@@ -1,9 +1,9 @@
 import Footer from "../../components/commons/footer";
 import Header from "../../components/commons/header";
-import ListNews from "../../components/news/newsList";
+import ListNews from "../../components/commons/newsList";
 
 export async function getServerSideProps() {
-    const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*`;
+    const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&sort=id:desc`;
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
 
     const resBlog = await fetch(URLBLOG);
@@ -21,7 +21,7 @@ export default function NewsSection({ dataNews, data }) {
     return (
         <>
             <Header />
-            <ListNews dataNews={dataNews.data} />
+            <ListNews dataNews={dataNews.data} title="News" />
             <Footer dataInstitutional={data} />
         </>
     );
