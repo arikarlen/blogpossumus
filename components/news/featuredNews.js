@@ -1,15 +1,16 @@
 import { Row, Image, Col, Container } from "react-bootstrap";
-import featuredImage from "../../assets/newsImage/featured.jpg";
+import { useRouter } from "next/router";
 import moment from "moment";
 import "moment/locale/es";
 
 export default function FeaturedNews({ dataNews }) {
+    const router = useRouter();
     return (
         <Container id="featuredNews">
             {dataNews.map(
                 (data) =>
                     data.attributes.Destacada == true && (
-                        <Row onClick={() => console.log(data.attributes.slug)}>
+                        <Row onClick={() => router.push("/news/" + data.attributes.slug)}>
                             <Image src={data.attributes.Imagen_Destacada?.data.attributes.url} fluid />
                             <Col className="textContent">
                                 <h6>{moment(data.attributes.publishedAt).format("DD MMMM YYYY")}</h6>
