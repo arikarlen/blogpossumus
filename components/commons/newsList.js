@@ -1,7 +1,9 @@
 import { Container, Col, Image, Row, Breadcrumb } from "react-bootstrap";
+import { useRouter } from "next/router";
 import moment from "moment";
 import "moment/locale/es";
 export default function ListNews({ dataNews, title }) {
+    const router = useRouter();
     return (
         <Container id="listBlog">
             <h1>{title}</h1>

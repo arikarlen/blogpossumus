@@ -1,17 +1,13 @@
-import { Container, Row, Breadcrumb, Col, Image } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import moment from "moment";
 import "moment/locale/es";
 import ShareNews from "./share";
+import DownloadPdf from "./downloadPdf";
 
 export default function SingleNew({ singleNew, absoluteUrl }) {
     return (
         <Container id="fullNewContent">
-            <Breadcrumb>
-                <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
-                <Breadcrumb.Item href="/news">News</Breadcrumb.Item>
-                <Breadcrumb.Item active>{singleNew.Titulo}</Breadcrumb.Item>
-            </Breadcrumb>
             <Container id="fullNew">
                 <Row>
                     <Col md={{ span: 10, offset: 1 }}>
@@ -27,6 +23,9 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
                             <Col md={9}>
                                 <ReactMarkdown>{singleNew.cuerpo}</ReactMarkdown>
                             </Col>
+                        </Row>
+                        <Row id="downloadPdf" className="text-center">
+                            <Col md={9}>{singleNew.descarga?.data == null ? "" : <DownloadPdf file={singleNew.descarga?.data.attributes.url} source={singleNew.Titulo} />}</Col>
                         </Row>
                         <ShareNews absoluteUrl={absoluteUrl} title={singleNew.Titulo} subTitle={singleNew.Bajada} />
                     </Col>

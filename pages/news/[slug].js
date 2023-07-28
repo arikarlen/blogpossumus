@@ -1,6 +1,7 @@
 import SingleNew from "../../components/news/singleNew";
 import Footer from "../../components/commons/footer";
 import Header from "../../components/commons/header";
+import { Container, Breadcrumb } from "react-bootstrap";
 
 export async function getServerSideProps(context) {
     const { params } = context;
@@ -26,6 +27,13 @@ export default function fullNews({ dataNew, dataIns, absoluteUrl }) {
     return (
         <>
             <Header />
+            <Container>
+                <Breadcrumb>
+                    <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/news">News</Breadcrumb.Item>
+                    <Breadcrumb.Item active>{dataNew.data[0].attributes.Titulo}</Breadcrumb.Item>
+                </Breadcrumb>
+            </Container>
             <SingleNew singleNew={dataNew.data[0].attributes} absoluteUrl={absoluteUrl} />
             <Footer dataInstitutional={dataIns} />
         </>
