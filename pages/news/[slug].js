@@ -1,3 +1,4 @@
+import Head from "next/head";
 import SingleNew from "../../components/news/singleNew";
 import Footer from "../../components/commons/footer";
 import Header from "../../components/commons/header";
@@ -26,6 +27,17 @@ export async function getServerSideProps(context) {
 export default function fullNews({ dataNew, dataIns, absoluteUrl }) {
     return (
         <>
+            <Head>
+                <title>Blog Possumus || {dataNew.data[0].attributes.Titulo}</title>
+                <meta name="description" content={dataNew.data[0].attributes.Bajada} />
+                <meta name="keywords" content={dataNew.data[0].attributes.keywords} />
+                <meta name="author" content="Possumus" />
+                <meta property="og:title" content={dataNew.data[0].attributes.Titulo} key="title" />
+                <meta property="og:description" content={dataNew.data[0].attributes.Bajada} />
+                <meta property="og:type" content="article" />
+                <meta property="og:site_name" content="Blog Possumus" />
+                <meta property="og:image" content={dataNew.data[0].attributes.Imagen_Destacada.data.attributes.url}></meta>
+            </Head>
             <Header />
             <Container>
                 <Breadcrumb>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Head from "next/head";
 import { Col, Container, Row, Form, Button, Breadcrumb } from "react-bootstrap";
 import Header from "../../components/commons/header";
 import { useForm } from "react-hook-form";
@@ -44,6 +45,17 @@ export default function Search() {
 
     return (
         <>
+            <Head>
+                <title>Blog Possumus || News</title>
+                <meta name="description" content="Blog de Possumus" />
+                <meta name="keywords" content="News, webinars, noticias, novedades, tecnologia, desarrollo" />
+                <meta name="author" content="Possumus" />
+                <meta property="og:title" content="Blo de possumus" key="title" />
+                <meta property="og:description" content="At Possumus, we implement Agile methodologies to create positive experiences through technology with human value. Software Engineering." />
+                <meta property="og:type" content="website" />
+                <meta property="og:site_name" content="Blog Possumus" />
+                {/* <meta property="og:image" content={dataNew.data[0].attributes.Imagen_Destacada.data.attributes.url}></meta> */}
+            </Head>
             <Header />
             <Container>
                 <Breadcrumb>

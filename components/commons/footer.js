@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import clutchImage from "../../assets/clutch.svg";
 import certificaction from "../../assets/certification.svg";
@@ -7,29 +7,14 @@ import InstagramBlack from "../../assets/InstagramIcon.svg";
 import TwitterBlack from "../../assets/twitterIcon.svg";
 import FacebookBlack from "../../assets/FaceBookIcon.png";
 
-import logoWldBlack from "../../assets/Logo_WLDBY_Black.svg";
-import logoWldWhite from "../../assets/Logo_WLDBY_White.svg";
-
 export default function Footer({ dataInstitutional }) {
-    const [theme, setTheme] = useState();
     const [linkedin, setLinkedin] = useState(LinkedinBlack);
     const [instagram, setInstagram] = useState(InstagramBlack);
     const [twitter, setTwitter] = useState(TwitterBlack);
     const [facebook, setFacebook] = useState(FacebookBlack);
-    const [wldLogo, setWldLogo] = useState();
 
     const tel = "tel: " + dataInstitutional.data?.attributes.Contacto.telefono;
     const mailto = "mailto:" + dataInstitutional.data?.attributes.Contacto.Email;
-
-    useEffect(() => {
-        setTheme(localStorage.getItem("theme"));
-        if (localStorage.theme === "dark") {
-            setWldLogo(logoWldWhite.src);
-        } else {
-            setWldLogo(logoWldBlack.src);
-        }
-    }, []);
-
     return (
         <Container fluid id="footer">
             <Container>
@@ -118,7 +103,7 @@ export default function Footer({ dataInstitutional }) {
                 </Row>
                 <Row id="secondaryFooter">
                     <Col>
-                        <Image src={wldLogo} fluid alt="Possumus" />
+                        <Image src={dataInstitutional.data?.attributes.Assets.Logo_Alt.data.attributes.url} fluid alt="Possumus" />
                     </Col>
                     <Col>
                         <Image src={clutchImage.src} fluid alt="Possumus" />
