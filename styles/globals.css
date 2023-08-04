@@ -61,14 +61,29 @@ p {
     font-size: 18px!important;
     font-style: normal!important;
     line-height: 21px!important; 
- 
     font-weight: 700!important;
   }
 
 
+  h5 {
+    font-family: "Mulish", sans-serif!important;
+    font-size: 13px!important;
+    
+}
+
   ul {
     list-style: none!important;
     padding: 0!important;
+  }
+
+  .linkPerfil {
+    color:#005aad;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .linkPerfil:hover {
+cursor: pointer;
   }
 
 /******************Header*/
@@ -148,13 +163,17 @@ p {
   margin: 0 0 15px 0
 }
 
+#listBlog h4 {
+  margin-bottom: 30px;
+}
+
 #featuredNews {
   padding-top:10px;
   transition: all 150ms ease-in-out;
   box-shadow: none;
 }
 
-#featuredNews:hover {
+#featuredNews h1:hover, #featuredNews img:hover {
   cursor: pointer;
 
 }
@@ -178,10 +197,16 @@ p {
  
 }
 
-.blogItem:hover {
+.blogItem h1:hover {
   cursor: pointer;
 
 }
+
+.blogItem img:hover {
+  cursor: pointer;
+
+}
+
 
 /**************************Full New*/
 
@@ -193,6 +218,11 @@ p {
 
 #fullNew h1 {
   font-size: 68px!important;
+
+}
+
+#fullNew h6 {
+ 
   margin-top: 65px!important;
 }
 
@@ -205,7 +235,11 @@ p {
 }
 
 .title {
-  margin-bottom: 25px;
+  margin-bottom: 25px!important;
+}
+
+#dateContent {
+  margin-top: 50px!important;
 }
 
 .outstandingImg {
@@ -239,8 +273,8 @@ blockquote {
 .sharedLinks {
   border-top: 1px solid #D8D8D8;
   border-bottom: 1px solid #D8D8D8;
-  padding: 35px 0;
-  margin-top: 60px;
+  padding: 35px 0!important;
+  margin-top: 60px!important;
 }
 
 #share p {

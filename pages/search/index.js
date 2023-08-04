@@ -27,12 +27,6 @@ export default function Search() {
         });
     };
 
-    useEffect(() => {
-        // axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`).then((res) => {
-        //     setDataInstitucional(res.data);
-        // });
-    }, []);
-
     return (
         <>
             <Header />

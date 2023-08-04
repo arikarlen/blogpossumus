@@ -11,10 +11,21 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
             <Container id="fullNew">
                 <Row>
                     <Col md={{ span: 10, offset: 1 }}>
+                        <h6>{singleNew.categoria?.data.attributes.Categoria}</h6>
                         <h1 className="title">{singleNew.Titulo}</h1>
-                        <Row>
+                        <h5>
+                            Por{" "}
+                            {singleNew.autores.data.map((autor) => (
+                                <>
+                                    <a href={autor.attributes?.perfil} target="_blank" className="linkPerfil">
+                                        {autor.attributes?.Nombre},
+                                    </a>{" "}
+                                </>
+                            ))}
+                        </h5>
+                        <Row id="dateContent">
                             <Col md={2}>
-                                <h6>{moment(singleNew.publishedAt).format("DD MMMM YYYY")}</h6>
+                                <h5>{moment(singleNew.publishedAt).format("DD MMMM YYYY")}</h5>
                             </Col>
                             <Col md={10}>{singleNew.Bajada}</Col>
                             <Image src={singleNew.Imagen_Destacada?.data.attributes.url} fluid className="outstandingImg" alt={singleNew.Titulo} />
