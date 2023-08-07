@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button, Alert } from "react-bootstrap";
-import { useRouter } from "next/router";
+
 export default function DownloadPdf({ file, source }) {
-    const router = useRouter();
     const [success, setSuccess] = useState(false);
     const {
         register,
@@ -12,10 +11,11 @@ export default function DownloadPdf({ file, source }) {
     } = useForm({
         mode: "onTouched",
         defaultValues: {
+            origin: "Blog",
             source: source,
-            name: "",
+            yourname: "",
             enterprise: "",
-            mail: "",
+            email: "",
             phone: "",
         },
     });
@@ -23,74 +23,87 @@ export default function DownloadPdf({ file, source }) {
     const onSubmit = (data) => {
         window.open(file, "_ blank");
         setSuccess(true);
+        console.log(data);
     };
 
     return (
         <>
-            <h1>¿Desea conocer mas?</h1>
-            <p>Dejenos sus datos para acceder a la nota completa en formato pdf</p>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Form.Control
-                    type="text"
-                    className="formField"
-                    placeholder="Nombre y apellido"
-                    aria-describedby="passwordHelpBlock"
-                    {...register("name", {
-                        required: {
-                            value: true,
-                            message: "Por favor, ingrese su nombre",
-                        },
-                    })}
-                />
-                {errors.name && <Alert variant="danger">{errors?.name?.message}</Alert>}
-                <Form.Control
-                    type="text"
-                    className="formField"
-                    placeholder="Empresa"
-                    aria-describedby="passwordHelpBlock"
-                    {...register("enterprise", {
-                        required: {
-                            value: true,
-                            message: "Por favor, ingrese la organización a la que pertenece",
-                        },
-                    })}
-                />
-                {errors.enterprise && <Alert variant="danger">{errors?.enterprise?.message}</Alert>}
-                <Form.Control
-                    type="text"
-                    className="formField"
-                    placeholder="Email"
-                    aria-describedby="passwordHelpBlock"
-                    {...register("mail", {
-                        required: {
-                            value: true,
-                            message: "El email es obligatorio",
-                        },
-                        pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: "Email no es valido",
-                        },
-                    })}
-                />
-                {errors.mail && <Alert variant="danger">{errors?.mail?.message}</Alert>}
-                <Form.Control
-                    type="text"
-                    className="formField"
-                    placeholder="Teléfono"
-                    aria-describedby="passwordHelpBlock"
-                    {...register("phone", {
-                        required: {
-                            value: true,
-                            message: "Por favor, ingrese su telefono",
-                        },
-                    })}
-                />
-                {errors.phone && <Alert variant="danger">{errors?.phone?.message}</Alert>}
-                <Button variant="primary" type="Submit" id="sendForm">
-                    Descargar
-                </Button>
-                {success && <Alert variant="success">Muchas gracias. El documento se abrira en una ventana nueva</Alert>}
-            </form>
+            {success ? (
+                <>
+                    <h1>Muchas gracias</h1>
+                    <p>La nota completa se abrirá en una nueva pestaña</p>
+                    <p>
+                        En caso de que esto no suceda, por favor haga{" "}
+                        <a href={file} target="_blank">
+                            click aquí
+                        </a>
+                    </p>
+                </>
+            ) : (
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <h1>¿Desea conocer mas?</h1>
+                    <p>Dejenos sus datos para acceder a la nota completa en formato pdf</p>
+                    <Form.Control
+                        type="text"
+                        className="formField"
+                        placeholder="Nombre y apellido"
+                        aria-describedby="passwordHelpBlock"
+                        {...register("yourname", {
+                            required: {
+                                value: true,
+                                message: "Por favor, ingrese su nombre",
+                            },
+                        })}
+                    />
+                    {errors.yourname && <Alert variant="danger">{errors?.yourname?.message}</Alert>}
+                    <Form.Control
+                        type="text"
+                        className="formField"
+                        placeholder="Empresa"
+                        aria-describedby="passwordHelpBlock"
+                        {...register("enterprise", {
+                            required: {
+                                value: true,
+                                message: "Por favor, ingrese la organización a la que pertenece",
+                            },
+                        })}
+                    />
+                    {errors.enterprise && <Alert variant="danger">{errors?.enterprise?.message}</Alert>}
+                    <Form.Control
+                        type="text"
+                        className="formField"
+                        placeholder="Email"
+                        aria-describedby="passwordHelpBlock"
+                        {...register("email", {
+                            required: {
+                                value: true,
+                                message: "El email es obligatorio",
+                            },
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: "Email no es valido",
+                            },
+                        })}
+                    />
+                    {errors.email && <Alert variant="danger">{errors?.email?.message}</Alert>}
+                    <Form.Control
+                        type="text"
+                        className="formField"
+                        placeholder="Teléfono"
+                        aria-describedby="passwordHelpBlock"
+                        {...register("phone", {
+                            required: {
+                                value: true,
+                                message: "Por favor, ingrese su telefono",
+                            },
+                        })}
+                    />
+                    {errors.phone && <Alert variant="danger">{errors?.phone?.message}</Alert>}
+                    <Button variant="primary" type="Submit" id="sendForm">
+                        Descargar
+                    </Button>
+                </form>
+            )}
         </>
     );
 }

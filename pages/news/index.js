@@ -54,7 +54,6 @@ export default function Search() {
                 <meta property="og:description" content="At Possumus, we implement Agile methodologies to create positive experiences through technology with human value. Software Engineering." />
                 <meta property="og:type" content="website" />
                 <meta property="og:site_name" content="Blog Possumus" />
-                {/* <meta property="og:image" content={dataNew.data[0].attributes.Imagen_Destacada.data.attributes.url}></meta> */}
             </Head>
             <Header />
             <Container>

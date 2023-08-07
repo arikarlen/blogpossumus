@@ -30,7 +30,7 @@ export default function fullNews({ dataNew, dataIns, absoluteUrl }) {
             <Head>
                 <title>Blog Possumus || {dataNew.data[0].attributes.Titulo}</title>
                 <meta name="description" content={dataNew.data[0].attributes.Bajada} />
-                <meta name="keywords" content={dataNew.data[0].attributes.keywords} />
+                <meta name="keywords" content={dataNew.data[0].attributes?.tags.data.map((data) => " " + data.attributes.Tag)} />
                 <meta name="author" content="Possumus" />
                 <meta property="og:title" content={dataNew.data[0].attributes.Titulo} key="title" />
                 <meta property="og:description" content={dataNew.data[0].attributes.Bajada} />

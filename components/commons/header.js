@@ -40,7 +40,7 @@ export default function Header() {
         <Navbar className="bg-body-tertiary" id="mainNav">
             <Container>
                 <Navbar.Brand href="/">
-                    <Image src={logoPossumus} width={180} height={32} alt="Picture of the author" /> <span>Blog</span>
+                    <Image src={logoPossumus} width={180} height={32} alt="Possumus" /> <span>Blog</span>
                 </Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
@@ -49,11 +49,11 @@ export default function Header() {
                     </Link>
                     <Navbar.Text>
                         <div className="switchTheme">
-                            <input type="checkbox" class="checkbox" id="checkbox" onClick={HandleThemeChange} checked={checked} />
-                            <label for="checkbox" class="checkbox-label">
+                            <input type="checkbox" className="checkbox" id="checkbox" onClick={HandleThemeChange} checked={checked} />
+                            <label htmlFor="checkbox" className="checkbox-label">
                                 <FontAwesomeIcon icon={faSun} />
                                 <FontAwesomeIcon icon={faMoon} />
-                                <span class="ball"></span>
+                                <span className="ball"></span>
                             </label>
                         </div>
                     </Navbar.Text>

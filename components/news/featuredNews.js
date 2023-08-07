@@ -21,11 +21,9 @@ export default function FeaturedNews({ dataNews }) {
                                     {" "}
                                     {moment(data.attributes.publishedAt).format("DD MMMM YYYY")} - Por{" "}
                                     {data.attributes.autores.data.map((autor) => (
-                                        <>
-                                            <a href={autor.attributes?.perfil} target="_blank" className="linkPerfil">
-                                                {autor.attributes?.Nombre},
-                                            </a>{" "}
-                                        </>
+                                        <a href={autor.attributes?.perfil} target="_blank" className="linkPerfil" key={autor.attributes?.Nombre}>
+                                            {autor.attributes?.Nombre},
+                                        </a>
                                     ))}
                                 </h5>
                                 <p>{data.attributes.Bajada}</p>
