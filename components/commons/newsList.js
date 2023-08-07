@@ -12,7 +12,10 @@ export default function ListNews({ dataNews, title }) {
             {dataNews.map((data) => (
                 <Row className="newsList blogItem" onClick={() => router.push("/news/" + data.attributes.slug)} key={data.attributes.slug}>
                     <Col md={9}>
-                        <h6>{data.attributes.categoria?.data.attributes.Categoria}</h6>
+                        <h6 className="linkPerfil" onClick={() => router.push("/category/" + data.attributes.categoria?.data.attributes.Categoria)}>
+                            {data.attributes.categoria?.data.attributes.Categoria}
+                        </h6>
+
                         <h1>{data.attributes.Titulo}</h1>
                         <h5>
                             {moment(data.attributes.publishedAt).format("DD MMMM YYYY")} | Por{" "}
