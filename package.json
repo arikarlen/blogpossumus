@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "local": "env-cmd -e DEV npm run dev",
-    "develop": "env-cmd -e DEV next build && npm run start",
-    "staging": " env-cmd -e STAGING next build && npm run start",
-    "prod": " env-cmd -e DEV next build && npm run start",
-    "build": "env-cmd -e PROD next build",
+    "develop": "env-cmd -e PROD npm run dev",
+    "staging": " env-cmd -e PROD next build && npm run start",
+    "prod": " env-cmd -e PROD next build && npm run start",
+    "build": "next build",
     "start": "next start ",
     "lint": "next lint"
   },
@@ -27,7 +27,8 @@
     "react-hook-form": "^7.45.2",
     "react-markdown": "^8.0.7",
     "react-moment": "^1.1.3",
-    "react-router-dom": "^6.14.2"
+    "react-router-dom": "^6.14.2",
+    "sonner": "^0.6.2"
   },
   "devDependencies": {
     "eslint": "8.44.0",
