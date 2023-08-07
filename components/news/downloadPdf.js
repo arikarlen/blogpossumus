@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button, Alert } from "react-bootstrap";
+import axios from "axios";
 
 export default function DownloadPdf({ file, source }) {
     const [success, setSuccess] = useState(false);
@@ -21,9 +22,10 @@ export default function DownloadPdf({ file, source }) {
     });
 
     const onSubmit = (data) => {
-        window.open(file, "_ blank");
-        setSuccess(true);
-        console.log(data);
+        axios.post(`https://prod-20.brazilsouth.logic.azure.com:443/workflows/4a0de618d958419bb7dc99ba7a3245b7/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QsAL47KtZeSa5He1YXBvXMI4ZsD802JoaITVlC2wXhs`, data).then(() => {
+            window.open(file, "_ blank");
+            setSuccess(true);
+        });
     };
 
     return (
