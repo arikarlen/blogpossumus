@@ -7,12 +7,13 @@ import telegram from "../../assets/share/telegram.svg";
 import mail from "../../assets/share/email.svg";
 import copyLink from "../../assets/share/link.svg";
 import { useRouter } from "next/router";
+import { Toaster, toast } from "sonner";
 
 export default function ShareNews({ absoluteUrl, title, subTitle }) {
     const { asPath } = useRouter();
 
     const shareUrl = absoluteUrl + asPath;
-    console.log(shareUrl);
+
     const urlFacebook = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
     const urlTwitter = `https://twitter.com/intent/tweet?text=${title}&url=${shareUrl}`;
     const urlLinkedin = `https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${title}&summary=${subTitle}&source=Possumus.tech`;
@@ -30,8 +31,8 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
         el.select();
         document.execCommand(`copy`);
         document.body.removeChild(el);
-        alert("Link Copiado al portapapeles");
-        // setShowA(!showA);
+        console;
+        toast.success("Link copiado al portapapeles");
     };
 
     return (
@@ -41,22 +42,22 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
                     <p>
                         Compartir:
                         <a href={urlFacebook} target="_blank">
-                            <Image src={facebook.src} />
+                            <Image src={facebook.src} alt="Facebook" />
                         </a>
                         <a href={urlTwitter} target="_blank">
-                            <Image src={twitter.src} />
+                            <Image src={twitter.src} alt="Twitter" />
                         </a>
                         <a href={urlLinkedin} target="_blank">
-                            <Image src={linkedin.src} />
+                            <Image src={linkedin.src} alt="Linkedin" />
                         </a>
                         <a href={urlWhatsApp} target="_blank">
-                            <Image src={whatsApp.src} />
+                            <Image src={whatsApp.src} alt="WhatsApp" />
                         </a>
                         <a href={urlTelegram} target="_blank">
-                            <Image src={telegram.src} />
+                            <Image src={telegram.src} alt="Telegram" />
                         </a>
                         <a href={urlMail} target="_blank">
-                            <Image src={mail.src} />
+                            <Image src={mail.src} alt="Mail" />
                         </a>
                         <a
                             onClick={() => {
@@ -64,11 +65,12 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
                             }}
                             target="_blank"
                         >
-                            <Image src={copyLink.src} />
+                            <Image src={copyLink.src} alt="Compartir" />
                         </a>
                     </p>
                 </Col>
             </Row>
+            <Toaster richColors position="top-right" />
         </>
     );
 }

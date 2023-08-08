@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import Header from "../components/commons/header";
+
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }) {
