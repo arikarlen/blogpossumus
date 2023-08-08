@@ -6,6 +6,7 @@ import ShareNews from "./share";
 import DownloadPdf from "./downloadPdf";
 
 export default function SingleNew({ singleNew, absoluteUrl }) {
+    console.log(singleNew);
     return (
         <Container id="fullNewContent">
             <Container id="fullNew">
@@ -16,11 +17,9 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
                         <h5>
                             Por{" "}
                             {singleNew.autores.data.map((autor) => (
-                                <>
-                                    <a href={autor.attributes?.perfil} target="_blank" className="linkPerfil">
-                                        {autor.attributes?.Nombre},
-                                    </a>{" "}
-                                </>
+                                <a href={autor.attributes?.Perfiles?.Principal} target="_blank" className="linkPerfil" key={autor.attributes?.Nombre}>
+                                    {autor.attributes?.Nombre},{" "}
+                                </a>
                             ))}
                         </h5>
                         <Row id="dateContent">

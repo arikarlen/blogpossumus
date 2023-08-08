@@ -5,7 +5,7 @@ import "moment/locale/es";
 
 export default function ListNews({ dataNews }) {
     const router = useRouter();
-
+    console.log(dataNews);
     return (
         <Container id="listBlog">
             <Row>
@@ -24,7 +24,7 @@ export default function ListNews({ dataNews }) {
                                     <h5>
                                         {moment(data.attributes.publishedAt).format("DD MMMM YYYY")} | Por{" "}
                                         {data.attributes.autores.data.map((autor) => (
-                                            <a href={autor.attributes?.perfil} target="_blank" className="linkPerfil" key={autor.attributes?.Nombre}>
+                                            <a href={autor.attributes?.Perfiles?.Principal} target="_blank" className="linkPerfil" key={autor.attributes?.Nombre}>
                                                 {autor.attributes?.Nombre},{" "}
                                             </a>
                                         ))}
