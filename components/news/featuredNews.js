@@ -18,11 +18,10 @@ export default function FeaturedNews({ dataNews }) {
                                 </h6>
                                 <h1 onClick={() => router.push("/news/" + data.attributes.slug)}>{data.attributes.Titulo}</h1>
                                 <h5>
-                                    {" "}
-                                    {moment(data.attributes.publishedAt).format("DD MMMM YYYY")} - Por{" "}
+                                    {moment(data.attributes.publishedAt).format("DD MMMM YYYY")} | Por{" "}
                                     {data.attributes.autores.data.map((autor) => (
-                                        <a href={autor.attributes?.perfil} target="_blank" className="linkPerfil" key={autor.attributes?.Nombre}>
-                                            {autor.attributes?.Nombre},
+                                        <a href={autor.attributes?.Perfiles?.Principal} target="_blank" className="linkPerfil" key={autor.attributes?.Nombre}>
+                                            {autor.attributes?.Nombre},{" "}
                                         </a>
                                     ))}
                                 </h5>

@@ -6,7 +6,7 @@ import Footer from "../components/commons/footer";
 import Analitycs from "../components/commons/analitycs";
 
 export async function getServerSideProps() {
-    const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&sort=id:desc`;
+    const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria&sort=id:desc`;
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
 
     const resBlog = await fetch(URLBLOG);
