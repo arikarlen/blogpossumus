@@ -103,13 +103,13 @@ export default function Footer({ dataInstitutional }) {
                 </Row>
                 <Row id="secondaryFooter">
                     <Col>
-                        <Image src={dataInstitutional.data?.attributes.Assets.Logo_Alt.data.attributes.url} fluid />
+                        <Image src={dataInstitutional.data?.attributes.Assets.Logo_Alt.data.attributes.url} fluid alt="Possumus" />
                     </Col>
                     <Col>
-                        <Image src={clutchImage.src} fluid />
+                        <Image src={clutchImage.src} fluid alt="Possumus" />
                     </Col>
                     <Col>
-                        <Image src={certificaction.src} fluid />
+                        <Image src={certificaction.src} fluid alt="Possumus" />
                     </Col>
                 </Row>
                 <Row id="subFooter">
@@ -120,16 +120,16 @@ export default function Footer({ dataInstitutional }) {
                         <h4>
                             Join Us
                             <a href={dataInstitutional.data?.attributes.Contacto.Linkedin} target="_blank">
-                                <Image src={linkedin.src} />
+                                <Image src={linkedin.src} alt="Linkedin" />
                             </a>
                             <a href={dataInstitutional.data?.attributes.Contacto.Instagram} target="_blank">
-                                <Image src={instagram.src} />
+                                <Image src={instagram.src} alt="Instagram" />
                             </a>
                             <a href={dataInstitutional.data?.attributes.Contacto.Twitter} target="_blank">
-                                <Image src={twitter.src} />
+                                <Image src={twitter.src} alt="Twitter" />
                             </a>
                             <a href={dataInstitutional.data?.attributes.Contacto.Facebook} target="_blank">
-                                <Image src={facebook.src} />
+                                <Image src={facebook.src} alt="Facebook" />
                             </a>
                         </h4>
                     </Col>
