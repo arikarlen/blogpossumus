@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import moment from "moment";
 import "moment/locale/es";
 
-export default function ListNews({ dataNews }) {
+export default function ListNews({ dataNews, type, tag }) {
     const router = useRouter();
-    console.log(dataNews);
+
     return (
         <Container id="listBlog">
             <Row>
@@ -20,9 +20,9 @@ export default function ListNews({ dataNews }) {
                                         {data.attributes.categoria?.data.attributes.Categoria}
                                     </h6>
 
-                                    <h1 onClick={() => router.push("/news/" + data.attributes.slug)}>{data.attributes.Titulo}</h1>
+                                    <h1 onClick={() => router.push(type + data.attributes.slug)}>{data.attributes.Titulo}</h1>
                                     <h5>
-                                        {moment(data.attributes.publishedAt).format("DD MMMM YYYY")} | Por{" "}
+                                        {moment(data.attributes.fecha_publicacion).format("DD MMMM YYYY")} | {tag}
                                         {data.attributes.autores.data.map((autor) => (
                                             <a href={autor.attributes?.Perfiles?.Principal} target="_blank" className="linkPerfil" key={autor.attributes?.Nombre}>
                                                 {autor.attributes?.Nombre},{" "}
