@@ -35,7 +35,7 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
                             </Col>
                         </Row>
                         <Row id="downloadPdf" className="text-center">
-                            <Col md={9}>{singleNew.descarga?.data == null ? "" : <DownloadPdf file={singleNew.descarga?.data.attributes.url} source={singleNew.Titulo} />}</Col>
+                            <Col md={9}>{singleNew.descarga?.data == null ? "" : <DownloadPdf file={singleNew.descarga?.data.attributes.url} source={singleNew.Titulo} backGroundImage={singleNew.img_descarga?.data.attributes.url} />}</Col>
                         </Row>
                         <ShareNews absoluteUrl={absoluteUrl} title={singleNew.Titulo} subTitle={singleNew.Bajada} />
                     </Col>
