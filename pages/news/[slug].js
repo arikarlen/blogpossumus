@@ -19,7 +19,7 @@ export async function getServerSideProps(context) {
     const dataInstitucional = await resInstitucional.json();
     const dataIns = dataInstitucional;
 
-    const absoluteUrl = process.env.NEXT_APP_URL;
+    const absoluteUrl = process.env.NEXT_PUBLIC_API_URL;
 
     return { props: { dataNew, dataIns, absoluteUrl } };
 }
@@ -46,7 +46,7 @@ export default function fullNews({ dataNew, dataIns, absoluteUrl }) {
                     <Breadcrumb.Item active>{dataNew.data[0].attributes.Titulo}</Breadcrumb.Item>
                 </Breadcrumb>
             </Container>
-            <SingleNew singleNew={dataNew.data[0].attributes} absoluteUrl={absoluteUrl} />
+            <SingleNew singleNew={dataNew.data[0].attributes} absoluteUrl={process.env.NEXT_APP_URL} />
             <Footer dataInstitutional={dataIns} />
         </>
     );
