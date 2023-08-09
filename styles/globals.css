@@ -186,7 +186,9 @@ cursor: pointer;
 /********************List Blog*/
 
 #listBlog {
-  margin-top:80px
+  margin-top: 80px!important;
+  border-bottom: 1px dashed var(--text-color);
+  margin-bottom: 80px!important;
 }
 
 .blogItem {

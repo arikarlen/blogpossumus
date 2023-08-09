@@ -24,7 +24,7 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
                         </h5>
                         <Row id="dateContent">
                             <Col md={2}>
-                                <h5>{moment(singleNew.publishedAt).format("DD MMMM YYYY")}</h5>
+                                <h5>{moment(singleNew.fecha_publicacion).format("DD MMMM YYYY")}</h5>
                             </Col>
                             <Col md={10}>{singleNew.Bajada}</Col>
                             <Image src={singleNew.Imagen_Destacada?.data.attributes.url} fluid className="outstandingImg" alt={singleNew.Titulo} />
