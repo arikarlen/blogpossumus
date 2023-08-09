@@ -16,7 +16,7 @@ RUN npm run build
 FROM node:16-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV prod
+ENV NODE_ENV PROD
 
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
@@ -24,9 +24,8 @@ RUN adduser -S nextjs -u 1001
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 
-COPY --from=builder --chown=nextjs:nodejs /app/.next/server ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/.next/cache ./.next/cache
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
 USER nextjs
 
