@@ -12,7 +12,7 @@ import { Toaster, toast } from "sonner";
 export default function ShareNews({ absoluteUrl, title, subTitle }) {
     const { asPath } = useRouter();
 
-    const shareUrl = absoluteUrl + asPath;
+    const shareUrl = "https://grow.possumus.tech" + asPath;
 
     const urlFacebook = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
     const urlTwitter = `https://twitter.com/intent/tweet?text=${title}&url=${shareUrl}`;

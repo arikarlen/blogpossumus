@@ -3,12 +3,13 @@ import SingleNew from "../../components/news/singleNew";
 import Footer from "../../components/commons/footer";
 import Header from "../../components/commons/header";
 import { Container, Breadcrumb } from "react-bootstrap";
+import HeaderWebinar from "../../components/webinars/headerWebinar";
 
 export async function getServerSideProps(context) {
     const { params } = context;
     const { slug } = params;
 
-    const URL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_WEBINARS}?filters[slug][$eq]=${slug}&populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20descarga%2C%20categoria%2C%20img_descarga&sort=id:desc`;
+    const URL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_WEBINARS}?filters[slug][$eq]=${slug}&populate=Imagen_Destacada%2C%20webinars_tipo&sort=id:desc`;
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
 
     const res = await fetch(URL);
@@ -25,6 +26,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function fullNews({ dataNew, dataIns, absoluteUrl }) {
+    console.log(dataNew);
     return (
         <>
             <Head>
@@ -38,7 +40,8 @@ export default function fullNews({ dataNew, dataIns, absoluteUrl }) {
                 <meta property="og:site_name" content="Blog Possumus" />
                 <meta property="og:image" content={dataNew.data[0].attributes.Imagen_Destacada.data.attributes.url}></meta> */}
             </Head>
-            <Header />
+
+            <HeaderWebinar backgroundImage={dataNew.data[0].attributes.Imagen_Destacada.data.attributes.url} type={dataNew.data[0].attributes.webinars_tipo.data.attributes.Tipo} />
             <Container>
                 <Breadcrumb>
                     <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>

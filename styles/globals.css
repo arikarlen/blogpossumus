@@ -277,7 +277,8 @@ blockquote {
 }
 
 #newsContent img {
-  margin: 50px 0
+  margin: 50px 0;
+  width: 100%!important;
 }
 
 .sharedLinks img {
@@ -420,4 +421,17 @@ margin-top: 50px!important;
 
 .text-right {
   text-align: right;
+}
+
+
+
+/**********************************************************webinars*/
+
+
+#headerWebinar {
+  background-size: cover;
+}
+
+#contentHeader h2 {
+  
 }
