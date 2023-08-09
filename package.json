@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "local": "env-cmd -e DEV npm run dev",
+    "local": "env-cmd -e LOCAL npm run dev",
     "develop": "env-cmd -e PROD next build && npm run start",
     "staging": " env-cmd -e PROD next build && npm run start",
     "prod": " env-cmd -e PROD next build && npm run start",
