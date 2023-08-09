@@ -18,7 +18,7 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm build
+RUN npm run build
 
 # If using npm comment out above and use below instead
 # RUN npm run build
