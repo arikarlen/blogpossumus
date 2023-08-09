@@ -38,6 +38,7 @@ export default function Home({ dataNews, data, dataWebin }) {
                 <meta property="og:description" content="At Possumus, we implement Agile methodologies to create positive experiences through technology with human value. Software Engineering." />
                 <meta property="og:type" content="website" />
                 <meta property="og:site_name" content="Blog Possumus" />
+                <meta property="og:image" content="https://possumustech.blob.core.windows.net/staticfiles/assets/Possumus_d54fcb00ec.png"></meta>
             </Head>
             <Analitycs />
             <Header />
