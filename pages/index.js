@@ -4,23 +4,29 @@ import Header from "../components/commons/header";
 import ListNews from "../components/news/blogList";
 import Footer from "../components/commons/footer";
 import Analitycs from "../components/commons/analitycs";
+import Title from "../components/commons/titles";
 
 export async function getServerSideProps() {
-    const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria&sort=id:desc`;
+    const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&sort=id:desc&pagination[page]=1&pagination[pageSize]=5`;
+    const URLWEBINARS = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_WEBINARS}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria&sort=id:desc&pagination[page]=1&pagination[pageSize]=5`;
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
 
     const resBlog = await fetch(URLBLOG);
     const dataBlog = await resBlog.json();
     const dataNews = dataBlog;
 
+    const resWebinars = await fetch(URLWEBINARS);
+    const dataWebinars = await resWebinars.json();
+    const dataWebin = dataWebinars;
+
     const resInstitucional = await fetch(URLINSTITUCIONAL);
     const dataInstitucional = await resInstitucional.json();
     const data = dataInstitucional;
 
-    return { props: { dataNews, data } };
+    return { props: { dataNews, data, dataWebin } };
 }
 
-export default function Home({ dataNews, data }) {
+export default function Home({ dataNews, data, dataWebin }) {
     return (
         <>
             <Head>
@@ -35,8 +41,11 @@ export default function Home({ dataNews, data }) {
             </Head>
             <Analitycs />
             <Header />
+            <Title title="Ultimas noticias" />
             <FeaturedNews dataNews={dataNews.data} />
-            <ListNews dataNews={dataNews.data} />
+            <ListNews dataNews={dataNews.data} type="/news/" tag="Por " />
+            {/* <Title title="Webinars" />
+            <ListNews dataNews={dataWebin.data} type="/webinars/" tag="Disertantes: " /> */}
             <Footer dataInstitutional={data} />
         </>
     );
