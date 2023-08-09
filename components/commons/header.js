@@ -47,7 +47,7 @@ export default function Header() {
                     <Link href="/search">
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </Link>
-                    <Navbar.Text>
+                    {/* <Navbar.Text>
                         <div className="switchTheme">
                             <input type="checkbox" className="checkbox" id="checkbox" onClick={HandleThemeChange} checked={checked} />
                             <label htmlFor="checkbox" className="checkbox-label">
@@ -56,7 +56,7 @@ export default function Header() {
                                 <span className="ball"></span>
                             </label>
                         </div>
-                    </Navbar.Text>
+                    </Navbar.Text> */}
                 </Navbar.Collapse>
             </Container>
         </Navbar>
