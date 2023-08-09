@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Image, Row } from "react-bootstrap";
 import axios from "axios";
 
-export default function DownloadPdf({ file, source }) {
+export default function DownloadPdf({ file, source, backGroundImage }) {
     const [success, setSuccess] = useState(false);
     const {
         register,
@@ -31,7 +31,7 @@ export default function DownloadPdf({ file, source }) {
     return (
         <>
             {success ? (
-                <>
+                <Row style={{ backgroundImage: `url(${backGroundImage})` }} id="headerFormNews">
                     <h1>Muchas gracias</h1>
                     <p>La nota completa se abrirá en una nueva pestaña</p>
                     <p>
@@ -40,11 +40,15 @@ export default function DownloadPdf({ file, source }) {
                             click aquí
                         </a>
                     </p>
-                </>
+                </Row>
             ) : (
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <h1>¿Desea conocer mas?</h1>
-                    <p>Dejenos sus datos para acceder a la nota completa en formato pdf</p>
+                <form onSubmit={handleSubmit(onSubmit)} id="formNews">
+                    <Row style={{ backgroundImage: `url(${backGroundImage})` }} id="headerFormNews">
+                        {/* <Image src={backGroundImage} fluid alt={source} /> */}
+                        <h1>¿Desea conocer mas?</h1>
+                        <p>Dejenos sus datos para acceder a la nota completa en formato pdf</p>
+                    </Row>
+
                     <Form.Control
                         type="text"
                         className="formField"
