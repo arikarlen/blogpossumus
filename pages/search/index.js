@@ -29,7 +29,7 @@ export default function Search() {
 
     return (
         <>
-            <Header />
+            <Header title="Blog" />
             <Container>
                 <Breadcrumb>
                     <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
