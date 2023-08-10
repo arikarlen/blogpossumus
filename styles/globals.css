@@ -93,7 +93,13 @@ cursor: pointer;
   top: 0;
 }
 
-#mainNav a {
+#mainNavNoMargin {
+  margin: 0 ;
+  position: sticky;
+  top: 0;
+}
+
+#mainNav a, #mainNavNoMargin a {
   color: var(--text-color);
 }
 
@@ -455,8 +461,40 @@ margin-top: 50px!important;
 
 #headerWebinar {
   background-size: cover;
+  padding-top: 48px!important;
+  padding-bottom: 320px!important;
 }
 
-#contentHeader h2 {
-  
+#headerWebinar h1 {
+  font-size: 68px!important;
+  margin-bottom: 30px;
 }
+
+#headerWebinar .breadcrumb {
+  margin-bottom: 120px!important;
+}
+
+#contentDate {
+  margin-top:30px!important ;
+}
+
+.participateButton button {
+  font-family: "Gotham", sans-serif;
+  font-size: 24px!important;
+  padding: 5px!important;
+  text-align: center!important;
+padding: 10px 50px!important;
+  border-radius: 10px !important;
+  box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.04)!important;
+  background-color: var(--color-black)!important;
+  color: var(--colog-grey-ligth)!important;
+  border: none!important;
+margin-top: 50px!important;
+width: 100%;
+
+}
+
+.participateButton button:hover {
+  background-color: var(--color-yellow)!important;
+}
+
