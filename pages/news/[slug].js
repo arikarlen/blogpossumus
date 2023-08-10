@@ -38,7 +38,7 @@ export default function fullNews({ dataNew, dataIns, absoluteUrl }) {
                 <meta property="og:site_name" content="Blog Possumus" />
                 <meta property="og:image" content={dataNew.data[0].attributes.Imagen_Destacada.data.attributes.url}></meta>
             </Head>
-            <Header />
+            <Header title="Blog" />
             <Container>
                 <Breadcrumb>
                     <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>

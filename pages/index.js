@@ -7,13 +7,18 @@ import Analitycs from "../components/commons/analitycs";
 import Title from "../components/commons/titles";
 
 export async function getServerSideProps() {
-    const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&sort=id:desc&pagination[page]=1&pagination[pageSize]=5`;
+    const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&filters[Destacada][$eq]=false&sort=fecha_publicacion:desc&pagination[page]=0&pagination[pageSize]=4`;
+    const URLBLOGDESTACADA = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&filters[Destacada][$eq]=true&sort=fecha_publicacion:desc`;
     const URLWEBINARS = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_WEBINARS}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria&sort=id:desc&pagination[page]=1&pagination[pageSize]=5`;
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
 
     const resBlog = await fetch(URLBLOG);
     const dataBlog = await resBlog.json();
     const dataNews = dataBlog;
+
+    const resDestacada = await fetch(URLBLOGDESTACADA);
+    const dataDestacada = await resDestacada.json();
+    const dataDes = dataDestacada;
 
     const resWebinars = await fetch(URLWEBINARS);
     const dataWebinars = await resWebinars.json();
@@ -23,10 +28,10 @@ export async function getServerSideProps() {
     const dataInstitucional = await resInstitucional.json();
     const data = dataInstitucional;
 
-    return { props: { dataNews, data, dataWebin } };
+    return { props: { dataDes, data, dataWebin, dataNews } };
 }
 
-export default function Home({ dataNews, data, dataWebin }) {
+export default function Home({ data, dataNews, dataDes, dataWebin }) {
     return (
         <>
             <Head>
@@ -41,9 +46,9 @@ export default function Home({ dataNews, data, dataWebin }) {
                 <meta property="og:image" content="https://possumustech.blob.core.windows.net/staticfiles/assets/Possumus_d54fcb00ec.png"></meta>
             </Head>
             <Analitycs />
-            <Header />
+            <Header title="Blog" />
             <Title title="Ultimas noticias" />
-            <FeaturedNews dataNews={dataNews.data} />
+            <FeaturedNews dataNews={dataDes.data} />
             <ListNews dataNews={dataNews.data} type="/news/" tag="Por " />
             {/* <Title title="Webinars" />
             <ListNews dataNews={dataWebin.data} type="/webinars/" tag="Disertantes: " /> */}
