@@ -5,6 +5,7 @@ import ListNews from "../components/news/blogList";
 import Footer from "../components/commons/footer";
 import Analitycs from "../components/commons/analitycs";
 import Title from "../components/commons/titles";
+import SeeMoreeButton from "../components/commons/seeMoreButton";
 
 export async function getServerSideProps() {
     const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&filters[Destacada][$eq]=false&sort=fecha_publicacion:desc&pagination[page]=0&pagination[pageSize]=4`;
@@ -50,6 +51,7 @@ export default function Home({ data, dataNews, dataDes, dataWebin }) {
             <Title title="Ultimas noticias" />
             <FeaturedNews dataNews={dataDes.data} />
             <ListNews dataNews={dataNews.data} type="/news/" tag="Por " />
+            <SeeMoreeButton link="/news" />
             {/* <Title title="Webinars" />
             <ListNews dataNews={dataWebin.data} type="/webinars/" tag="Disertantes: " /> */}
             <Footer dataInstitutional={data} />
