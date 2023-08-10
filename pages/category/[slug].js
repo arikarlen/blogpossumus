@@ -36,7 +36,7 @@ export default function Category({ slug, dataNew, dataIns }) {
                 <meta property="og:site_name" content="Blog Possumus" />
                 <meta property="og:image" content="https://possumustech.blob.core.windows.net/staticfiles/assets/Possumus_d54fcb00ec.png"></meta>
             </Head>
-            <Header />
+            <Header title="Blog" style="mainNav" />
             <Container>
                 <Breadcrumb>
                     <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>

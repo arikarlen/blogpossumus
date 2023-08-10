@@ -9,7 +9,7 @@ import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-export default function Header({ title }) {
+export default function Header({ title, style }) {
     const [theme, setTheme] = useState();
     const [checked, setChecked] = useState();
     const [logoPossumus, setLogoPossumus] = useState();
@@ -37,7 +37,7 @@ export default function Header({ title }) {
     };
 
     return (
-        <Navbar className="bg-body-tertiary" id="mainNav">
+        <Navbar className="bg-body-tertiary" id={style}>
             <Container>
                 <Navbar.Brand href="/">
                     <Image src={logoPossumus} width={180} height={32} alt="Possumus" /> <span>{title}</span>
