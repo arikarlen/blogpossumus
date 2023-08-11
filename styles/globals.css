@@ -497,13 +497,13 @@ margin-top: 50px!important;
   font-size: 24px!important;
   padding: 5px!important;
   text-align: center!important;
-padding: 10px 50px!important;
+  padding: 10px 50px!important;
   border-radius: 10px !important;
   box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.04)!important;
   background-color: var(--color-black)!important;
   color: var(--colog-grey-ligth)!important;
   border: none!important;
-margin-top: 50px!important;
+  margin-top: 50px!important;
 width: 100%;
 
 }
@@ -579,6 +579,25 @@ font-weight: 700!important;
     margin-top: 70px!important;
 }
 
+#postWebinar button {
+  font-family: "Gotham", sans-serif;
+  font-size: 22px!important;
+  padding: 5px!important;
+  text-align: center!important;
+  padding: 10px 50px!important;
+  border-radius: 10px !important;
+  box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.04)!important;
+  background-color: var(--color-black)!important;
+  color: var(--colog-grey-ligth)!important;
+  border: none!important;
+  margin-top: 50px!important;
+}
+
+ #postWebinar button:hover {
+  background-color: var(--hover-color) !important;
+}
+
+
 #downloadPdfWebinar {
   background-color: var(--colog-grey-ligth);
   margin-top: 100px!important;
@@ -593,9 +612,13 @@ font-weight: 700!important;
 .modalTitle {
   background-size: cover!important;
   background-position: center!important;
- 
-background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(97,97,97,1) 100%)!important;
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#616161', GradientType=1 )!important;
+  font-family: "Gotham", sans-serif!important;
+  text-align: center;
+  font-size: 27px!important;
+font-style: normal!important;
+font-weight: 700!important;
+padding-top: 100px!important;
+color:#fff
 }
 
   
