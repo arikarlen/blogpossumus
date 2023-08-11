@@ -11,12 +11,16 @@ import ResultsNotFound from "../../components/commons/resultNotFound";
 import StartSearch from "../../components/commons/startSearch";
 
 import Footer from "../../components/commons/footer";
+import Pagination from "../../components/commons/pagination";
 
 export default function Search() {
     const [dataNews, setDataNews] = useState();
     const [dataInstitucional, setDataInstitucional] = useState();
     const [keyword, setKeyword] = useState("");
     const [showFooter, setShowFooter] = useState(false);
+    const [page, setPage] = useState(1);
+    const pageSize = 10;
+    const [dataPagination, setDataPagination] = useState();
 
     const { register, handleSubmit } = useForm({
         mode: "onTouched",
@@ -29,11 +33,12 @@ export default function Search() {
 
     useEffect(
         (data) => {
-            axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}&sort=id:desc`).then((res) => {
+            axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}&pagination%5BwithCount%5D=true&pagination%5Bpage%5D=${page}&pagination%5BpageSize%5D=${pageSize}&sort=id:desc`).then((res) => {
                 setDataNews(res.data);
+                setDataPagination(res.data?.meta?.pagination);
             });
         },
-        [keyword]
+        [keyword, page]
     );
 
     useEffect(() => {
@@ -42,7 +47,7 @@ export default function Search() {
             setShowFooter(true);
         });
     }, []);
-
+    console.log(dataPagination);
     return (
         <>
             <Head>
@@ -79,6 +84,7 @@ export default function Search() {
                 </Row>
 
                 {dataNews ? dataNews.data == "" ? <ResultsNotFound keyword={keyword} /> : <ListNews dataNews={dataNews.data} title="Resultados" /> : <StartSearch />}
+                <Pagination page={page} setPage={setPage} dataPagination={dataPagination} />
             </Container>
             {showFooter && <Footer dataInstitutional={dataInstitucional} />}
         </>

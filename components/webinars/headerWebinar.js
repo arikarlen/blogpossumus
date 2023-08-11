@@ -3,8 +3,9 @@ import fCalendar from "../../assets/FCalendar.svg";
 import fClock from "../../assets/FClock.svg";
 import moment from "moment";
 import { useRouter } from "next/router";
-export default function HeaderWebinar({ backgroundImage, type, title, subtitle, date, time }) {
+export default function HeaderWebinar({ backgroundImage, type, title, subtitle, date, textRegister, textSeeWebinar, status, color }) {
     const router = useRouter();
+    console.log(color);
     return (
         <Container style={{ backgroundImage: `url(${backgroundImage})` }} fluid id="headerWebinar">
             <Container>
@@ -36,8 +37,14 @@ export default function HeaderWebinar({ backgroundImage, type, title, subtitle, 
                 </Row>
                 <Row className="participateButton">
                     <Col md={4}>
-                        <Button variant="primary" onClick={() => router.push("#footer")}>
-                            Quiero Participar
+                        <Button
+                            variant="primary"
+                            onClick={() => router.push("#cta")}
+                            style={{
+                                "--hover-color": color,
+                            }}
+                        >
+                            {status ? textRegister : textSeeWebinar}
                         </Button>
                     </Col>
                 </Row>
