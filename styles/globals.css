@@ -249,6 +249,12 @@ width: 100%;
 .oldNews {
   text-align: right;
 }
+
+
+.fa-caret-right:hover, .fa-caret-left:hover {
+  cursor: pointer;
+}
+
 /**************************Full New*/
 
 .breadcrumb-item a {

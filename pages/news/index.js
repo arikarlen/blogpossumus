@@ -47,7 +47,7 @@ export default function Search() {
             setShowFooter(true);
         });
     }, []);
-    console.log(dataPagination);
+
     return (
         <>
             <Head>
