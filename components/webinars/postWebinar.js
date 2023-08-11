@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Col, Container, Image, Row, Button, Modal } from "react-bootstrap";
+import DownloadPdf from "./downloadPdf";
 
-export default function PostWebinar({ status, data }) {
-    console.log(data);
+export default function PostWebinar({ status, data, color }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -20,24 +20,24 @@ export default function PostWebinar({ status, data }) {
                         </Col>
                         <Col md={6}>
                             <h1>{data.Texto}</h1>
-                            <Button variant="primary" onClick={handleShow}>
-                                Launch demo modal
+                            <Button
+                                variant="primary"
+                                onClick={handleShow}
+                                style={{
+                                    "--hover-color": color,
+                                }}
+                            >
+                                Free Download
                             </Button>
                         </Col>
                     </Row>
                     <Modal show={show} onHide={handleClose} centered>
-                        <Modal.Header closeButton style={{ backgroundImage: `url(${data.Imagen.data.attributes.url})` }} className="modalTitle">
+                        <Modal.Header style={{ backgroundImage: `url(${data.background_form.data.attributes.url})` }} className="modalTitle">
                             <Modal.Title id="contained-modal-title-vcenter">{data.Titulo_form}</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Close
-                            </Button>
-                            <Button variant="primary" onClick={handleClose}>
-                                Save Changes
-                            </Button>
-                        </Modal.Footer>
+                        <Modal.Body>
+                            <DownloadPdf source={data.Texto} file={data.descarga.data.attributes.url} />
+                        </Modal.Body>
                     </Modal>
                 </Container>
             )}
