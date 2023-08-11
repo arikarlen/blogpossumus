@@ -38,7 +38,7 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
     return (
         <>
             <Row id="share">
-                <Col md={9} className="sharedLinks">
+                <Col md={12} className="sharedLinks">
                     <p>
                         Compartir:
                         <a href={urlFacebook} target="_blank">
