@@ -52,8 +52,8 @@ export default function Home({ data, dataNews, dataDes, dataWebin }) {
             <FeaturedNews dataNews={dataDes.data} />
             <ListNews dataNews={dataNews.data} type="/news/" tag="Por " />
             <SeeMoreeButton link="/news" />
-            <Title title="Webinars" />
-            <ListNews dataNews={dataWebin.data} type="/webinars/" tag="Disertantes: " />
+            {/* <Title title="Webinars" />
+            <ListNews dataNews={dataWebin.data} type="/webinars/" tag="Disertantes: " /> */}
             <Footer dataInstitutional={data} />
         </>
     );
