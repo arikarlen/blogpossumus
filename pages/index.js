@@ -47,7 +47,7 @@ export default function Home({ data, dataNews, dataDes, dataWebin }) {
                 <meta property="og:image" content="https://possumustech.blob.core.windows.net/staticfiles/assets/Possumus_d54fcb00ec.png"></meta>
             </Head>
             <Analitycs />
-            <Header title="Blog" />
+            <Header title="Blog" style="mainNav" />
             <Title title="Ultimas noticias" />
             <FeaturedNews dataNews={dataDes.data} />
             <ListNews dataNews={dataNews.data} type="/news/" tag="Por " />
