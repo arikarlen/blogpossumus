@@ -113,10 +113,10 @@ export default function Footer({ dataInstitutional }) {
                     </Col>
                 </Row>
                 <Row id="subFooter">
-                    <Col>
+                    <Col md={6}>
                         <p>Copyright © 2023 Possumus. Todos los derechos reservados.</p>
                     </Col>
-                    <Col className="text-right">
+                    <Col md={6} className="text-right">
                         <h4>
                             Join Us
                             <a href={dataInstitutional.data?.attributes.Contacto.Linkedin} target="_blank">

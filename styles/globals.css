@@ -621,4 +621,35 @@ padding-top: 100px!important;
 color:#fff
 }
 
+@media (max-width: 766px) {
+
+
+
+  #fullNew h1 {
+    font-size: 42px!important;
+  }
+
+  #newsContent h1, #downloadPdf h1 {
+    font-size: 24px!important;
+ 
+}
+
+.outstandingImg {
+  margin-bottom: 0!important;
+}
+
+#dateContent {
+  margin-top: 0!important;
+}
+
+#dateContent .col-md-10 {
+  margin-top: 30px!important;
+}
+
+  #subFooter, .text-right{
+    text-align: center;
+  }
+  
+}
+
   
