@@ -6,7 +6,7 @@ export default function SeeMoreeButton({ link }) {
     return (
         <Container className="seeMoreButton">
             <Row>
-                <Col md={{ span: 4, offset: 4 }}>
+                <Col md={{ span: 2, offset: 5 }}>
                     {" "}
                     <Button variant="primary" onClick={() => router.push(link)}>
                         Ver mas
