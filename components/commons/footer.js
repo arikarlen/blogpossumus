@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import clutchImage from "../../assets/clutch.svg";
 import certificaction from "../../assets/certification.svg";
@@ -8,11 +7,6 @@ import TwitterBlack from "../../assets/twitterIcon.svg";
 import FacebookBlack from "../../assets/FaceBookIcon.png";
 
 export default function Footer({ dataInstitutional }) {
-    const [linkedin, setLinkedin] = useState(LinkedinBlack);
-    const [instagram, setInstagram] = useState(InstagramBlack);
-    const [twitter, setTwitter] = useState(TwitterBlack);
-    const [facebook, setFacebook] = useState(FacebookBlack);
-
     const tel = "tel: " + dataInstitutional.data?.attributes.Contacto.telefono;
     const mailto = "mailto:" + dataInstitutional.data?.attributes.Contacto.Email;
     return (
@@ -120,16 +114,16 @@ export default function Footer({ dataInstitutional }) {
                         <h4>
                             Join Us
                             <a href={dataInstitutional.data?.attributes.Contacto.Linkedin} target="_blank">
-                                <Image src={linkedin.src} alt="Linkedin" />
+                                <Image src={LinkedinBlack.src} alt="Linkedin" />
                             </a>
                             <a href={dataInstitutional.data?.attributes.Contacto.Instagram} target="_blank">
-                                <Image src={instagram.src} alt="Instagram" />
+                                <Image src={InstagramBlack.src} alt="Instagram" />
                             </a>
                             <a href={dataInstitutional.data?.attributes.Contacto.Twitter} target="_blank">
-                                <Image src={twitter.src} alt="Twitter" />
+                                <Image src={TwitterBlack.src} alt="Twitter" />
                             </a>
                             <a href={dataInstitutional.data?.attributes.Contacto.Facebook} target="_blank">
-                                <Image src={facebook.src} alt="Facebook" />
+                                <Image src={FacebookBlack.src} alt="Facebook" />
                             </a>
                         </h4>
                     </Col>
