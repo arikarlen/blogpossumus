@@ -12,6 +12,7 @@ import StartSearch from "../../components/commons/startSearch";
 
 import Footer from "../../components/commons/footer";
 import Pagination from "../../components/commons/pagination";
+import PaginationBasic from "../../components/commons/paginationBasic";
 
 export default function Search() {
     const [dataNews, setDataNews] = useState();
@@ -84,7 +85,8 @@ export default function Search() {
                 </Row>
 
                 {dataNews ? dataNews.data == "" ? <ResultsNotFound keyword={keyword} /> : <ListNews dataNews={dataNews.data} title="Resultados" /> : <StartSearch />}
-                <Pagination page={page} setPage={setPage} dataPagination={dataPagination} />
+
+                <PaginationBasic page={page} setPage={setPage} dataPagination={dataPagination} />
             </Container>
             {showFooter && <Footer dataInstitutional={dataInstitucional} />}
         </>
