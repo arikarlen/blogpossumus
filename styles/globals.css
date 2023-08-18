@@ -42,11 +42,11 @@ p {
 
   h1 {
     font-family: "Gotham", sans-serif;
-    font-size: 27px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%; /* 32.4px */
-    letter-spacing: -0.162px;
+    font-size: 27px!important;
+    font-style: normal!important;
+    font-weight: 700!important;
+    line-height: 120%!important; /* 32.4px */
+    letter-spacing: -0.162px!important;
   }
 
   h2 {
