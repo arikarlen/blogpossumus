@@ -276,6 +276,10 @@ cursor: pointer;
   color:var(--text-color)!important
 }
 
+.page-link:hover {
+  background-color: var(--color-yellow)!important;
+}
+
 .active>.page-link, .page-link.active {
   background-color: var(--text-color)!important;
   border-color: var(--text-color)!important;
