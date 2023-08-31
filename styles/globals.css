@@ -16,7 +16,19 @@
     --colog-grey-ligth: #F5F5F5;
     --header-background: #fff;
     --text-color:#262B36;
-    --background-color:#fff
+    --background-color:#fff;
+
+    /* Margenes */
+    --m1: 8px;
+    --m2: 16px;
+    --m3: 24px;
+    --m4: 32px;
+    --m5: 40px;
+    --m6: 48px;
+    --m7: 56px;
+    --m8: 64px;
+    --m9: 72px;
+    --m10: 80px;
 }
 
 html[data-theme="dark"] {
@@ -313,16 +325,16 @@ cursor: pointer;
 }
 
 .title {
-  margin-bottom: 25px!important;
+  margin-bottom: var(--m3)!important;
 }
 
 #dateContent {
-  margin-top: 50px!important;
+  margin-top: var(--m6)!important;
 }
 
 .outstandingImg {
-  margin-top: 80px!important;
-  margin-bottom: 120px!important;
+  margin-top: var(--m8)!important;
+  margin-bottom: var(--m6)!important;
 }
 
 blockquote {
@@ -353,7 +365,7 @@ blockquote {
 }
 
 #newsContent img {
-  margin: 50px 0;
+  margin: var(--m4) 0;
   width: 100%!important;
 }
 
