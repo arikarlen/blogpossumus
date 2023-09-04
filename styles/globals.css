@@ -16,7 +16,19 @@
     --colog-grey-ligth: #F5F5F5;
     --header-background: #fff;
     --text-color:#262B36;
-    --background-color:#fff
+    --background-color:#fff;
+
+    /* Margenes */
+    --m1: 8px;
+    --m2: 16px;
+    --m3: 24px;
+    --m4: 32px;
+    --m5: 40px;
+    --m6: 48px;
+    --m7: 56px;
+    --m8: 64px;
+    --m9: 72px;
+    --m10: 80px;
 }
 
 html[data-theme="dark"] {
@@ -103,6 +115,7 @@ cursor: pointer;
   position: sticky;
   top: 0;
   padding: 17px 0;
+  z-index: 999;
 }
 
 #mainNavNoMargin {
@@ -215,7 +228,7 @@ cursor: pointer;
 }
 
 .seeMoreButton button {
-
+  width: max-content;
   padding: 5px!important;
   text-align: center!important;padding: 10px 50px!important;
   border-radius: 10px !important;
@@ -224,8 +237,6 @@ cursor: pointer;
   color: var(--color-black)!important;
   border: 2px solid var(--color-black)!important;
   margin-top: 50px!important;
-  width: 100%;
-
 }
 
 .seeMoreButton button:hover {
@@ -313,16 +324,16 @@ cursor: pointer;
 }
 
 .title {
-  margin-bottom: 25px!important;
+  margin-bottom: var(--m3)!important;
 }
 
 #dateContent {
-  margin-top: 50px!important;
+  margin-top: var(--m6)!important;
 }
 
 .outstandingImg {
-  margin-top: 80px!important;
-  margin-bottom: 120px!important;
+  margin-top: var(--m8)!important;
+  margin-bottom: var(--m6)!important;
 }
 
 blockquote {
@@ -353,12 +364,13 @@ blockquote {
 }
 
 #newsContent img {
-  margin: 50px 0;
+  margin: var(--m4) 0;
   width: 100%!important;
 }
 
 .sharedLinks img {
-  margin-left: 6%;
+  margin-left: 4%;
+  width: 40px;
 }
 
 .sharedLinks img:hover {
@@ -370,6 +382,38 @@ blockquote {
   border-bottom: 1px solid #D8D8D8;
   padding: 35px 0!important;
   margin-top: 60px!important;
+}
+
+.sharedLinks.mobile{
+  display: none;
+  position: relative;
+  gap: 6%;
+  align-items: center;
+}
+
+.more-options-container{
+  position: relative;
+}
+
+.sharedLinks.mobile .more-options{
+  transition: all .4s ease-in;
+  display: grid;
+  gap: 10px;
+  position: absolute;
+  top: 90%;
+  left: 0%;
+} 
+
+.sharedLinks.mobile .more-options.no-visible{
+  z-index: -10;
+  opacity: 0;
+  top: -300%;
+}
+
+.sharedLinks.mobile .more-options.visible{
+  opacity: 1;
+  top: calc(-500% - 10px);
+  z-index: 1;
 }
 
 #share p {
@@ -440,7 +484,10 @@ margin-top: 50px!important;
 #searchKeyword {
   border-radius: 50px 0 0 50px;
   background-color: #F1F7F8;
-  border:none
+  border:none;
+}
+#searchKeyword:focus {
+  box-shadow: none;
 }
 
 #searchButton {
@@ -654,8 +701,6 @@ color:#fff
 
 @media (max-width: 766px) {
 
-
-
   #fullNew h1 {
     font-size: 42px!important;
   }
@@ -679,6 +724,14 @@ color:#fff
 
   #subFooter, .text-right{
     text-align: center;
+  }
+
+  .sharedLinks{
+    display: none;
+  }
+
+  .sharedLinks.mobile{
+    display: flex;
   }
   
 }
