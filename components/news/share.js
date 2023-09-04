@@ -7,6 +7,7 @@ import telegram from "../../assets/share/telegram.svg";
 import mail from "../../assets/share/email.svg";
 import copyLink from "../../assets/share/link.svg";
 import moreShareOptions from "../../assets/share/moreShareOptions.svg";
+import closeMoreShareOptions from "../../assets/share/closeMoreShareOptions.svg";
 import { useRouter } from "next/router";
 import { Toaster, toast } from "sonner";
 import { useState } from "react";
@@ -14,7 +15,8 @@ import { useState } from "react";
 export default function ShareNews({ absoluteUrl, title, subTitle }) {
   const { asPath } = useRouter();
 
-  const [isMoreOptionsMobileVisible, setIsMoreOptionsMobileVisible] = useState(false)
+  const [isMoreOptionsMobileVisible, setIsMoreOptionsMobileVisible] =
+    useState(false);
 
   const shareUrl = "https://grow.possumus.tech" + asPath;
 
@@ -39,7 +41,7 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
     toast.success("Link copiado al portapapeles");
   };
 
-  console.log(isMoreOptionsMobileVisible)
+  console.log(isMoreOptionsMobileVisible);
 
   return (
     <>
@@ -76,7 +78,6 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
           </div>
         </Col>
         <Col md={12} className="sharedLinks mobile">
-          <div>
             Compartir:
             <a href={urlTwitter} target="_blank">
               <Image src={twitter.src} alt="Twitter" />
@@ -87,29 +88,47 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
             <a href={urlWhatsApp} target="_blank">
               <Image src={whatsApp.src} alt="WhatsApp" />
             </a>
-            <a onClick={()=> setIsMoreOptionsMobileVisible(!isMoreOptionsMobileVisible)}>
-              <Image src={moreShareOptions.src} alt="More options" />
-            </a>
-            <div className={isMoreOptionsMobileVisible ? "more-options visible" : "more-options no-visible"}>
-              <a href={urlFacebook} target="_blank">
-                <Image src={facebook.src} alt="Facebook" />
-              </a>
-              <a href={urlTelegram} target="_blank">
-                <Image src={telegram.src} alt="Telegram" />
-              </a>
-              <a href={urlMail} target="_blank">
-                <Image src={mail.src} alt="Mail" />
-              </a>
+            <div className="more-options-container">
               <a
-                onClick={() => {
-                  CopyToClipboard(window.location.href);
-                }}
-                target="_blank"
+                onClick={() =>
+                  setIsMoreOptionsMobileVisible(!isMoreOptionsMobileVisible)
+                }
               >
-                <Image src={copyLink.src} alt="Compartir" />
+                <Image
+                  src={
+                    isMoreOptionsMobileVisible
+                      ? closeMoreShareOptions.src
+                      : moreShareOptions.src
+                  }
+                  alt="More options"
+                />
               </a>
+              <div
+                className={
+                  isMoreOptionsMobileVisible
+                    ? "more-options visible"
+                    : "more-options no-visible"
+                }
+              >
+                <a href={urlFacebook} target="_blank">
+                  <Image src={facebook.src} alt="Facebook" />
+                </a>
+                <a href={urlTelegram} target="_blank">
+                  <Image src={telegram.src} alt="Telegram" />
+                </a>
+                <a href={urlMail} target="_blank">
+                  <Image src={mail.src} alt="Mail" />
+                </a>
+                <a
+                  onClick={() => {
+                    CopyToClipboard(window.location.href);
+                  }}
+                  target="_blank"
+                >
+                  <Image src={copyLink.src} alt="Compartir" />
+                </a>
+              </div>
             </div>
-          </div>
         </Col>
       </Row>
       <Toaster richColors position="top-right" />

@@ -115,6 +115,7 @@ cursor: pointer;
   position: sticky;
   top: 0;
   padding: 17px 0;
+  z-index: 999;
 }
 
 #mainNavNoMargin {
@@ -386,29 +387,32 @@ blockquote {
 .sharedLinks.mobile{
   display: none;
   position: relative;
+  gap: 6%;
+  align-items: center;
+}
+
+.more-options-container{
+  position: relative;
 }
 
 .sharedLinks.mobile .more-options{
   transition: all .4s ease-in;
-  display: flex;
-  gap: 15px;
-  justify-content: flex-end;
+  display: grid;
+  gap: 10px;
   position: absolute;
   top: 90%;
-  left: 20%;
-  background-color: #fff;
-  padding: 0 10px;
+  left: 0%;
 } 
 
 .sharedLinks.mobile .more-options.no-visible{
   z-index: -10;
   opacity: 0;
-  top: 50%;
+  top: -300%;
 }
 
 .sharedLinks.mobile .more-options.visible{
   opacity: 1;
-  top: 90%;
+  top: calc(-500% - 10px);
   z-index: 1;
 }
 
@@ -727,7 +731,7 @@ color:#fff
   }
 
   .sharedLinks.mobile{
-    display: initial;
+    display: flex;
   }
   
 }
