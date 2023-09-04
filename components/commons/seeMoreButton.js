@@ -6,10 +6,10 @@ export default function SeeMoreeButton({ link }) {
     return (
         <Container className="seeMoreButton">
             <Row>
-                <Col md={{ span: 2, offset: 5 }}>
+                <Col className="d-flex justify-content-center">
                     {" "}
                     <Button variant="primary" onClick={() => router.push(link)}>
-                        Ver mas
+                        Ver más notas
                     </Button>
                 </Col>
             </Row>

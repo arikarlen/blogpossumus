@@ -11,11 +11,11 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
       <Container id="fullNew">
         <Row>
           <Col md={{ span: 10, offset: 1 }}>
-            <h6>{singleNew.categoria?.data.attributes.Categoria}</h6>
-            <h1 className="title">{singleNew.Titulo}</h1>
+            <h6>{singleNew?.categoria?.data.attributes.Categoria}</h6>
+            <h1 className="title">{singleNew?.Titulo}</h1>
             <h5>
-              {moment(singleNew.fecha_publicacion).format("DD MMMM YYYY")} | Por{" "}
-              {singleNew.autores.data.map((autor) => (
+              {moment(singleNew?.fecha_publicacion).format("DD MMMM YYYY")} | Por{" "}
+              {singleNew?.autores.data.map((autor) => (
                 <a
                   href={autor.attributes?.Perfiles?.Principal}
                   target="_blank"
@@ -27,29 +27,29 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
               ))}
             </h5>
             <Row id="dateContent">
-              <Col md={10}>{singleNew.Bajada}</Col>
+              <Col md={10}>{singleNew?.Bajada}</Col>
               <Image
-                src={singleNew.Imagen_Destacada?.data.attributes.url}
+                src={singleNew?.Imagen_Destacada?.data.attributes.url}
                 fluid
                 className="outstandingImg"
-                alt={singleNew.Titulo}
+                alt={singleNew?.Titulo}
               />
             </Row>
             <Row id="newsContent">
               <Col md={9}>
-                <ReactMarkdown>{singleNew.cuerpo}</ReactMarkdown>
+                <ReactMarkdown>{singleNew?.cuerpo}</ReactMarkdown>
               </Col>
             </Row>
             <Row id="downloadPdf" className="text-center">
               <Col md={9}>
-                {singleNew.descarga?.data == null ? (
+                {singleNew?.descarga?.data == null ? (
                   ""
                 ) : (
                   <DownloadPdf
-                    file={singleNew.descarga?.data.attributes.url}
-                    source={singleNew.Titulo}
+                    file={singleNew?.descarga?.data.attributes.url}
+                    source={singleNew?.Titulo}
                     backGroundImage={
-                      singleNew.img_descarga?.data.attributes.url
+                      singleNew?.img_descarga?.data.attributes.url
                     }
                   />
                 )}
@@ -57,8 +57,8 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
             </Row>
             <ShareNews
               absoluteUrl={absoluteUrl}
-              title={singleNew.Titulo}
-              subTitle={singleNew.Bajada}
+              title={singleNew?.Titulo}
+              subTitle={singleNew?.Bajada}
             />
           </Col>
         </Row>

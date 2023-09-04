@@ -227,7 +227,7 @@ cursor: pointer;
 }
 
 .seeMoreButton button {
-
+  width: max-content;
   padding: 5px!important;
   text-align: center!important;padding: 10px 50px!important;
   border-radius: 10px !important;
@@ -236,8 +236,6 @@ cursor: pointer;
   color: var(--color-black)!important;
   border: 2px solid var(--color-black)!important;
   margin-top: 50px!important;
-  width: 100%;
-
 }
 
 .seeMoreButton button:hover {
@@ -370,7 +368,8 @@ blockquote {
 }
 
 .sharedLinks img {
-  margin-left: 6%;
+  margin-left: 4%;
+  width: 40px;
 }
 
 .sharedLinks img:hover {
@@ -382,6 +381,35 @@ blockquote {
   border-bottom: 1px solid #D8D8D8;
   padding: 35px 0!important;
   margin-top: 60px!important;
+}
+
+.sharedLinks.mobile{
+  display: none;
+  position: relative;
+}
+
+.sharedLinks.mobile .more-options{
+  transition: all .4s ease-in;
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  position: absolute;
+  top: 90%;
+  left: 20%;
+  background-color: #fff;
+  padding: 0 10px;
+} 
+
+.sharedLinks.mobile .more-options.no-visible{
+  z-index: -10;
+  opacity: 0;
+  top: 50%;
+}
+
+.sharedLinks.mobile .more-options.visible{
+  opacity: 1;
+  top: 90%;
+  z-index: 1;
 }
 
 #share p {
@@ -452,7 +480,10 @@ margin-top: 50px!important;
 #searchKeyword {
   border-radius: 50px 0 0 50px;
   background-color: #F1F7F8;
-  border:none
+  border:none;
+}
+#searchKeyword:focus {
+  box-shadow: none;
 }
 
 #searchButton {
@@ -666,8 +697,6 @@ color:#fff
 
 @media (max-width: 766px) {
 
-
-
   #fullNew h1 {
     font-size: 42px!important;
   }
@@ -691,6 +720,14 @@ color:#fff
 
   #subFooter, .text-right{
     text-align: center;
+  }
+
+  .sharedLinks{
+    display: none;
+  }
+
+  .sharedLinks.mobile{
+    display: initial;
   }
   
 }
