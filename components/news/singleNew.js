@@ -6,41 +6,63 @@ import ShareNews from "./share";
 import DownloadPdf from "./downloadPdf";
 
 export default function SingleNew({ singleNew, absoluteUrl }) {
-    console.log(singleNew);
-    return (
-        <Container id="fullNewContent">
-            <Container id="fullNew">
-                <Row>
-                    <Col md={{ span: 10, offset: 1 }}>
-                        <h6>{singleNew.categoria?.data.attributes.Categoria}</h6>
-                        <h1 className="title">{singleNew.Titulo}</h1>
-                        <h5>
-                            Por{" "}
-                            {singleNew.autores.data.map((autor) => (
-                                <a href={autor.attributes?.Perfiles?.Principal} target="_blank" className="linkPerfil" key={autor.attributes?.Nombre}>
-                                    {autor.attributes?.Nombre},{" "}
-                                </a>
-                            ))}
-                        </h5>
-                        <Row id="dateContent">
-                            <Col md={2}>
-                                <h5>{moment(singleNew.fecha_publicacion).format("DD MMMM YYYY")}</h5>
-                            </Col>
-                            <Col md={10}>{singleNew.Bajada}</Col>
-                            <Image src={singleNew.Imagen_Destacada?.data.attributes.url} fluid className="outstandingImg" alt={singleNew.Titulo} />
-                        </Row>
-                        <Row id="newsContent">
-                            <Col md={9}>
-                                <ReactMarkdown>{singleNew.cuerpo}</ReactMarkdown>
-                            </Col>
-                        </Row>
-                        <Row id="downloadPdf" className="text-center">
-                            <Col md={9}>{singleNew.descarga?.data == null ? "" : <DownloadPdf file={singleNew.descarga?.data.attributes.url} source={singleNew.Titulo} backGroundImage={singleNew.img_descarga?.data.attributes.url} />}</Col>
-                        </Row>
-                        <ShareNews absoluteUrl={absoluteUrl} title={singleNew.Titulo} subTitle={singleNew.Bajada} />
-                    </Col>
-                </Row>
-            </Container>
-        </Container>
-    );
+  return (
+    <Container id="fullNewContent">
+      <Container id="fullNew">
+        <Row>
+          <Col md={{ span: 10, offset: 1 }}>
+            <h6>{singleNew?.categoria?.data.attributes.Categoria}</h6>
+            <h1 className="title">{singleNew?.Titulo}</h1>
+            <h5>
+              {moment(singleNew?.fecha_publicacion).format("DD MMMM YYYY")} | Por{" "}
+              {singleNew?.autores.data.map((autor) => (
+                <a
+                  href={autor.attributes?.Perfiles?.Principal}
+                  target="_blank"
+                  className="linkPerfil"
+                  key={autor.attributes?.Nombre}
+                >
+                  {autor.attributes?.Nombre},{" "}
+                </a>
+              ))}
+            </h5>
+            <Row id="dateContent">
+              <Col md={10}>{singleNew?.Bajada}</Col>
+              <Image
+                src={singleNew?.Imagen_Destacada?.data.attributes.url}
+                fluid
+                className="outstandingImg"
+                alt={singleNew?.Titulo}
+              />
+            </Row>
+            <Row id="newsContent">
+              <Col md={9}>
+                <ReactMarkdown>{singleNew?.cuerpo}</ReactMarkdown>
+              </Col>
+            </Row>
+            <Row id="downloadPdf" className="text-center">
+              <Col md={9}>
+                {singleNew?.descarga?.data == null ? (
+                  ""
+                ) : (
+                  <DownloadPdf
+                    file={singleNew?.descarga?.data.attributes.url}
+                    source={singleNew?.Titulo}
+                    backGroundImage={
+                      singleNew?.img_descarga?.data.attributes.url
+                    }
+                  />
+                )}
+              </Col>
+            </Row>
+            <ShareNews
+              absoluteUrl={absoluteUrl}
+              title={singleNew?.Titulo}
+              subTitle={singleNew?.Bajada}
+            />
+          </Col>
+        </Row>
+      </Container>
+    </Container>
+  );
 }
