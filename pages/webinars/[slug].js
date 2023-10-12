@@ -22,6 +22,8 @@ export async function getServerSideProps(context) {
     const data = await res.json();
     const dataNew = data;
 
+    console.log(dataNew)
+
     const resInstitucional = await fetch(URLINSTITUCIONAL);
     const dataInstitucional = await resInstitucional.json();
     const dataIns = dataInstitucional;
