@@ -47,7 +47,7 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
     <>
       <Row id="share">
         <Col md={12} className="sharedLinks">
-          <div>
+          <Col className="d-flex justify-content-around">
             Compartir:
             <a href={urlFacebook} target="_blank">
               <Image src={facebook.src} alt="Facebook" />
@@ -75,7 +75,7 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
             >
               <Image src={copyLink.src} alt="Compartir" />
             </a>
-          </div>
+          </Col>
         </Col>
         <Col md={12} className="sharedLinks mobile">
             Compartir:

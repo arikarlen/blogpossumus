@@ -7,7 +7,7 @@ export default function PostWebinar({ status, data, color }) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const idVideo = "https://www.youtube.com/embed/" + data.id_youtube;
+    const idVideo = "https://www.youtube.com/embed/" + data?.id_youtube;
     return (
         <>
             {!status && (
@@ -16,7 +16,7 @@ export default function PostWebinar({ status, data, color }) {
                     <iframe width="100%" height="700" src={idVideo} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     <Row id="downloadPdfWebinar">
                         <Col md={6}>
-                            <Image src={data.Imagen.data.attributes.url} fluid />
+                            <Image src={data.Imagen.data.attributes.url} alt="download webinar" fluid />
                         </Col>
                         <Col md={6}>
                             <h1>{data.Texto}</h1>
