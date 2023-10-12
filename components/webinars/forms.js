@@ -94,7 +94,7 @@ export default function Forms({ status, dataForm, source, title, subTitle }) {
                         />
                         {errors.phone && <Alert variant="danger">{errors?.phone?.message}</Alert>}
                         <Row>
-                            <Col md={{ span: 6, offset: 3 }}>
+                            <Col md={12} className="d-flex justify-content-center">
                                 <Button variant="primary" type="Submit" id="sendForm">
                                     {status ? dataForm.Boton_pre : dataForm.Boton_post}
                                 </Button>
