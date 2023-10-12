@@ -53,6 +53,7 @@ h1 {
   font-family: "Gotham", sans-serif;
   font-size: 27px !important;
   font-style: normal !important;
+  font-weight: 700 !important;
   line-height: 120% !important; /* 32.4px */
   letter-spacing: -0.162px !important;
 }
@@ -69,6 +70,7 @@ h4 {
   font-size: 18px !important;
   font-style: normal !important;
   line-height: 21px !important;
+  font-weight: 700 !important;
 }
 
 h5 {
@@ -605,6 +607,7 @@ blockquote {
   line-height: 120% !important;
   letter-spacing: -0.42px !important;
   margin-top: 25px;
+  font-weight: 700 !important;
 }
 
 #speakers h3 {
