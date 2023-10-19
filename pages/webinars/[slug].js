@@ -72,13 +72,17 @@ export default function fullNews({ dataNew, dataIns }) {
         textRegister={dataNew.data[0].attributes.boton_registrarse}
         textSeeWebinar={dataNew.data[0].attributes.boton_ver_webinar}
         status={dataNew.data[0].attributes.Destacada}
-        color={dataNew.data[0].attributes.color}
         textColor={dataNew.data[0].attributes.textColor}
         btnHeader={dataNew.data[0].attributes.boton_header}
+        iconFilter={dataNew.data[0].attributes.iconFilter}
+        headerLogo={dataNew.data[0].attributes.headerLogo}
       />
       <Description text={dataNew.data[0].attributes.descripcion} />
       <Speakers speakers={dataNew.data[0].attributes.autores.data} />
-      <Cta data={dataNew.data[0].attributes.cta} />
+      <Cta
+        data={dataNew.data[0].attributes.cta}
+        textColor={dataNew.data[0].attributes.textColor}
+      />
       <PostWebinar
         status={dataNew.data[0].attributes.Destacada}
         data={dataNew.data[0].attributes.PostWebinar}
@@ -90,7 +94,6 @@ export default function fullNews({ dataNew, dataIns }) {
         source={dataNew.data[0].attributes.Titulo}
         title={dataNew.data[0].attributes.Titulo}
         subTitle={dataNew.data[0].attributes.Bajada}
-        textColor={dataNew.data[0].attributes.textColor}
       />
 
       <Footer dataInstitutional={dataIns} />

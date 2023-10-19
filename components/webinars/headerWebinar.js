@@ -10,7 +10,7 @@ import fCalendar from "../../assets/FCalendar.svg";
 import fClock from "../../assets/FClock.svg";
 import moment from "moment";
 import { useRouter } from "next/router";
-import WeLoveTechFloatingLogo from "../commons/weLoveTechFloatingLogo";
+import FloatingLogo from "../commons/floatingLogo";
 export default function HeaderWebinar({
   backgroundImage,
   type,
@@ -20,15 +20,21 @@ export default function HeaderWebinar({
   textRegister,
   textSeeWebinar,
   status,
-  color,
   textColor,
   btnHeader,
+  iconFilter,
+  headerLogo
 }) {
   const router = useRouter();
-  console.log(btnHeader);
   return (
     <Container
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{
+        position: 'relative',
+        backgroundImage: `url(${backgroundImage})`,
+        color: textColor,
+        "--bs-secondary-color": textColor,
+        "--text-color": textColor,
+      }}
       fluid
       id="headerWebinar"
     >
@@ -50,7 +56,7 @@ export default function HeaderWebinar({
         <Row id="contentDate">
           <Col md={2}>
             <h2>
-              <Image src={fCalendar.src} alt="Date" className="iconDate" />{" "}
+              <Image style={{filter: iconFilter ? iconFilter : null}} src={fCalendar.src} alt="Date" className="iconDate" />{" "}
               {moment(date).format("DD") +
                 " de " +
                 moment(date).format("MMMM ")}
@@ -58,7 +64,7 @@ export default function HeaderWebinar({
           </Col>
           <Col md={6}>
             <h2>
-              <Image src={fClock.src} alt="Date" className="iconDate" />{" "}
+              <Image style={{filter: iconFilter ? iconFilter : null}} src={fClock.src} alt="Date" className="iconDate" />{" "}
               {moment.utc(date).format("HH:mm") + " H (GMT-3)"}
             </h2>
           </Col>
@@ -69,10 +75,10 @@ export default function HeaderWebinar({
               variant="primary"
               onClick={() => router.push("#cta")}
               style={{
-                "--btnHeader-backgroundColor": btnHeader.backgroundColor,
-                "--btnHeader-color": btnHeader.color,
-                "--hover-color": btnHeader.colorHover,
-                "--hover-backgroundColor": btnHeader.backgroundColorHover,
+                "--btnHeader-backgroundColor":  btnHeader ? btnHeader.backgroundColor : '#2e2d31',
+                "--btnHeader-color": btnHeader? btnHeader.color : '#FFF',
+                "--hover-color": btnHeader?.colorHover,
+                "--hover-backgroundColor": btnHeader?.backgroundColorHover,
               }}
             >
               {status ? textRegister : textSeeWebinar}
@@ -80,7 +86,7 @@ export default function HeaderWebinar({
           </Col>
         </Row>
       </Container>
-      <WeLoveTechFloatingLogo />
+      <FloatingLogo logo={headerLogo} />
     </Container>
   );
 }

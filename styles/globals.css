@@ -116,6 +116,7 @@ ul {
   margin: 0;
   position: sticky;
   top: 0;
+  z-index: 999;
 }
 
 #mainNav a,
@@ -383,6 +384,7 @@ blockquote {
   position: relative;
   gap: 6%;
   align-items: center;
+  justify-content: center;
 }
 
 .more-options-container {
@@ -426,8 +428,8 @@ blockquote {
 }
 
 .formField {
-  border-radius: 50px !important;
-  background-color: #f1f7f8 !important;
+  border-radius: 4px !important;
+  background-color: #F6F6F6 !important;
   border: none !important;
   margin-top: 20px !important;
 }
@@ -542,7 +544,8 @@ blockquote {
 
 #headerWebinar {
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+  background-position: right;
   padding-top: 48px !important;
   padding-bottom: 320px !important;
 }
@@ -554,6 +557,15 @@ blockquote {
 
 #headerWebinar .breadcrumb {
   margin-bottom: 120px !important;
+}
+
+@media(max-width:768px){
+  #headerWebinar{
+    background-position: center;
+  }  
+  #headerWebinar h1 {
+    font-size: 42px !important;
+  }
 }
 
 #contentDate {
@@ -601,6 +613,23 @@ blockquote {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+}
+@media(max-width: 768px){
+  #speakers .row{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  #speakers .row > *{
+    max-width: max-content;
+  }
+  #speakers .row img{
+    max-width: 150px;
+  }
+  #speakersContainer{
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+  }
 }
 
 #speakers h2 {
@@ -681,11 +710,22 @@ blockquote {
 
 #floatingLogo{
   position: absolute;
-  top: 105%;
-  left: calc(100% - 220px);
+  top: calc(100% - 350px);
+  left: calc(100% - 250px);
 }
 #floatingLogo img{
   width: 180px;
+}
+
+@media(max-width: 768px){
+  #floatingLogo{
+    position: relative;
+    display: grid;
+    justify-content: center;
+    margin: 50px 0;
+    top: 0;
+    left: 0;
+  }
 }
 
 .modalTitle {
