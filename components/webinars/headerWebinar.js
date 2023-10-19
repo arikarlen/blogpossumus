@@ -57,7 +57,7 @@ export default function HeaderWebinar({
           <Col md={2}>
             <h2>
               <Image style={{filter: iconFilter ? iconFilter : null}} src={fCalendar.src} alt="Date" className="iconDate" />{" "}
-              {moment(date).format("DD") +
+              {moment(date).format("D") +
                 " de " +
                 moment(date).format("MMMM ")}
             </h2>
