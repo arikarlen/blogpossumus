@@ -454,6 +454,7 @@ blockquote {
 
 #sendForm:hover {
   background-color: var(--color-yellow) !important;
+  color: var(--color-black) !important;
 }
 
 /************************News List*/
@@ -540,7 +541,8 @@ blockquote {
 /**********************************************************webinars*/
 
 #headerWebinar {
-  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: contain;
   padding-top: 48px !important;
   padding-bottom: 320px !important;
 }
@@ -558,7 +560,7 @@ blockquote {
   margin-top: 30px !important ;
 }
 
-.participateButton button {
+.participateButton .btn-primary {
   font-family: "Gotham", sans-serif;
   font-size: 24px !important;
   padding: 5px !important;
@@ -566,15 +568,16 @@ blockquote {
   padding: 10px 50px !important;
   border-radius: 10px !important;
   box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.04) !important;
-  background-color: var(--color-black) !important;
-  color: var(--colog-grey-ligth) !important;
+  background-color: var(--btnHeader-backgroundColor) !important;
+  color: var(--btnHeader-color) !important;
   border: none !important;
   margin-top: 50px !important;
   width: 100%;
 }
 
-.participateButton button:hover {
-  background-color: var(--hover-color) !important;
+.participateButton .btn-primary:hover {
+  background-color: var(--hover-backgroundColor) !important;
+  color: var(--hover-color) !important;
 }
 
 #description {
@@ -678,7 +681,7 @@ blockquote {
 
 #floatingLogo{
   position: absolute;
-  top: 110%;
+  top: 105%;
   left: calc(100% - 220px);
 }
 #floatingLogo img{
