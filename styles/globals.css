@@ -676,6 +676,15 @@ blockquote {
   font-size: 36px !important;
 }
 
+#floatingLogo{
+  position: absolute;
+  top: 110%;
+  left: calc(100% - 220px);
+}
+#floatingLogo img{
+  width: 180px;
+}
+
 .modalTitle {
   background-size: cover !important;
   background-position: center !important;

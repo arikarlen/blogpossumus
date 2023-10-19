@@ -3,6 +3,7 @@ import fCalendar from "../../assets/FCalendar.svg";
 import fClock from "../../assets/FClock.svg";
 import moment from "moment";
 import { useRouter } from "next/router";
+import WeLoveTechFloatingLogo from "../commons/weLoveTechFloatingLogo";
 export default function HeaderWebinar({ backgroundImage, type, title, subtitle, date, textRegister, textSeeWebinar, status, color }) {
     const router = useRouter();
     console.log(color);
@@ -49,6 +50,7 @@ export default function HeaderWebinar({ backgroundImage, type, title, subtitle, 
                     </Col>
                 </Row>
             </Container>
+            <WeLoveTechFloatingLogo />
         </Container>
     );
 }
