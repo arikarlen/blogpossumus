@@ -11,6 +11,7 @@ import fClock from "../../assets/FClock.svg";
 import moment from "moment";
 import { useRouter } from "next/router";
 import FloatingLogo from "../commons/floatingLogo";
+import { useEffect, useState } from "react";
 export default function HeaderWebinar({
   backgroundImage,
   type,
@@ -23,13 +24,16 @@ export default function HeaderWebinar({
   textColor,
   btnHeader,
   iconFilter,
-  headerLogo
+  headerLogo,
 }) {
   const router = useRouter();
+  const [screenWidth, setWidth] = useState(0)
+
+  useEffect(()=> setWidth(window.innerWidth),[])
   return (
     <Container
       style={{
-        position: 'relative',
+        position: "relative",
         backgroundImage: `url(${backgroundImage})`,
         color: textColor,
         "--bs-secondary-color": textColor,
@@ -42,7 +46,9 @@ export default function HeaderWebinar({
         <Breadcrumb>
           <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
           <Breadcrumb.Item href="/webinars">Webinars</Breadcrumb.Item>
-          <Breadcrumb.Item active>{title}</Breadcrumb.Item>
+          <Breadcrumb.Item active>
+            {screenWidth < 768 ? title.slice(0, 25) + '...' : title}
+          </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
       <Container>
@@ -54,29 +60,39 @@ export default function HeaderWebinar({
           </Col>
         </Row>
         <Row id="contentDate">
-          <Col md={2}>
+          <Col lg={3} xl={3}>
             <h2>
-              <Image style={{filter: iconFilter ? iconFilter : null}} src={fCalendar.src} alt="Date" className="iconDate" />{" "}
-              {moment(date).format("D") +
-                " de " +
-                moment(date).format("MMMM ")}
+              <Image
+                style={{ filter: iconFilter ? iconFilter : null }}
+                src={fCalendar.src}
+                alt="Date"
+                className="iconDate"
+              />{" "}
+              {moment(date).format("D") + " de " + moment(date).format("MMMM ")}
             </h2>
           </Col>
-          <Col md={6}>
+          <Col lg={3}>
             <h2>
-              <Image style={{filter: iconFilter ? iconFilter : null}} src={fClock.src} alt="Date" className="iconDate" />{" "}
+              <Image
+                style={{ filter: iconFilter ? iconFilter : null }}
+                src={fClock.src}
+                alt="Date"
+                className="iconDate"
+              />{" "}
               {moment.utc(date).format("HH:mm") + " H (GMT-3)"}
             </h2>
           </Col>
         </Row>
         <Row className="participateButton">
-          <Col md={4}>
+          <Col md={6} lg={4}>
             <Button
               variant="primary"
               onClick={() => router.push("#cta")}
               style={{
-                "--btnHeader-backgroundColor":  btnHeader ? btnHeader.backgroundColor : '#2e2d31',
-                "--btnHeader-color": btnHeader? btnHeader.color : '#FFF',
+                "--btnHeader-backgroundColor": btnHeader
+                  ? btnHeader.backgroundColor
+                  : "#2e2d31",
+                "--btnHeader-color": btnHeader ? btnHeader.color : "#FFF",
                 "--hover-color": btnHeader?.colorHover,
                 "--hover-backgroundColor": btnHeader?.backgroundColorHover,
               }}
