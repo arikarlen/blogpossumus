@@ -60,7 +60,7 @@ export default function HeaderWebinar({
           </Col>
         </Row>
         <Row id="contentDate">
-          <Col lg={3} xl={2}>
+          <Col lg={3} xxl={2}>
             <h2>
               <Image
                 style={{ filter: iconFilter ? iconFilter : null }}
