@@ -301,7 +301,7 @@ nav.bg-body-tertiary.navbar.navbar-expand.navbar-light {
   font-weight: bold;
 }
 .breadcrumb-item.active{
-  width: 80%;
+  width: 65%;
   text-overflow: ellipsis;
 }
 

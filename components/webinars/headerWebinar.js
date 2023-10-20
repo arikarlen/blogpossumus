@@ -11,6 +11,7 @@ import fClock from "../../assets/FClock.svg";
 import moment from "moment";
 import { useRouter } from "next/router";
 import FloatingLogo from "../commons/floatingLogo";
+import { useEffect, useState } from "react";
 export default function HeaderWebinar({
   backgroundImage,
   type,
@@ -26,6 +27,9 @@ export default function HeaderWebinar({
   headerLogo,
 }) {
   const router = useRouter();
+  const [screenWidth, setWidth] = useState(0)
+
+  useEffect(()=> setWidth(window.innerWidth),[])
   return (
     <Container
       style={{
@@ -43,7 +47,7 @@ export default function HeaderWebinar({
           <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
           <Breadcrumb.Item href="/webinars">Webinars</Breadcrumb.Item>
           <Breadcrumb.Item active>
-            {title}
+            {screenWidth < 768 ? title.slice(0, 25) + '...' : title}
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
