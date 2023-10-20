@@ -45,7 +45,7 @@ export default function HeaderWebinar({
       <Container>
         <Breadcrumb>
           <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
-          <Breadcrumb.Item href="/webinars">Webinars</Breadcrumb.Item>
+          <Breadcrumb.Item href="/">Webinars</Breadcrumb.Item>
           <Breadcrumb.Item active>
             {screenWidth < 768 ? title.slice(0, 25) + '...' : title}
           </Breadcrumb.Item>
