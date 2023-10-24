@@ -13,7 +13,7 @@ export default function Forms({ status, dataForm, source, title, subTitle }) {
     } = useForm({
         mode: "onTouched",
         defaultValues: {
-            origin: "Webinar",
+            origin: "Webinar - " + title,
             source: source,
             yourname: "",
             enterprise: "",
@@ -23,10 +23,16 @@ export default function Forms({ status, dataForm, source, title, subTitle }) {
     });
 
     const onSubmit = (data) => {
-        axios.post(`https://prod-20.brazilsouth.logic.azure.com:443/workflows/4a0de618d958419bb7dc99ba7a3245b7/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QsAL47KtZeSa5He1YXBvXMI4ZsD802JoaITVlC2wXhs`, data).then(() => {
-            // window.open(file, "_ blank");
-            setSuccess(true);
-        });
+        axios
+            .post(
+                `https://prod-20.brazilsouth.logic.azure.com:443/workflows/4a0de618d958419bb7dc99ba7a3245b7/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QsAL47KtZeSa5He1YXBvXMI4ZsD802JoaITVlC2wXhs`,
+                data
+            )
+            .then(() => {
+                window.open(file, "_ blank");
+                setSuccess(true);
+            });
+        console.log(data);
     };
     return (
         <Container>
@@ -93,7 +99,7 @@ export default function Forms({ status, dataForm, source, title, subTitle }) {
                         />
                         {errors.phone && <Alert variant="danger">{errors?.phone?.message}</Alert>}
                         <Row>
-                            <Col md={{ span: 4, offset: 4 }}>
+                            <Col md={12} className="d-flex justify-content-center">
                                 <Button variant="primary" type="Submit" id="sendForm">
                                     {status ? dataForm.Boton_pre : dataForm.Boton_post}
                                 </Button>

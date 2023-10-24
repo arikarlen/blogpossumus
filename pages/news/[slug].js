@@ -28,25 +28,25 @@ export default function fullNews({ dataNew, dataIns, absoluteUrl }) {
     return (
         <>
             <Head>
-                <title>Blog Possumus || {dataNew.data[0].attributes?.Titulo}</title>
-                <meta name="description" content={dataNew.data[0].attributes?.Bajada} />
-                <meta name="keywords" content={dataNew.data[0].attributes?.tags.data.map((data) => " " + data.attributes.Tag)} />
+                <title>Blog Possumus || {dataNew.data[0]?.attributes.Titulo}</title>
+                <meta name="description" content={dataNew.data[0]?.attributes.Bajada} />
+                <meta name="keywords" content={dataNew.data[0]?.attributes?.tags.data.map((data) => " " + data.attributes.Tag)} />
                 <meta name="author" content="Possumus" />
-                <meta property="og:title" content={dataNew.data[0].attributes.Titulo} key="title" />
-                <meta property="og:description" content={dataNew.data[0].attributes.Bajada} />
+                <meta property="og:title" content={dataNew.data[0]?.attributes.Titulo} key="title" />
+                <meta property="og:description" content={dataNew.data[0]?.attributes.Bajada} />
                 <meta property="og:type" content="article" />
                 <meta property="og:site_name" content="Blog Possumus" />
-                <meta property="og:image" content={dataNew.data[0].attributes.Imagen_Destacada.data.attributes.url}></meta>
+                <meta property="og:image" content={dataNew.data[0]?.attributes.Imagen_Destacada.data.attributes.url}></meta>
             </Head>
             <Header title="Blog" style="mainNav" />
             <Container>
                 <Breadcrumb>
                     <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
                     <Breadcrumb.Item href="/news">News</Breadcrumb.Item>
-                    <Breadcrumb.Item active>{dataNew.data[0].attributes.Titulo}</Breadcrumb.Item>
+                    <Breadcrumb.Item active>{dataNew.data[0]?.attributes.Titulo}</Breadcrumb.Item>
                 </Breadcrumb>
             </Container>
-            <SingleNew singleNew={dataNew.data[0].attributes} absoluteUrl={process.env.NEXT_APP_URL} />
+            <SingleNew singleNew={dataNew.data[0]?.attributes} absoluteUrl={process.env.NEXT_APP_URL} />
             <Footer dataInstitutional={dataIns} />
         </>
     );
