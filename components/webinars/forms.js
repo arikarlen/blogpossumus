@@ -119,7 +119,7 @@ export default function Forms({ status, dataForm, source, title, subTitle }) {
                   disabled={success}
                 >
                   {success
-                    ? "Ya estas inscripto"
+                    ? "Ya estás inscripto"
                     : status
                     ? dataForm.Boton_pre
                     : dataForm.Boton_post}
