@@ -452,6 +452,14 @@ blockquote {
   border: none !important;
   margin-top: 5px !important;
 }
+.alert.alert-success{
+  margin: 10px !important;
+  margin-top: 30px !important;
+  color: var(--color-black) !important;
+  font-size: 20px !important;
+  font-weight: 600;
+  text-align: center !important;
+}
 
 #sendForm {
   padding: 5px !important;
