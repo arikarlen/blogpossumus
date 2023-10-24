@@ -10,7 +10,8 @@ import SeeMoreeButton from "../components/commons/seeMoreButton";
 export async function getServerSideProps() {
     const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&filters[Destacada][$eq]=false&sort=fecha_publicacion:desc&pagination[page]=0&pagination[pageSize]=4`;
     const URLBLOGDESTACADA = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&filters[Destacada][$eq]=true&sort=fecha_publicacion:desc`;
-    const URLWEBINARS = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_WEBINARS}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria&sort=id:desc&pagination[page]=1&pagination[pageSize]=5`;
+    const URLWEBINARS = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_WEBINARS}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria&filters[Destacada][$eq]=false&sort=id:desc&pagination[page]=1&pagination[pageSize]=5`;
+    const URLWEBINARSDESTACADA = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_WEBINARS}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria&filters[Destacada][$eq]=true&sort=id:desc&pagination[page]=1&pagination[pageSize]=5`;
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
 
     const resBlog = await fetch(URLBLOG);
@@ -25,14 +26,18 @@ export async function getServerSideProps() {
     const dataWebinars = await resWebinars.json();
     const dataWebin = dataWebinars;
 
+    const resWebinarsDestacada = await fetch(URLWEBINARSDESTACADA);
+    const dataWebinarsDestacada = await resWebinarsDestacada.json();
+    const dataWebinDestacada = dataWebinarsDestacada;
+
     const resInstitucional = await fetch(URLINSTITUCIONAL);
     const dataInstitucional = await resInstitucional.json();
     const data = dataInstitucional;
 
-    return { props: { dataDes, data, dataWebin, dataNews } };
+    return { props: { dataDes, data, dataWebin, dataNews, dataWebinDestacada } };
 }
 
-export default function Home({ data, dataNews, dataDes, dataWebin }) {
+export default function Home({ data, dataNews, dataDes, dataWebin, dataWebinDestacada }) {
     return (
         <>
             <Head>
@@ -52,8 +57,10 @@ export default function Home({ data, dataNews, dataDes, dataWebin }) {
             <FeaturedNews dataNews={dataDes.data} />
             <ListNews dataNews={dataNews.data} type="/news/" tag="Por " />
             <SeeMoreeButton link="/news" />
-            {/* <Title title="Webinars" />
-            <ListNews dataNews={dataWebin.data} type="/webinars/" tag="Disertantes: " /> */}
+            <Title title="Webinars" />
+            <FeaturedNews dataNews={dataWebinDestacada.data} type="/webinars/" tag="Disertantes: " />
+            <ListNews dataNews={dataWebin.data} type="/webinars/" tag="Disertantes: " />
+            <SeeMoreeButton link="/webinars" />
             <Footer dataInstitutional={data} />
         </>
     );
