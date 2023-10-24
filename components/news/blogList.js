@@ -11,7 +11,7 @@ export default function ListNews({ dataNews, type, tag }) {
             <Row>
                 {dataNews.map((data) => (
                     <Col md={6} className="blogItem" key={data.attributes.slug}>
-                        <Image src={data.attributes.Imagen_Destacada?.data.attributes.url} alt={data.attributes.Titulo} fluid onClick={() => router.push("/news/" + data.attributes.slug)} />
+                        <Image src={data.attributes.Imagen_Destacada?.data.attributes.url} alt={data.attributes.Titulo} fluid onClick={() => router.push(type + data.attributes.slug)} />
 
                         <div className="textContent ">
                             <h6 className="linkPerfil" onClick={() => router.push("/category/" + data.attributes.categoria?.data.attributes.Categoria)}>
