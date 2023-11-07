@@ -10,6 +10,7 @@ import Cta from "../../components/webinars/cta";
 import Forms from "../../components/webinars/forms";
 import ShareNews from "../../components/news/share";
 import PostWebinar from "../../components/webinars/postWebinar";
+import MoreInfo from "../../components/webinars/moreInfo";
 
 export async function getServerSideProps(context) {
   const { params } = context;
@@ -30,6 +31,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function fullNews({ dataNew, dataIns }) {
+  console.log(dataNew.data[0].attributes.moreInfo[0].personal)
   return (
     <>
       <Head>
@@ -77,7 +79,10 @@ export default function fullNews({ dataNew, dataIns }) {
         iconFilter={dataNew.data[0].attributes.iconFilter}
         headerLogo={dataNew.data[0].attributes.headerLogo}
       />
-      <Description text={dataNew.data[0].attributes.descripcion} />
+      <Description
+        status={dataNew.data[0].attributes.Destacada}
+        text={dataNew.data[0].attributes.descripcion}
+      />
       <Speakers speakers={dataNew.data[0].attributes.autores.data} />
       <Cta
         data={dataNew.data[0].attributes.cta}
@@ -87,6 +92,11 @@ export default function fullNews({ dataNew, dataIns }) {
         status={dataNew.data[0].attributes.Destacada}
         data={dataNew.data[0].attributes.PostWebinar}
         color={dataNew.data[0].attributes.color}
+      />
+      <MoreInfo
+        status={dataNew.data[0].attributes.Destacada}
+        title={dataNew.data[0].attributes.moreInfo[0].titulo}
+        personal={dataNew.data[0].attributes.moreInfo[0].personal[0]}
       />
       <Forms
         status={dataNew.data[0].attributes.Destacada}
