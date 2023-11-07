@@ -3,21 +3,21 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 const MoreInfo = ({ title, personal, status }) => {
   return (
     <>
-      {!status && (
+      {status && (
         <Container id="moreInfo">
           <Row className="align-items-center justify-content-center">
-            <Col>
+            <Col md={5} className="text-center text-md-start">
               <h1>{title}</h1>
             </Col>
-            <Col className="personalSection">
-              <Row className="align-items-center justify-content-center">
-                <Col md={3}>
+            <Col md={5} className="personalSection">
+              <Row className="align-items-center justify-content-center gap-4">
+                <Col md={3} className="text-center text-md-start">
                   <Image
                     src={personal.image.data.attributes.url}
                     alt="imagen de personal"
                   />
                 </Col>
-                <Col md={9}>
+                <Col md={6} className="text-center text-md-start">
                   <h3>{personal.nombre}</h3>
                   <span>{personal.puesto}</span>
                   <p>W: {personal.whatsapp}</p>
