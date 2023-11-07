@@ -300,16 +300,15 @@ nav.bg-body-tertiary.navbar.navbar-expand.navbar-light {
   color: var(--text-color);
   font-weight: bold;
 }
-.breadcrumb-item.active{
+.breadcrumb-item.active {
   width: 65%;
   text-overflow: ellipsis;
 }
 
-@media(max-width: 768px){
+@media (max-width: 768px) {
   .breadcrumb-item a {
     font-size: 12px;
   }
-
 }
 
 #fullNew h1 {
@@ -452,7 +451,7 @@ blockquote {
   border: none !important;
   margin-top: 5px !important;
 }
-.alert.alert-success{
+.alert.alert-success {
   margin: 10px !important;
   margin-top: 30px !important;
   color: var(--color-black) !important;
@@ -634,14 +633,35 @@ blockquote {
 #description {
   margin-top: 100px;
 }
+#description h1 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+#description ul {
+  list-style: disc !important;
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}
+
+#description li {
+  color: var(--color-black);
+  font-family: "Mulish", sans-serif;
+  font-size: 26px !important;
+  font-weight: 300;
+  line-height: 145%; /* 37.7px */
+  width: 75%;
+  text-align: start;
+}
+#description img {
+  margin-top: 90px;
+  width: 510px;
+}
 
 #description p {
   margin-bottom: 50px;
-}
-
-#description img {
-  margin: 0 auto;
-  width: 100%;
 }
 
 #speakers {
@@ -711,6 +731,10 @@ blockquote {
 
 #postWebinar h1 {
   text-align: center;
+  color: #2e2d31;
+  font-size: 48px !important;
+  font-weight: 700;
+  letter-spacing: -0.96px;
 }
 
 #postWebinar iframe {
@@ -747,6 +771,42 @@ blockquote {
   font-size: 36px !important;
 }
 
+#moreInfo {
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 20px 55px 0px rgba(0, 0, 0, 0.08);
+  margin-top: 160px;
+  padding: 50px 150px;
+}
+#moreInfo .personalSection {
+  font-family: "Mulish", sans-serif;
+}
+#moreInfo .personalSection p,
+#moreInfo .personalSection h3 {
+  margin: 0 !important;
+}
+#moreInfo .personalSection h3,
+#moreInfo .personalSection span {
+  color: #444;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+}
+#moreInfo .personalSection span {
+  font-weight: 400;
+}
+#moreInfo .personalSection p {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+#formDownloadWebinars {
+  display: grid;
+  justify-items: center;
+  padding: 0 30px;
+}
+
 #floatingLogo {
   position: absolute;
   top: calc(100% - 350px);
@@ -777,6 +837,13 @@ blockquote {
   font-weight: 700 !important;
   padding-top: 100px !important;
   color: #fff;
+}
+
+.modalTitle img {
+  cursor: pointer;
+  position: absolute;
+  top: 2%;
+  right: 5%;
 }
 
 @media (max-width: 766px) {
