@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Col, Container, Image, Row, Button, Modal } from "react-bootstrap";
 import DownloadPdf from "./downloadPdf";
+import closeIcon from '../../assets/close-circle.png'
 
 export default function PostWebinar({ status, data, color }) {
     const [show, setShow] = useState(false);
@@ -32,11 +33,12 @@ export default function PostWebinar({ status, data, color }) {
                         </Col>
                     </Row>
                     <Modal show={show} onHide={handleClose} centered>
-                        <Modal.Header style={{ backgroundImage: `url(${data.background_form.data.attributes.url})` }} className="modalTitle">
+                        <Modal.Header style={{ backgroundImage: `url(${data.background_form.data?.attributes.url})` }} className="modalTitle">
+                            <Image src={closeIcon.src} alt="Close modal" onClick={handleClose}/>
                             <Modal.Title id="contained-modal-title-vcenter">{data.Titulo_form}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <DownloadPdf source={data.Texto} file={data.descarga.data.attributes.url} />
+                            <DownloadPdf source={data.Texto} file={data.descarga.data?.attributes.url} />
                         </Modal.Body>
                     </Modal>
                 </Container>
