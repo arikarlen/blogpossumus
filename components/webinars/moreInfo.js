@@ -3,7 +3,7 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 const MoreInfo = ({ title, personal, status }) => {
   return (
     <>
-      {status && (
+      {!status && (
         <Container id="moreInfo">
           <Row className="align-items-center justify-content-center">
             <Col>
