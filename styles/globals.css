@@ -776,7 +776,7 @@ blockquote {
   background: #fff;
   box-shadow: 0px 20px 55px 0px rgba(0, 0, 0, 0.08);
   margin-top: 160px;
-  padding: 50px 150px;
+  padding: 50px 0;
 }
 #moreInfo .personalSection {
   font-family: "Mulish", sans-serif;
