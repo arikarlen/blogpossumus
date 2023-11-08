@@ -28,9 +28,9 @@ export default function HeaderWebinar({
   headerLogo,
 }) {
   const router = useRouter();
-  const [screenWidth, setWidth] = useState(0)
+  const [screenWidth, setWidth] = useState(0);
 
-  useEffect(()=> setWidth(window.innerWidth),[])
+  useEffect(() => setWidth(window.innerWidth), []);
   return (
     <Container
       style={{
@@ -48,7 +48,10 @@ export default function HeaderWebinar({
           <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
           <Breadcrumb.Item href="/webinars">Webinars</Breadcrumb.Item>
           <Breadcrumb.Item active>
-            {screenWidth < 768 ? title.slice(0, 25).replaceAll('#', '') + '...' : title.replaceAll('#', '')}
+            {screenWidth < 768
+              ? title.slice(0, 25).replaceAll("#", "") + "..."
+              : title.replaceAll("#", "")}
+            {/* se remplazan los # porque este campo viene desde un tipo ricktext en Strapi */}
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>

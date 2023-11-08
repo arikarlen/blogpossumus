@@ -17,7 +17,8 @@ export default function ListNews({ dataNews, title }) {
                             {data.attributes.categoria?.data.attributes.Categoria}
                         </h6>
 
-                        <h1>{data.attributes.Titulo}</h1>
+                        <h1>{data.attributes.Titulo.replaceAll('#', '')}</h1> 
+                        {/* se remplazan los # porque este campo viene desde un tipo ricktext en Strapi */}
                         <h5>
                             {moment(data.attributes.publishedAt).format("DD MMMM YYYY")} | Por{" "}
                             {data.attributes?.autores.data.map((autor) => (
