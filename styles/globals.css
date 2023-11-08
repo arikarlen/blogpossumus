@@ -572,6 +572,9 @@ blockquote {
   font-size: 68px !important;
   margin-bottom: 30px;
 }
+#headerWebinar h1:first-of-type {
+  margin: 0;
+}
 #headerWebinar h1,
 #headerWebinar p {
   max-width: 80%;
