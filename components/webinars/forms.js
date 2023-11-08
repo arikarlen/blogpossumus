@@ -41,7 +41,7 @@ export default function Forms({ status, dataForm, source, title, subTitle }) {
           <h1>{status ? dataForm.Titulo_pre : dataForm.Titulo_post}</h1>
         </Row>
         <Row>
-          <Col md={{ span: 8, offset: 2 }}>
+          <Col md={{ span: 6, offset: 3 }}>
             <Form.Control
               type="text"
               className="formField"
@@ -107,8 +107,8 @@ export default function Forms({ status, dataForm, source, title, subTitle }) {
             {errors.phone && (
               <Alert variant="danger">{errors?.phone?.message}</Alert>
             )}
-            <Row>
-              <Col md={12} className="d-flex flex-column justify-content-center">
+            <Row className="justify-content-center">
+              <Col md={5} className="d-flex flex-column justify-content-center">
                 {success && (
                   <Alert variant="success">¡Ya estás inscripto!</Alert>
                 )}

@@ -102,7 +102,7 @@ export default function HeaderWebinar({
           </Col>
         </Row>
       </Container>
-      <FloatingLogo logo={headerLogo} />
+      {/* <FloatingLogo logo={headerLogo} /> */}
     </Container>
   );
 }
