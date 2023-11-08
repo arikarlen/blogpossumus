@@ -657,7 +657,7 @@ blockquote {
 }
 #description img {
   margin-top: 90px;
-  width: 510px;
+  width: 100%;
 }
 
 #description p {
