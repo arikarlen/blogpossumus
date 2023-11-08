@@ -14,7 +14,7 @@ export default function FeaturedNews({ dataNews, type, tag }) {
                         <h6 className="linkPerfil" onClick={() => router.push("/category/" + data.attributes.categoria?.data.attributes.Categoria)}>
                             {data.attributes.categoria?.data.attributes.Categoria}
                         </h6>
-                        <h1 onClick={() => router.push(type + data.attributes.slug)}>{data.attributes.Titulo}</h1>
+                        <h1 onClick={() => router.push(type + data.attributes.slug)}>{data.attributes.Titulo.replaceAll('#', '')}</h1>
                         <h5>
                             {moment(data.attributes.publishedAt).format("DD MMMM YYYY")} | Por{" "}
                             {data.attributes?.autores?.data.map((autor) => (
