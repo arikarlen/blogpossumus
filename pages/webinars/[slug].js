@@ -31,7 +31,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function fullNews({ dataNew, dataIns }) {
-  console.log(dataNew.data[0].attributes.moreInfo[0].personal)
   return (
     <>
       <Head>
@@ -95,8 +94,8 @@ export default function fullNews({ dataNew, dataIns }) {
       />
       <MoreInfo
         status={dataNew.data[0].attributes.Destacada}
-        title={dataNew.data[0].attributes.moreInfo[0].titulo}
-        personal={dataNew.data[0].attributes.moreInfo[0].personal[0]}
+        title={dataNew.data[0].attributes.moreInfo[0]?.titulo}
+        personal={dataNew.data[0].attributes.moreInfo[0]?.personal[0]}
       />
       <Forms
         status={dataNew.data[0].attributes.Destacada}
