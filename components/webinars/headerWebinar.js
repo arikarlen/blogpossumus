@@ -12,6 +12,7 @@ import moment from "moment";
 import { useRouter } from "next/router";
 import FloatingLogo from "../commons/floatingLogo";
 import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 export default function HeaderWebinar({
   backgroundImage,
   type,
@@ -47,7 +48,7 @@ export default function HeaderWebinar({
           <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
           <Breadcrumb.Item href="/webinars">Webinars</Breadcrumb.Item>
           <Breadcrumb.Item active>
-            {screenWidth < 768 ? title.slice(0, 25) + '...' : title}
+            {screenWidth < 768 ? title.slice(0, 25).replaceAll('#', '') + '...' : title.replaceAll('#', '')}
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
@@ -55,7 +56,7 @@ export default function HeaderWebinar({
         <Row id="contentHeader">
           <Col md={9}>
             <h2>{type}</h2>
-            <h1>{title}</h1>
+            <ReactMarkdown>{title}</ReactMarkdown>
             <p>{subtitle}</p>
           </Col>
         </Row>
