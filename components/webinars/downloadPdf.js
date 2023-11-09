@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Form, Button, Alert, Image, Row } from "react-bootstrap";
 import axios from "axios";
 
-export default function DownloadPdf({ file, source }) {
+export default function DownloadPdf({ file, source, title }) {
     const [success, setSuccess] = useState(false);
     const {
         register,
@@ -12,7 +12,7 @@ export default function DownloadPdf({ file, source }) {
     } = useForm({
         mode: "onTouched",
         defaultValues: {
-            origin: "Webinar",
+            origin: `Webinar - ${title.replaceAll('\n', '').replaceAll('#', '')}`, //Se quitan caracteres provenientes de Strapi, ya que title es tipo richText
             source: source,
             yourname: "",
             enterprise: "",

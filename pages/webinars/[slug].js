@@ -91,6 +91,7 @@ export default function fullNews({ dataNew, dataIns }) {
         status={dataNew.data[0].attributes.Destacada}
         data={dataNew.data[0].attributes.PostWebinar}
         color={dataNew.data[0].attributes.color}
+        title={dataNew.data[0].attributes.Titulo}
       />
       <MoreInfo
         status={dataNew.data[0].attributes.Destacada}
