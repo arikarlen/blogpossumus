@@ -13,8 +13,8 @@ export default function Forms({ status, dataForm, source, title, subTitle }) {
   } = useForm({
     mode: "onTouched",
     defaultValues: {
-      origin: "Webinar - " + title.replaceAll('\n', '').replaceAll('#', ''), //Se quitan caracteres provenientes de Strapi, ya que title es tipo richText
-      source: source,
+      origin: "Webinar -" + title.replaceAll('\n', '').replaceAll('#', ''), //Se quitan caracteres provenientes de Strapi, ya que title es tipo richText
+      source: "webinar",
       yourname: "",
       enterprise: "",
       email: "",
