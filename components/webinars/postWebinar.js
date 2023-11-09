@@ -3,7 +3,7 @@ import { Col, Container, Image, Row, Button, Modal } from "react-bootstrap";
 import DownloadPdf from "./downloadPdf";
 import closeIcon from '../../assets/close-circle.png'
 
-export default function PostWebinar({ status, data, color }) {
+export default function PostWebinar({ status, data, color, title }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -38,7 +38,7 @@ export default function PostWebinar({ status, data, color }) {
                             <Modal.Title id="contained-modal-title-vcenter">{data.Titulo_form}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <DownloadPdf source={data.Texto} file={data.descarga.data?.attributes.url} />
+                            <DownloadPdf source={data.Texto} file={data.descarga.data?.attributes.url} title={title} />
                         </Modal.Body>
                     </Modal>
                 </Container>
