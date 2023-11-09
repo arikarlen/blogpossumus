@@ -34,7 +34,8 @@ export default function fullNews({ dataNew, dataIns }) {
   return (
     <>
       <Head>
-        <title>Webinars Possumus || {dataNew.data[0].attributes.Titulo}</title>
+        <title>Webinars Possumus || {dataNew.data[0].attributes.Titulo.replaceAll('\n', '').replaceAll('#', '')}</title> 
+        {/* //Se quitan caracteres provenientes de Strapi, ya que title es tipo richText */}
         <meta name="description" content={dataNew.data[0].attributes.Bajada} />
         <meta
           name="keywords"
