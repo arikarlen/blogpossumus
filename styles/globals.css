@@ -639,6 +639,7 @@ blockquote {
 #description h1 {
   text-align: center;
   margin-bottom: 50px;
+  font-size: 27px !important;
 }
 #description ul {
   list-style: disc !important;
@@ -660,7 +661,6 @@ blockquote {
 }
 #description img {
   margin-top: 90px;
-  width: 100%;
 }
 
 #description p {

@@ -5,7 +5,7 @@ export default function Speakers({ speakers }) {
         <Container id="speakers">
             <Row>
                 <Col md={{ span: 8, offset: 2 }}>
-                    <h4>Speakers:</h4>
+                    <h4>Presentado por:</h4>
                     <Row id="speakersContainer">
                         {speakers.map((speaker) => (
                             <Col key={speaker.attributes?.Nombre}>
