@@ -15,7 +15,7 @@ export default function PostWebinar({ status, data, color, title }) {
                 <Container id="postWebinar">
                     <h1>{data.titulo}</h1>
                     <iframe width="100%" height="700" src={idVideo} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    <Row id="downloadPdfWebinar">
+                    <Row id="downloadPdfWebinar" className="align-items-center">
                         <Col md={6}>
                             <Image src={data.Imagen.data.attributes.url} alt="download webinar" fluid />
                         </Col>
@@ -28,7 +28,7 @@ export default function PostWebinar({ status, data, color, title }) {
                                     "--hover-color": color,
                                 }}
                             >
-                                Free Download
+                                Descargar gratis
                             </Button>
                         </Col>
                     </Row>
