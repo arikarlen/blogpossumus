@@ -63,30 +63,34 @@ export default function HeaderWebinar({
             <p>{subtitle}</p>
           </Col>
         </Row>
-        <Row id="contentDate">
-          <Col lg={3} xxl={2}>
-            <h2>
-              <Image
-                style={{ filter: iconFilter ? iconFilter : null }}
-                src={fCalendar.src}
-                alt="Date"
-                className="iconDate"
-              />{" "}
-              {moment(date).format("D") + " de " + moment(date).format("MMMM ")}
-            </h2>
-          </Col>
-          <Col lg={3}>
-            <h2>
-              <Image
-                style={{ filter: iconFilter ? iconFilter : null }}
-                src={fClock.src}
-                alt="Date"
-                className="iconDate"
-              />{" "}
-              {moment.utc(date).format("HH:mm") + " H (GMT-3)"}
-            </h2>
-          </Col>
-        </Row>
+        {status && (
+          <Row id="contentDate">
+            <Col lg={3} xxl={2}>
+              <h2>
+                <Image
+                  style={{ filter: iconFilter ? iconFilter : null }}
+                  src={fCalendar.src}
+                  alt="Date"
+                  className="iconDate"
+                />{" "}
+                {moment(date).format("D") +
+                  " de " +
+                  moment(date).format("MMMM ")}
+              </h2>
+            </Col>
+            <Col lg={3}>
+              <h2>
+                <Image
+                  style={{ filter: iconFilter ? iconFilter : null }}
+                  src={fClock.src}
+                  alt="Date"
+                  className="iconDate"
+                />{" "}
+                {moment.utc(date).format("HH:mm") + " H (GMT-3)"}
+              </h2>
+            </Col>
+          </Row>
+        )}
         <Row className="participateButton">
           <Col md={6} lg={4}>
             <Button
