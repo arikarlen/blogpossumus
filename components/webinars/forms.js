@@ -108,9 +108,9 @@ export default function Forms({ status, dataForm, source, title, subTitle }) {
               <Alert variant="danger">{errors?.phone?.message}</Alert>
             )}
             <Row className="justify-content-center">
-              <Col md={5} className="d-flex flex-column justify-content-center">
+              <Col md={6} className="d-flex flex-column justify-content-center">
                 {success && (
-                  <Alert variant="success">¡Ya estás inscripto!</Alert>
+                  <Alert variant="success">{status ? '¡Ya estás inscripto!' : '¡Te vamos a avisar en proximos eventos!'}</Alert>
                 )}
                 <Button
                   variant="primary"
