@@ -40,9 +40,7 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
     console;
     toast.success("Link copiado al portapapeles");
   };
-
-  console.log(isMoreOptionsMobileVisible);
-
+  
   return (
     <>
       <Row id="share">
