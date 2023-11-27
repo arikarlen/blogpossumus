@@ -3,17 +3,19 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import ShareNews from "../news/share";
+import countriesCod from "./data/countries.json";
 
-export default function Forms({ status, dataForm, source, title, subTitle }) {
+export default function Forms({ status, dataForm, title, subTitle }) {
   const [success, setSuccess] = useState(false);
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
+    setValue
   } = useForm({
     mode: "onTouched",
     defaultValues: {
-      origin: "Webinar -" + title.replaceAll('\n', '').replaceAll('#', ''), //Se quitan caracteres provenientes de Strapi, ya que title es tipo richText
+      origin: "Webinar -" + title.replaceAll("\n", "").replaceAll("#", ""), //Se quitan caracteres provenientes de Strapi, ya que title es tipo richText
       source: "webinar",
       yourname: "",
       enterprise: "",
@@ -92,25 +94,42 @@ export default function Forms({ status, dataForm, source, title, subTitle }) {
             {errors.email && (
               <Alert variant="danger">{errors?.email?.message}</Alert>
             )}
-            <Form.Control
-              type="text"
-              className="formField"
-              placeholder="Teléfono"
-              aria-describedby="passwordHelpBlock"
-              {...register("phone", {
-                required: {
-                  value: true,
-                  message: "Por favor, ingrese su telefono",
-                },
-              })}
-            />
+            <Form.Group
+              className="d-flex align-items-center gap-4 phone"
+            >
+              <Col md={4}>
+                <Form.Select className="formField" onChange={(e)=> setValue("phone", e.target.value)}>
+                  {countriesCod.countries.map((code) => (
+                    <option value={code.dial_code} key={code}>
+                      {code.name_es}
+                    </option>
+                  ))}
+                </Form.Select>
+              </Col>
+              <Form.Control
+                type="text"
+                className="formField"
+                placeholder="Teléfono"
+                aria-describedby="passwordHelpBlock"
+                {...register("phone", {
+                  required: {
+                    value: true,
+                    message: "Por favor, ingrese su telefono",
+                  },
+                })}
+              />
+            </Form.Group>
             {errors.phone && (
               <Alert variant="danger">{errors?.phone?.message}</Alert>
             )}
             <Row className="justify-content-center">
               <Col md={6} className="d-flex flex-column justify-content-center">
                 {success && (
-                  <Alert variant="success">{status ? '¡Ya estás inscripto!' : '¡Te vamos a avisar en proximos eventos!'}</Alert>
+                  <Alert variant="success">
+                    {status
+                      ? "¡Ya estás inscripto!"
+                      : "¡Te vamos a avisar en proximos eventos!"}
+                  </Alert>
                 )}
                 <Button
                   variant="primary"
