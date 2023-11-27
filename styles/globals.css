@@ -435,8 +435,10 @@ blockquote {
 #formNews {
   margin-top: 120px !important;
 }
-#formNews .phone select{
+#formNews .phone .prefix{
   border-radius: 4px 0 0 4px !important;
+  background-color: #777777 !important;
+  color: #fff;
 }
 #formNews .phone input{
   border-radius: 0 4px 4px 0 !important;

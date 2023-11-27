@@ -7,11 +7,12 @@ import countriesCod from "./data/countries.json";
 
 export default function Forms({ status, dataForm, title, subTitle }) {
   const [success, setSuccess] = useState(false);
+  const [prefix, setPrefix] = useState("");
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setValue
+    setValue,
   } = useForm({
     mode: "onTouched",
     defaultValues: {
@@ -28,7 +29,7 @@ export default function Forms({ status, dataForm, title, subTitle }) {
     axios
       .post(
         `https://prod-20.brazilsouth.logic.azure.com:443/workflows/4a0de618d958419bb7dc99ba7a3245b7/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QsAL47KtZeSa5He1YXBvXMI4ZsD802JoaITVlC2wXhs`,
-        data
+        {...data, phone: prefix + data.phone}
       )
       .then(() => {
         // window.open(file, "_ blank");
@@ -94,30 +95,49 @@ export default function Forms({ status, dataForm, title, subTitle }) {
             {errors.email && (
               <Alert variant="danger">{errors?.email?.message}</Alert>
             )}
-            <Form.Group
-              className="d-flex align-items-center gap-4 phone"
-            >
+            <Form.Group className="d-flex align-items-center gap-4">
               <Col md={4}>
-                <Form.Select className="formField" onChange={(e)=> setValue("phone", e.target.value)}>
-                  {countriesCod.countries.map((code) => (
-                    <option value={code.dial_code} key={code}>
+                <Form.Select
+                  className="formField"
+                  onChange={(e) => setPrefix(e.target.value)}
+                >
+                  <option selected disabled>
+                    Seleccione su país
+                  </option>
+                  {countriesCod.countries.map((code, idx) => (
+                    <option value={code.dial_code} key={idx}>
                       {code.name_es}
                     </option>
                   ))}
                 </Form.Select>
               </Col>
-              <Form.Control
-                type="text"
-                className="formField"
-                placeholder="Teléfono"
-                aria-describedby="passwordHelpBlock"
-                {...register("phone", {
-                  required: {
-                    value: true,
-                    message: "Por favor, ingrese su telefono",
-                  },
-                })}
-              />
+              <Col md={8} className="d-flex phone">
+                <Col md={2}>
+                  <Form.Control
+                    className="formField prefix"
+                    value={prefix}
+                    disabled
+                  />
+                </Col>
+                <Form.Control
+                  type="text"
+                  className="formField"
+                  placeholder="Teléfono"
+                  aria-describedby="passwordHelpBlock"
+                  {...register("phone", {
+                    required: {
+                      value: true,
+                      message: "Por favor, ingrese su telefono",
+                    },
+                    validate: {
+                      validatePrefix: () =>
+                        prefix.length === 0
+                        ? "Seleccione el prefijo de su país"
+                        : true
+                    }
+                  })}
+                />
+              </Col>
             </Form.Group>
             {errors.phone && (
               <Alert variant="danger">{errors?.phone?.message}</Alert>
