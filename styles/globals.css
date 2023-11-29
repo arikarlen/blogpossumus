@@ -1,33 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,700;1,400&display=swap");
 
 @font-face {
-  font-family: "Gotham";
-  font-weight: 900;
-  src: url("../assets/Gotham-Font/Gotham-Black.otf");
+  font-family: "Gotham-bold";
+  src: url("../assets/Gotham-Font/gotham_bold-webfont.woff"),
+    url("../assets/Gotham-Font/gotham_bold-webfont.woff2");
 }
 @font-face {
-  font-family: "Gotham";
-  font-weight: 700;
-  src: url("../assets/Gotham-Font/Gotham-Bold.otf");
+  font-family: "Gotham-book";
+  src: url("../assets/Gotham-Font/gotham_book-webfont.woff"),
+    url("../assets/Gotham-Font/gotham_book-webfont.woff2");
 }
-
-@font-face {
-  font-family: "Gotham";
-  font-weight: 500;
-  src: url("../assets/Gotham-Font/Gotham-Regular.otf");
-}
-
-@font-face {
-  font-family: "Gotham";
-  font-weight: 400;
-  src: url("../assets/Gotham-Font/Gotham-Light.otf");
-}
-@font-face {
-  font-family: "Gotham";
-  font-weight: 300;
-  src: url("../assets/Gotham-Font/Gotham-XLight.otf");
-}
-
 :root {
   --color-yellow: #fcd702;
   --color-black: #2e2d31;
@@ -68,7 +50,7 @@ p {
 }
 
 h1 {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham-bold", sans-serif;
   font-size: 27px !important;
   font-style: normal !important;
   font-weight: 700 !important;
@@ -84,7 +66,7 @@ h2 {
 }
 
 h4 {
-  font-family: "Gotham", sans-serif !important;
+  font-family: "Gotham-bold", sans-serif !important;
   font-size: 18px !important;
   font-style: normal !important;
   line-height: 21px !important;
@@ -446,18 +428,18 @@ blockquote {
 }
 
 #formNews input:focus,
-#formNews select:focus{
+#formNews select:focus {
   outline: none !important;
   box-shadow: none;
 }
 #formNews {
   margin-top: 120px !important;
 }
-#formNews .phone .prefix{
+#formNews .phone .prefix {
   border-radius: 4px 0 0 4px !important;
-  background-color: #E2E2E2 !important;
+  background-color: #e2e2e2 !important;
 }
-#formNews .phone input{
+#formNews .phone input {
   border-radius: 0 4px 4px 0 !important;
 }
 
@@ -472,6 +454,7 @@ blockquote {
   background-color: #f6f6f6 !important;
   border: none !important;
   margin-top: 20px !important;
+  font-family: 'Gotham-book', sans-serif;
 }
 
 .alert {
@@ -639,7 +622,7 @@ blockquote {
 }
 
 .participateButton .btn-primary {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham-bold", sans-serif;
   font-size: 24px !important;
   padding: 5px !important;
   text-align: center !important;
@@ -699,7 +682,7 @@ blockquote {
 #description p {
   margin-bottom: 50px;
 }
-#description .prewebinar p:last-child{
+#description .prewebinar p:last-child {
   text-align: center;
 }
 
@@ -714,7 +697,7 @@ blockquote {
 }
 
 #speakers h2 {
-  font-family: "Gotham", sans-serif !important;
+  font-family: "Gotham-bold", sans-serif !important;
   font-size: 21px !important;
   font-style: normal;
   line-height: 120% !important;
@@ -724,7 +707,7 @@ blockquote {
 }
 
 #speakers h3 {
-  font-family: "Gotham", sans-serif !important;
+  font-family: "Gotham-book", sans-serif !important;
   font-size: 19px !important;
   font-weight: 300 !important;
   line-height: 130% !important;
@@ -768,7 +751,7 @@ blockquote {
 }
 
 #cta h2 {
-  font-family: "Gotham", sans-serif !important;
+  font-family: "Gotham-bold", sans-serif !important;
   font-size: 32px !important;
   font-style: normal !important;
   font-weight: 600 !important;
@@ -794,7 +777,7 @@ blockquote {
 }
 
 #postWebinar button {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham-bold", sans-serif;
   font-size: 22px !important;
   padding: 5px !important;
   text-align: center !important;
@@ -881,7 +864,7 @@ blockquote {
 .modalTitle {
   background-size: cover !important;
   background-position: center !important;
-  font-family: "Gotham", sans-serif !important;
+  font-family: "Gotham-bold", sans-serif !important;
   text-align: center;
   font-size: 27px !important;
   font-style: normal !important;
