@@ -6,7 +6,7 @@ export default function Description({ text, status }) {
         <Container id="description">
             <Row>
                 <Col md={status ? { span: 6, offset: 3 } : {span:10, offset: 1}}>
-                    <ReactMarkdown className={status ? "" : "text-center"}>{text}</ReactMarkdown>
+                    <ReactMarkdown className={status ? "prewebinar" : "text-center"}>{text}</ReactMarkdown>
                 </Col>
             </Row>
         </Container>
