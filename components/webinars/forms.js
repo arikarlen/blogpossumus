@@ -96,7 +96,7 @@ export default function Forms({ status, dataForm, title, subTitle }) {
               <Alert variant="danger">{errors?.email?.message}</Alert>
             )}
             <Form.Group className="d-flex align-items-center">
-              <Col md={4}>
+              <Col xs={4}>
                 <Form.Select
                   className="formField"
                   onChange={(e) => setPrefix(e.target.value)}
@@ -111,8 +111,8 @@ export default function Forms({ status, dataForm, title, subTitle }) {
                   ))}
                 </Form.Select>
               </Col>
-              <Col md={{span:7, offset: 1}} className="d-flex phone">
-                <Col md={2}>
+              <Col xs={{span:7, offset: 1}} className="d-flex phone">
+                <Col xs={4} md={2}>
                   <Form.Control
                     className="formField prefix"
                     value={prefix}
