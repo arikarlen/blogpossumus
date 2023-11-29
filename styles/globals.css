@@ -583,7 +583,9 @@ blockquote {
 
 #headerWebinar h1 {
   font-size: 68px !important;
-  margin-bottom: 30px;
+  margin-bottom: 10px !important;
+  line-height: 100% !important;
+  letter-spacing: -1.8px !important;
 }
 #headerWebinar h1:first-of-type {
   margin: 0;
@@ -679,6 +681,9 @@ blockquote {
 #description p {
   margin-bottom: 50px;
 }
+#description .prewebinar p:last-child{
+  text-align: center;
+}
 
 #speakers {
   margin-top: 100px !important;
@@ -718,7 +723,9 @@ blockquote {
 }
 
 #speakers h3 {
-  font-size: 15px;
+  font-size: 19px !important;
+  font-weight: 325 !important;
+  line-height: 130% !important;
 }
 
 #speakers h4 {
@@ -736,9 +743,12 @@ blockquote {
 }
 
 #cta h2 {
+  font-family: "Gotham-Bold", sans-serif !important;
   font-size: 32px !important;
   font-style: normal !important;
-  font-weight: 700 !important;
+  font-weight: 400 !important;
+  line-height: 120% !important;
+  letter-spacing: -1px !important;
 }
 
 #postWebinar {
