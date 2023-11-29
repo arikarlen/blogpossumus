@@ -723,9 +723,11 @@ blockquote {
 }
 
 #speakers h3 {
+  font-family: "Gotham-Bold", sans-serif !important;
   font-size: 19px !important;
-  font-weight: 325 !important;
+  font-weight: 300 !important;
   line-height: 130% !important;
+  text-wrap: nowrap !important;
 }
 
 #speakers h4 {
@@ -746,7 +748,7 @@ blockquote {
   font-family: "Gotham-Bold", sans-serif !important;
   font-size: 32px !important;
   font-style: normal !important;
-  font-weight: 400 !important;
+  font-weight: 500 !important;
   line-height: 120% !important;
   letter-spacing: -1px !important;
 }
