@@ -675,6 +675,7 @@ blockquote {
   text-align: start;
 }
 #description img {
+  width: 90%;
   margin-top: 90px;
 }
 
@@ -693,23 +694,6 @@ blockquote {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-}
-@media (max-width: 768px) {
-  #speakers .row {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  #speakers .row > * {
-    max-width: max-content;
-  }
-  #speakers .row img {
-    max-width: 150px;
-  }
-  #speakersContainer {
-    grid-template-columns: repeat(1, 1fr);
-    justify-items: center;
-  }
 }
 
 #speakers h2 {
@@ -734,6 +718,28 @@ blockquote {
   font-size: 24px !important;
   font-style: normal;
   margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+  #speakers .row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  #speakers .row > * {
+    max-width: max-content;
+  }
+  #speakers .row img {
+    max-width: 150px;
+  }
+  #speakersContainer {
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+  }
+  #speakers h3 {
+    font-size: 15px !important;
+    text-wrap: wrap !important;
+  }
 }
 
 #cta {
