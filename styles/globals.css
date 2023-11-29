@@ -50,7 +50,7 @@ p {
 }
 
 h1 {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham-Bold", sans-serif;
   font-size: 27px !important;
   font-style: normal !important;
   font-weight: 700 !important;
@@ -66,7 +66,7 @@ h2 {
 }
 
 h4 {
-  font-family: "Gotham", sans-serif !important;
+  font-family: "Gotham-Bold", sans-serif !important;
   font-size: 18px !important;
   font-style: normal !important;
   line-height: 21px !important;
@@ -622,7 +622,7 @@ blockquote {
 }
 
 .participateButton .btn-primary {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham-Bold", sans-serif;
   font-size: 24px !important;
   padding: 5px !important;
   text-align: center !important;
@@ -697,7 +697,7 @@ blockquote {
 }
 
 #speakers h2 {
-  font-family: "Gotham", sans-serif !important;
+  font-family: "Gotham-Bold", sans-serif !important;
   font-size: 21px !important;
   font-style: normal;
   line-height: 120% !important;
@@ -707,7 +707,7 @@ blockquote {
 }
 
 #speakers h3 {
-  font-family: "Gotham", sans-serif !important;
+  font-family: "Gotham-Bold", sans-serif !important;
   font-size: 19px !important;
   font-weight: 300 !important;
   line-height: 130% !important;
@@ -751,7 +751,7 @@ blockquote {
 }
 
 #cta h2 {
-  font-family: "Gotham", sans-serif !important;
+  font-family: "Gotham-Bold", sans-serif !important;
   font-size: 32px !important;
   font-style: normal !important;
   font-weight: 500 !important;
@@ -777,7 +777,7 @@ blockquote {
 }
 
 #postWebinar button {
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham-Bold", sans-serif;
   font-size: 22px !important;
   padding: 5px !important;
   text-align: center !important;
@@ -864,7 +864,7 @@ blockquote {
 .modalTitle {
   background-size: cover !important;
   background-position: center !important;
-  font-family: "Gotham", sans-serif !important;
+  font-family: "Gotham-Bold", sans-serif !important;
   text-align: center;
   font-size: 27px !important;
   font-style: normal !important;
