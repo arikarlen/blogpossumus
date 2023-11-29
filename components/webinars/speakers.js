@@ -15,7 +15,7 @@ export default function Speakers({ speakers }) {
                                     </Col>
                                     <Col md={8}>
                                         <h2>{speaker.attributes?.Nombre}</h2>
-                                        <h3>{speaker.attributes?.puesto?.data?.attributes?.Puesto}, Possumus</h3>
+                                        <h3>{speaker.attributes?.puesto?.data?.attributes?.Puesto},<br/> Possumus</h3>
                                     </Col>
                                 </Row>
                             </Col>
