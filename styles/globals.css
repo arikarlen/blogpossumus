@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: "Gotham-bold";
-  src: url("../assets/Gotham-Font/gotham_bold-webfont.woff"),
-    url("../assets/Gotham-Font/gotham_bold-webfont.woff2");
+  src: url("/fonts/gotham_bold-webfont.woff"),
+    url("/fonts/gotham_bold-webfont.woff2");
 }
 @font-face {
   font-family: "Gotham-book";
-  src: url("../assets/Gotham-Font/gotham_book-webfont.woff"),
-    url("../assets/Gotham-Font/gotham_book-webfont.woff2");
+  src: url("/fonts/gotham_book-webfont.woff"),
+    url("/fonts/gotham_book-webfont.woff2");
 }
 :root {
   --color-yellow: #fcd702;
