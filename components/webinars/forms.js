@@ -21,6 +21,7 @@ export default function Forms({ status, dataForm, title, subTitle }) {
       yourname: "",
       enterprise: "",
       email: "",
+      country: "",
       phone: "",
     },
   });
@@ -29,7 +30,7 @@ export default function Forms({ status, dataForm, title, subTitle }) {
     axios
       .post(
         `https://prod-20.brazilsouth.logic.azure.com:443/workflows/4a0de618d958419bb7dc99ba7a3245b7/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QsAL47KtZeSa5He1YXBvXMI4ZsD802JoaITVlC2wXhs`,
-        {...data, phone: prefix + data.phone}
+        { ...data, phone: prefix + data.phone }
       )
       .then(() => {
         // window.open(file, "_ blank");
@@ -99,20 +100,26 @@ export default function Forms({ status, dataForm, title, subTitle }) {
               <Col xs={4}>
                 <Form.Select
                   className="formField"
-                  onChange={(e) => setPrefix(e.target.value)}
+                  {...register("country", {
+                    required: {
+                      value: true,
+                      message: "Por favor, elija su país",
+                    },
+                    onChange: (e)=> setPrefix(countriesCod.countries.filter(country => country.name_es === e.target.value)[0].dial_code)
+                  })}
                 >
                   <option selected disabled>
                     Seleccione su país
                   </option>
                   {countriesCod.countries.map((code, idx) => (
-                    <option value={code.dial_code} key={idx}>
+                    <option value={code.name_es} id={code.dial_code} key={idx}>
                       {code.name_es}
                     </option>
                   ))}
                 </Form.Select>
               </Col>
-              <Col xs={{span:7, offset: 1}} className="d-flex phone">
-                <Col xs={4} md={2}>
+              <Col xs={{ span: 7, offset: 1 }} className="d-flex phone">
+                <Col xs={4} md={3}>
                   <Form.Control
                     className="formField prefix"
                     value={prefix}
@@ -132,9 +139,9 @@ export default function Forms({ status, dataForm, title, subTitle }) {
                     validate: {
                       validatePrefix: () =>
                         prefix.length === 0
-                        ? "Seleccione el prefijo de su país"
-                        : true
-                    }
+                          ? "Seleccione el prefijo de su país"
+                          : true,
+                    },
                   })}
                 />
               </Col>
