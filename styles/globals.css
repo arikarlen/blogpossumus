@@ -674,9 +674,13 @@ blockquote {
   width: 75%;
   text-align: start;
 }
-#description img {
+#description .prewebinar img {
   width: 90%;
   margin-top: 90px;
+}
+
+#description img {
+  width: auto;
 }
 
 #description p {
