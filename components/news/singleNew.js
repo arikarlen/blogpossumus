@@ -36,7 +36,7 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
               />
             </Row>
             <Row id="newsContent">
-              <Col md={9}>
+              <Col md={{span: 8, offset: 2}}>
                 <ReactMarkdown>{singleNew?.cuerpo}</ReactMarkdown>
               </Col>
             </Row>

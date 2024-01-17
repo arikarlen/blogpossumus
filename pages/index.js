@@ -55,8 +55,8 @@ export default function Home({ data, dataNews, dataDes, dataWebin, dataWebinDest
             <Header title="Blog" style="mainNav" />
             <Title title="Ultimas noticias" />
             <FeaturedNews dataNews={dataDes.data} type="/news/"/>
-            <ListNews dataNews={dataNews.data} type="/news/" tag="Por " />
-            <SeeMoreeButton link="/news" />
+            <ListNews dataNews={dataNews.data} type="/news/" tag="Por " withSeeMoreButton/>
+            {/* <SeeMoreeButton link="/news" /> */}
             <Title title="Webinars" />
             <FeaturedNews dataNews={dataWebinDestacada.data} type="/webinars/" tag="Disertantes: " />
             <ListNews dataNews={dataWebin.data} type="/webinars/" tag="Disertantes: " />

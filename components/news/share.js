@@ -1,11 +1,11 @@
 import { Row, Col, Image, Button } from "react-bootstrap";
 import facebook from "../../assets/share/facebook.svg";
-import twitter from "../../assets/share/twitter.svg";
+import twitter from "../../assets/share/x.svg";
 import linkedin from "../../assets/share/linkedin.svg";
-import whatsApp from "../../assets/share/whastapp.svg";
-import telegram from "../../assets/share/telegram.svg";
-import mail from "../../assets/share/email.svg";
-import copyLink from "../../assets/share/link.svg";
+import whatsApp from "../../assets/share/wsp.svg";
+import telegram from "../../assets/share/compartir.svg";
+import mail from "../../assets/share/correo.svg";
+import copyLink from "../../assets/share/enlace.svg";
 import moreShareOptions from "../../assets/share/moreShareOptions.svg";
 import closeMoreShareOptions from "../../assets/share/closeMoreShareOptions.svg";
 import { useRouter } from "next/router";
@@ -44,8 +44,8 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
   return (
     <>
       <Row id="share">
-        <Col md={12} className="sharedLinks">
-          <Col className="d-flex justify-content-around">
+        <Col md={{ span: 8, offset: 2 }} className="sharedLinks">
+          <Col className="d-flex justify-content-around align-items-center">
             Compartir:
             <a href={urlFacebook} target="_blank">
               <Image src={facebook.src} alt="Facebook" />

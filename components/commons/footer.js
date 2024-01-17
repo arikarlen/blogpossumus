@@ -9,6 +9,9 @@ import FacebookBlack from "../../assets/FaceBookIcon.png";
 export default function Footer({ dataInstitutional }) {
   const tel = "tel: " + dataInstitutional.data?.attributes.Contacto.telefono;
   const mailto = "mailto:" + dataInstitutional.data?.attributes.Contacto.Email;
+
+  let newDate = new Date();
+  let year = newDate.getFullYear();
   return (
     <Container fluid id="footer">
       <Container>
@@ -141,8 +144,18 @@ export default function Footer({ dataInstitutional }) {
               alt="Possumus"
             />
           </Col>
-          <Col lg={3} className="d-flex justify-content-center">
-            <Image src={clutchImage.src} fluid alt="Possumus" />
+          <Col className="justify-content-center d-flex align-items-center">
+            <div
+              className="clutch-widget"
+              data-url="https://widget.clutch.co"
+              data-widget-type="2"
+              data-height="45"
+              data-nofollow="true"
+              data-expandifr="true"
+              data-primary-color="#fcd702"
+              data-secondary-color="#fcd702"
+              data-clutchcompany-id="1572791"
+            ></div>
           </Col>
           <Col lg={3} className="d-flex justify-content-center">
             <Image src={certificaction.src} fluid alt="Possumus" />
@@ -150,7 +163,7 @@ export default function Footer({ dataInstitutional }) {
         </Row>
         <Row id="subFooter">
           <Col md={6}>
-            <p>Copyright © 2023 Possumus. Todos los derechos reservados.</p>
+            <p>Copyright © {year} Possumus. Todos los derechos reservados.</p>
           </Col>
           <Col
             md={6}
