@@ -120,18 +120,25 @@ ul {
   padding: 17px 0;
   z-index: 999;
 }
-#mainNav #searchForm {
+#mainNav #searchForm,
+#mainNavNoMargin #searchForm {
   margin-top: 0 !important;
   position: relative;
 }
-#mainNav #searchButton {
+#mainNav #searchButton,
+#mainNavNoMargin #searchButton
+ {
   background-color: transparent !important;
 }
-#mainNav #searchButton.active {
+#mainNav #searchButton.active,
+#mainNavNoMargin #searchButton.active
+ {
   background-color: var(--color-yellow) !important;
 }
 
-#mainNav #searchForm .searchContainer {
+#mainNav #searchForm .searchContainer,
+#mainNavNoMargin #searchForm .searchContainer
+ {
   position: absolute;
   top: 100%;
   background-color: var(--background-color);
@@ -141,20 +148,24 @@ ul {
   overflow-y: scroll;
 }
 
-#mainNav #searchForm .searchContainer li {
+#mainNav #searchForm .searchContainer li,
+#mainNavNoMargin #searchForm .searchContainer li {
   cursor: pointer;
   padding: 10px 30px;
   list-style: none !important;
 }
-#mainNav #searchForm .searchContainer li:hover {
+#mainNav #searchForm .searchContainer li:hover,
+#mainNavNoMargin #searchForm .searchContainer li:hover {
   background-color: #f5f5f5 !important;
 }
-#mainNav #searchForm .searchContainer li a {
+#mainNav #searchForm .searchContainer li a,
+#mainNavNoMargin #searchForm .searchContainer li a {
   text-decoration: none !important;
 }
 
 @media (max-width: 768px) {
-  #mainNav .container {
+  #mainNav .container,
+  #mainNavNoMargin .container {
     flex-direction: column !important;
     gap: 15px !important;
   }
@@ -165,6 +176,7 @@ ul {
   position: sticky;
   top: 0;
   z-index: 999;
+  padding: 17px 0;
 }
 
 #mainNav a,
@@ -357,6 +369,10 @@ nav.bg-body-tertiary.navbar.navbar-expand.navbar-light {
   .breadcrumb-item a {
     font-size: 12px;
   }
+}
+
+#fullNew{
+  margin-bottom: 72px !important;
 }
 
 #fullNew h1 {
@@ -591,52 +607,6 @@ blockquote {
 
 .resultNotFound {
   margin-top: 50px !important;
-}
-
-/*************************Footer*/
-
-#footer {
-  margin-top: 110px;
-  padding-top: 80px;
-  background-color: var(--colog-grey-ligth);
-}
-
-#footer a {
-  text-decoration: none;
-  color: var(--text-color);
-}
-
-#footer a:hover {
-  color: var(--color-black);
-}
-
-#secondaryFooter {
-  margin-top: 90px;
-  gap: 40px;
-  justify-content: center;
-}
-
-#subFooter {
-  margin-top: 30px;
-  padding-top: 30px;
-  border-top: 1px solid #d8d8d8;
-}
-
-#subFooter p {
-  font-size: 13px;
-}
-
-#subFooter h4 {
-  font-family: "Mulish", sans-serif !important;
-  font-size: 20px !important;
-}
-
-#subFooter img {
-  margin-left: 20px;
-}
-
-.text-right {
-  text-align: right;
 }
 
 /**********************************************************webinars*/

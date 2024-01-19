@@ -26,6 +26,7 @@ export default function Document() {
                             `,
                     }}
                 />
+                <script type="text/javascript" src="https://widget.clutch.co/static/js/widget.js" async></script>
             </Head>
             <body>
                 <Main />
