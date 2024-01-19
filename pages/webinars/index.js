@@ -10,13 +10,14 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import ResultsNotFound from "../../components/commons/resultNotFound";
 import StartSearch from "../../components/commons/startSearch";
 
-import Footer from "../../components/commons/footer";
+import Footer from "../../components/commons/footer/footer";
 import Pagination from "../../components/commons/pagination";
 import PaginationBasic from "../../components/commons/paginationBasic";
 
 export default function Search() {
     const [dataNews, setDataNews] = useState();
     const [dataInstitucional, setDataInstitucional] = useState();
+    const [footerContent, setFooterContent] = useState();
     const [keyword, setKeyword] = useState("");
     const [showFooter, setShowFooter] = useState(false);
     const [page, setPage] = useState(1);
@@ -45,7 +46,13 @@ export default function Search() {
     useEffect(() => {
         axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`).then((res) => {
             setDataInstitucional(res.data);
+        });
+    }, []);
+
+    useEffect(() => {
+        axios.get(`${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`).then((res) => {
             setShowFooter(true);
+            setFooterContent(res.data);
         });
     }, []);
 
@@ -88,7 +95,7 @@ export default function Search() {
 
                 <PaginationBasic page={page} setPage={setPage} dataPagination={dataPagination} />
             </Container>
-            {showFooter && <Footer dataInstitutional={dataInstitucional} />}
+            {showFooter && <Footer dataInstitutional={dataInstitucional} footerContent={footerContent} />}
         </>
     );
 }

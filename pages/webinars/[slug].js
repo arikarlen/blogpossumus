@@ -1,14 +1,11 @@
 import Head from "next/head";
-import SingleNew from "../../components/news/singleNew";
-import Footer from "../../components/commons/footer";
+import Footer from "../../components/commons/footer/footer";
 import Header from "../../components/commons/header";
-import { Container, Breadcrumb } from "react-bootstrap";
 import HeaderWebinar from "../../components/webinars/headerWebinar";
 import Description from "../../components/webinars/description";
 import Speakers from "../../components/webinars/speakers";
 import Cta from "../../components/webinars/cta";
 import Forms from "../../components/webinars/forms";
-import ShareNews from "../../components/news/share";
 import PostWebinar from "../../components/webinars/postWebinar";
 import MoreInfo from "../../components/webinars/moreInfo";
 
@@ -18,6 +15,7 @@ export async function getServerSideProps(context) {
 
   const URL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_WEBINARS}?filters[slug][$eq]=${slug}&filters[isVisible][$eq]=true&populate=deep`;
   const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
+  const URLFOOTERCONTENT = `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`;
 
   const res = await fetch(URL);
   const data = await res.json();
@@ -26,11 +24,15 @@ export async function getServerSideProps(context) {
   const resInstitucional = await fetch(URLINSTITUCIONAL);
   const dataInstitucional = await resInstitucional.json();
   const dataIns = dataInstitucional;
+  
+  const resFooterContent = await fetch(URLFOOTERCONTENT);
+  const dataFooter = await resFooterContent.json();
+  const footerContent = dataFooter;
 
-  return { props: { dataNew, dataIns } };
+  return { props: { dataNew, dataIns, footerContent } };
 }
 
-export default function fullNews({ dataNew, dataIns }) {
+export default function fullWebinars({ dataNew, dataIns, footerContent }) {
   return (
     <>
       <Head>
@@ -107,7 +109,7 @@ export default function fullNews({ dataNew, dataIns }) {
         subTitle={dataNew.data[0].attributes.Bajada}
       />
 
-      <Footer dataInstitutional={dataIns} />
+      <Footer dataInstitutional={dataIns} footerContent={footerContent}/>
     </>
   );
 }
