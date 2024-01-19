@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Container, Breadcrumb } from "react-bootstrap";
 import Header from "../../components/commons/header";
 import ListNews from "../../components/commons/newsList";
-import Footer from "../../components/commons/footer";
+import Footer from "../../components/commons/footer/footer";
 
 export async function getServerSideProps(context) {
     const { params } = context;
@@ -10,6 +10,7 @@ export async function getServerSideProps(context) {
 
     const URL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&filters[categoria][Categoria][$contains]=${slug}`;
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt&populate[2]=items`;
+    const URLFOOTERCONTENT = `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`;
 
     const res = await fetch(URL);
     const data = await res.json();
@@ -18,11 +19,15 @@ export async function getServerSideProps(context) {
     const resInstitucional = await fetch(URLINSTITUCIONAL);
     const dataInstitucional = await resInstitucional.json();
     const dataIns = dataInstitucional;
+    
+    const resFooterContent = await fetch(URLFOOTERCONTENT);
+    const dataFooter = await resFooterContent.json();
+    const footerContent = dataFooter;
 
-    return { props: { slug, dataNew, dataIns } };
+    return { props: { slug, dataNew, dataIns, footerContent } };
 }
 
-export default function Category({ slug, dataNew, dataIns }) {
+export default function Category({ slug, dataNew, dataIns, footerContent }) {
     return (
         <>
             <Head>
@@ -46,7 +51,7 @@ export default function Category({ slug, dataNew, dataIns }) {
 
                 <ListNews dataNews={dataNew.data} title={slug} />
             </Container>
-            <Footer dataInstitutional={dataIns} />
+            <Footer dataInstitutional={dataIns} footerContent={footerContent}/>
         </>
     );
 }
