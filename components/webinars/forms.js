@@ -105,7 +105,12 @@ export default function Forms({ status, dataForm, title, subTitle }) {
                       value: true,
                       message: "Por favor, elija su país",
                     },
-                    onChange: (e)=> setPrefix(countriesCod.countries.filter(country => country.name_es === e.target.value)[0].dial_code)
+                    onChange: (e) =>
+                      setPrefix(
+                        countriesCod.countries.filter(
+                          (country) => country.name_es === e.target.value
+                        )[0].dial_code
+                      ),
                   })}
                 >
                   <option selected disabled>
@@ -172,10 +177,10 @@ export default function Forms({ status, dataForm, title, subTitle }) {
                 </Button>
               </Col>
             </Row>
-            <ShareNews title={title} subTitle={subTitle} />
           </Col>
         </Row>
       </form>
+      <ShareNews title={title} subTitle={subTitle} />
     </Container>
   );
 }

@@ -506,6 +506,9 @@ blockquote {
   z-index: 1;
 }
 
+#share {
+  margin-bottom: 72px;
+}
 #share p {
   padding: 0;
   margin: 0;
