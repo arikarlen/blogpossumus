@@ -2,7 +2,7 @@ import Head from "next/head";
 import FeaturedNews from "../components/news/featuredNews";
 import Header from "../components/commons/header";
 import ListNews from "../components/news/blogList";
-import Footer from "../components/commons/footer";
+import Footer from "../components/commons/footer/footer";
 import Analitycs from "../components/commons/analitycs";
 import Title from "../components/commons/titles";
 import SeeMoreeButton from "../components/commons/seeMoreButton";
@@ -13,6 +13,7 @@ export async function getServerSideProps() {
     const URLWEBINARS = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_WEBINARS}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria&filters[Destacada][$eq]=false&sort=id:desc&pagination[page]=1&pagination[pageSize]=5`;
     const URLWEBINARSDESTACADA = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_WEBINARS}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria&filters[Destacada][$eq]=true&sort=id:desc&pagination[page]=1&pagination[pageSize]=5`;
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
+    const URLFOOTERCONTENT = `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`;
 
     const resBlog = await fetch(URLBLOG);
     const dataBlog = await resBlog.json();
@@ -33,11 +34,15 @@ export async function getServerSideProps() {
     const resInstitucional = await fetch(URLINSTITUCIONAL);
     const dataInstitucional = await resInstitucional.json();
     const data = dataInstitucional;
+    
+    const resFooterContent = await fetch(URLFOOTERCONTENT);
+    const dataFooter = await resFooterContent.json();
+    const footerContent = dataFooter;
 
-    return { props: { dataDes, data, dataWebin, dataNews, dataWebinDestacada } };
+    return { props: { dataDes, data, dataWebin, dataNews, dataWebinDestacada, footerContent } };
 }
 
-export default function Home({ data, dataNews, dataDes, dataWebin, dataWebinDestacada }) {
+export default function Home({ data, dataNews, dataDes, dataWebin, dataWebinDestacada, footerContent }) {
     return (
         <>
             <Head>
@@ -61,7 +66,7 @@ export default function Home({ data, dataNews, dataDes, dataWebin, dataWebinDest
             <FeaturedNews dataNews={dataWebinDestacada.data} type="/webinars/" tag="Disertantes: " />
             <ListNews dataNews={dataWebin.data} type="/webinars/" tag="Disertantes: " />
             <SeeMoreeButton link="/webinars" />
-            <Footer dataInstitutional={data} />
+            <Footer dataInstitutional={data} footerContent={footerContent} />
         </>
     );
 }

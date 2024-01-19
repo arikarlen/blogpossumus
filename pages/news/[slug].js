@@ -1,6 +1,6 @@
 import Head from "next/head";
 import SingleNew from "../../components/news/singleNew";
-import Footer from "../../components/commons/footer";
+import Footer from "../../components/commons/footer/footer";
 import Header from "../../components/commons/header";
 import { Container, Breadcrumb } from "react-bootstrap";
 
@@ -10,6 +10,7 @@ export async function getServerSideProps(context) {
 
     const URL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?filters[slug][$eq]=${slug}&populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20descarga%2C%20categoria%2C%20img_descarga&sort=id:desc`;
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
+    const URLFOOTERCONTENT = `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`;
 
     const res = await fetch(URL);
     const data = await res.json();
@@ -19,12 +20,16 @@ export async function getServerSideProps(context) {
     const dataInstitucional = await resInstitucional.json();
     const dataIns = dataInstitucional;
 
+    const resFooterContent = await fetch(URLFOOTERCONTENT);
+    const dataFooter = await resFooterContent.json();
+    const footerContent = dataFooter;
+
     const absoluteUrl = process.env.NEXT_PUBLIC_API_URL;
 
-    return { props: { dataNew, dataIns, absoluteUrl } };
+    return { props: { dataNew, dataIns, absoluteUrl, footerContent } };
 }
 
-export default function fullNews({ dataNew, dataIns, absoluteUrl }) {
+export default function fullNews({ dataNew, dataIns, absoluteUrl, footerContent }) {
     return (
         <>
             <Head>
@@ -47,7 +52,7 @@ export default function fullNews({ dataNew, dataIns, absoluteUrl }) {
                 </Breadcrumb>
             </Container>
             <SingleNew singleNew={dataNew.data[0]?.attributes} absoluteUrl={process.env.NEXT_APP_URL} />
-            <Footer dataInstitutional={dataIns} />
+            <Footer dataInstitutional={dataIns} footerContent={footerContent}/>
         </>
     );
 }
