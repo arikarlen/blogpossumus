@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3225",
     "local": "env-cmd -e PROD npm run dev",
     "develop": "env-cmd -e PROD next build && npm run start",
     "staging": " env-cmd -e PROD next build && npm run start",
     "prod": " env-cmd -e PROD next build",
     "build": "next build",
-    "start": "next start ",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
