@@ -143,7 +143,7 @@ ul {
   top: 100%;
   background-color: var(--background-color);
   padding: 20px 0px;
-  height: 500px;
+  max-height: 500px;
   overflow: hidden;
   overflow-y: scroll;
 }
@@ -393,6 +393,9 @@ nav.bg-body-tertiary.navbar.navbar-expand.navbar-light {
 #newsContent ul {
   list-style: disc !important;
   padding-left: 36px !important;
+}
+#newsContent img {
+  cursor: pointer;
 }
 
 .title {
