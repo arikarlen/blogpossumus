@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3225",
     "local": "env-cmd -e PROD npm run dev",
-    "develop": "env-cmd -e PROD next build && npm run start",
+    "develop": "env-cmd -e PROD next build && next start -p 3225",
     "staging": " env-cmd -e PROD next build && npm run start",
     "prod": " env-cmd -e PROD next build",
     "build": "next build",
