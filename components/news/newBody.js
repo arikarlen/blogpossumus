@@ -3,11 +3,12 @@ import ReactMarkdown from "react-markdown";
 import useImageModal from "../../hooks/useImageModal";
 import ImageModal from "../commons/imageModal/ImageModal";
 import { useRef } from "react";
+import useCodeEmbedded from "../../hooks/useCodeEmbedded";
 
 export default function NewBody({ cuerpo }) {
-    const bodyRef = useRef()
+  const bodyRef = useRef();
   const { imageData, setImageData } = useImageModal(bodyRef);
-
+  useCodeEmbedded()
   return (
     <>
       {imageData.active && (
