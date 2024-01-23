@@ -398,6 +398,17 @@ nav.bg-body-tertiary.navbar.navbar-expand.navbar-light {
   cursor: pointer;
 }
 
+/* FRAGMENTOS DE CODIGO */
+#newsContent pre{
+  background-color: #F9F9F9;
+  padding: 20px;
+  border: 1px solid rgb(229, 229, 229);
+  color: #828282;
+}
+#newsContent pre:hover{
+  cursor: pointer;
+  color: #4c4c4c;
+}
 .title {
   margin-bottom: var(--m3) !important;
 }
