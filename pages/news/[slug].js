@@ -80,8 +80,8 @@ export default function fullNews({
         singleNew={dataNew.data[0]?.attributes}
         absoluteUrl={process.env.NEXT_APP_URL}
       />
-      <Toaster richColors position="top-right" visibleToasts={1}/>
       <Footer dataInstitutional={dataIns} footerContent={footerContent} />
+      <Toaster richColors position="top-right" visibleToasts={1}/>
     </>
   );
 }
