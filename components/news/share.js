@@ -1,4 +1,4 @@
-import { Row, Col, Image, Button } from "react-bootstrap";
+import { Row, Col, Image } from "react-bootstrap";
 import facebook from "../../assets/share/facebook.svg";
 import twitter from "../../assets/share/x.svg";
 import linkedin from "../../assets/share/linkedin.svg";
@@ -9,8 +9,8 @@ import copyLink from "../../assets/share/enlace.svg";
 import moreShareOptions from "../../assets/share/moreShareOptions.svg";
 import closeMoreShareOptions from "../../assets/share/closeMoreShareOptions.svg";
 import { useRouter } from "next/router";
-import { Toaster, toast } from "sonner";
 import { useState } from "react";
+import { CopyToClipboard } from "../../utils/functions";
 
 export default function ShareNews({ absoluteUrl, title, subTitle }) {
   const { asPath } = useRouter();
@@ -26,20 +26,6 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
   const urlWhatsApp = `https://api.whatsapp.com/send?text=${shareUrl}`;
   const urlTelegram = `https://t.me/share/url?url${shareUrl}&text=${title}`;
   const urlMail = `mailto:?subject=${title}&body=Te%20comparti%20esta%20nota${shareUrl}`;
-
-  const CopyToClipboard = (toCopy) => {
-    const el = document.createElement(`textarea`);
-    el.value = toCopy;
-    el.setAttribute(`readonly`, ``);
-    el.style.position = `absolute`;
-    el.style.left = `-9999px`;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand(`copy`);
-    document.body.removeChild(el);
-    console;
-    toast.success("Link copiado al portapapeles");
-  };
   
   return (
     <>
@@ -129,7 +115,6 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
             </div>
         </Col>
       </Row>
-      <Toaster richColors position="top-right" />
     </>
   );
 }

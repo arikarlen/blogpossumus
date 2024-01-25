@@ -1,0 +1,23 @@
+.background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .6);
+    z-index: 999;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background img{
+    max-width: 85%;
+    height: auto;
+}
+
+.close{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    cursor: pointer;
+}
