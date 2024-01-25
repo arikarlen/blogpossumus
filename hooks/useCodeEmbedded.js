@@ -41,6 +41,6 @@ export default function useCodeEmbedded() {
         .replaceAll(",", "");
       code.innerHTML = newHTML;
     });
-  });
+  },[]);
   return { wasCopiedToClipboard };
 }
