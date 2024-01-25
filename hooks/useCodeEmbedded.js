@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useState } from "react";
 import { KEYWORDS } from "../utils/data/keywordToCodeEmbedded";
 import { CopyToClipboard } from "../utils/functions";
@@ -40,7 +41,6 @@ export default function useCodeEmbedded() {
         .replaceAll(",", "");
       code.innerHTML = newHTML;
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
   return { wasCopiedToClipboard };
 }
