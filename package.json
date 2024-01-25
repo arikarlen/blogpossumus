@@ -9,7 +9,7 @@
     "staging": " env-cmd -e PROD next build && npm run start",
     "prod": " env-cmd -e PROD next build",
     "build": "next build",
-    "start": "next start ",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "next": "13.4.10",
     "react": "18.2.0",
     "react-bootstrap": "^2.8.0",
+    "react-content-loader": "^6.2.1",
     "react-cookie-consent": "^8.0.1",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.2",

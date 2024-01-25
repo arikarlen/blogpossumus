@@ -72,7 +72,10 @@ export default function SearchButton() {
         <div className="searchContainer" ref={actualSearchRef}>
           {actualSearch.map((search) => (
             <li key={search.attributes.slug}>
-              <Link href={`/news/${search.attributes.slug}`}>
+              <Link href={`/news/${search.attributes.slug}`} onClick={()=>{
+                setSearchButtonActive(false)
+                setActualSearch([])
+              }}>
                 {search.attributes.Titulo}
               </Link>
               {search.attributes.bajada && <p>{search.attributes.bajada}</p>}
