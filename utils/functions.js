@@ -12,4 +12,8 @@ export const CopyToClipboard = (toCopy, message = "Link copiado al portapapeles"
   document.body.removeChild(el);
   console;
   toast.success(message);
-};   
+};
+
+export const TrimText = (text, maxLength)=>{
+  return text.slice(0, maxLength) + '...'
+}
