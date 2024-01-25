@@ -1,10 +1,10 @@
 import { Container, Row, Col, Image } from "react-bootstrap";
-import ReactMarkdown from "react-markdown";
 import moment from "moment";
 import "moment/locale/es";
 import ShareNews from "./share";
 import DownloadPdf from "./downloadPdf";
 import NewBody from "./newBody";
+import RelatedNews from "./relatedNews";
 
 export default function SingleNew({ singleNew, absoluteUrl }) {
 
@@ -60,6 +60,7 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
                 title={singleNew?.Titulo}
                 subTitle={singleNew?.Bajada}
               />
+              <RelatedNews tags={singleNew?.tags} title="Notas relacionadas" actualNewTitle={singleNew?.Titulo}/>
             </Col>
           </Row>
         </Container>
