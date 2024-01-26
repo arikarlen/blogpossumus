@@ -11,8 +11,20 @@
 }
 
 .background img{
-    max-width: 85%;
+    width: auto;
+    max-width: 85vw;
     height: auto;
+    max-height: 100vh;
+}
+
+@media (max-width: 768px){
+    .background img{
+        width: 100%;
+        max-width: 100vh;
+    }
+    .close{
+        width: auto !important;
+    }
 }
 
 .close{
@@ -20,4 +32,15 @@
     top: 5%;
     right: 5%;
     cursor: pointer;
+}
+
+.loaderContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
