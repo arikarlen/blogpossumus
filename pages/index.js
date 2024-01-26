@@ -64,8 +64,8 @@ export default function Home({ data, dataNews, dataDes, dataWebin, dataWebinDest
             {/* <SeeMoreeButton link="/news" /> */}
             <Title title="Webinars" />
             <FeaturedNews dataNews={dataWebinDestacada.data} type="/webinars/" tag="Disertantes: " />
-            <ListNews dataNews={dataWebin.data} type="/webinars/" tag="Disertantes: " />
-            <SeeMoreeButton link="/webinars" />
+            <ListNews dataNews={dataWebin.data} type="/webinars/" tag="Disertantes: " withSeeMoreButton/>
+            {/* <SeeMoreeButton link="/webinars" /> */}
             <Footer dataInstitutional={data} footerContent={footerContent} />
         </>
     );
