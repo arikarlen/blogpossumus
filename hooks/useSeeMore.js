@@ -6,15 +6,17 @@ export default function useSeeMore({
   initialMessage = "Ver más",
   type,
 }) {
+
   const [actualPagination, setActualPagination] = useState(4);
   const [data, setActualData] = useState(initialData || []);
   const [buttonMessage, setButtonMessage] = useState({
     text: initialMessage,
     disabled: false,
   });
+  
   const [isLoadingMoreData, setIsLoadingMoreData] = useState(false);
 
-  const loadMoreNews = async () => {
+  const loadMoreData = async () => {
     setIsLoadingMoreData(true);
     await axios
       .get(
@@ -50,5 +52,5 @@ export default function useSeeMore({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
-  return [data, loadMoreNews, isLoadingMoreData, buttonMessage];
+  return [data, loadMoreData, isLoadingMoreData, buttonMessage];
 }
