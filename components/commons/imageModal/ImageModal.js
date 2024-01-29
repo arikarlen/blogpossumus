@@ -3,7 +3,6 @@ import { Container } from "react-bootstrap";
 import styles from "./ImageModal.module.css";
 import closeIcon from "../../../assets/close-circle.png";
 import { useState } from "react";
-import { ImagePlaceholder } from "../imagePlaceholder/imagePlaceholder";
 import { Loader } from "../loader/Loader";
 
 export default function ImageModal({ data, handleModal }) {
