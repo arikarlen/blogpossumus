@@ -13,10 +13,8 @@ export default function Note({ data }) {
           <Image
             src={data.Imagen_Destacada.data.attributes.url}
             alt={data.Imagen_Destacada.data.attributes.name}
-            width="0"
-            height="0"
-            sizes="100vw"
-            style={{ width: "100%", height: "auto" }}
+            width="360"
+            height="190"
           />
           <h5>
             {moment(data.fecha_publicacion).format("DD [de] MMMM [del] YYYY")}

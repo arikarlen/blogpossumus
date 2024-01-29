@@ -2,8 +2,8 @@ import { Col, Row, Image, Container, Button } from "react-bootstrap";
 import { useRouter } from "next/router";
 import moment from "moment";
 import "moment/locale/es";
-import { useState } from "react";
-import axios from "axios";
+import { Loader } from "../commons/loader/Loader";
+import useSeeMore from "../../hooks/useSeeMore";
 
 export default function ListNews({
   dataNews,
@@ -11,31 +11,13 @@ export default function ListNews({
   tag,
   withSeeMoreButton = false,
 }) {
-  const [actualPagination, setActualPagination] = useState(4);
-  const [news, setActualNews] = useState(dataNews);
-  const [message, setMessage] = useState({text: 'Ver más notas', disabled: false})
+  const [news, loadMoreNews, isLoadingMoreNotes, message] = useSeeMore({
+    initialData: dataNews,
+    initialMessage: `Ver más ${type.includes('news') ? 'notas' : 'webinars'}`,
+    type: `${type.replaceAll("/", "").replaceAll("news", "blogs")}`,
+  });
 
   const router = useRouter();
-
-  const loadMoreNews = async () => {
-    await axios
-      .get(
-        `${process.env.NEXT_PUBLIC_API}/${
-          process.env.NEXT_PUBLIC_API_BLOG
-        }?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&filters[Destacada][$eq]=false&sort=fecha_publicacion:desc&pagination[page]=0&pagination[pageSize]=${
-          actualPagination + 4
-        }`
-      )
-      .then((res) => {
-        if(res.data.meta.pagination.pageSize > res.data.meta.pagination.total + 4){
-            // Ya no hay mas news
-            setMessage({text: 'No hay más notas', disabled: true})
-        }else{
-            setActualNews(res.data.data)
-        }
-      });
-    setActualPagination(actualPagination + 4);
-  };
 
   return (
     <Container id="listBlog">
@@ -85,17 +67,24 @@ export default function ListNews({
             </div>
           </Col>
         ))}
-        {withSeeMoreButton && (
-          <Container className="seeMoreButton">
-            <Row>
-              <Col className="d-flex justify-content-center">
-                {" "}
-                <Button disabled={message.disabled} variant="primary" onClick={() => !message.disabled && loadMoreNews()}>
-                  {message.text}
-                </Button>
-              </Col>
-            </Row>
-          </Container>
+        {withSeeMoreButton && !message.disabled && (
+          <>
+            {isLoadingMoreNotes && <Loader />}
+            <Container className="seeMoreButton">
+              <Row>
+                <Col className="d-flex justify-content-center">
+                  {" "}
+                  <Button
+                    disabled={message.disabled}
+                    variant="primary"
+                    onClick={() => !message.disabled && loadMoreNews()}
+                  >
+                    {message.text}
+                  </Button>
+                </Col>
+              </Row>
+            </Container>
+          </>
         )}
       </Row>
     </Container>
