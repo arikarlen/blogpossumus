@@ -12,15 +12,15 @@ export async function getServerSideProps(context) {
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt&populate[2]=items`;
     const URLFOOTERCONTENT = `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`;
 
-    const res = await fetch(URL);
+    const res = await fetch(URL,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}});
     const data = await res.json();
     const dataNew = await data;
 
-    const resInstitucional = await fetch(URLINSTITUCIONAL);
+    const resInstitucional = await fetch(URLINSTITUCIONAL,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}});
     const dataInstitucional = await resInstitucional.json();
     const dataIns = dataInstitucional;
     
-    const resFooterContent = await fetch(URLFOOTERCONTENT);
+    const resFooterContent = await fetch(URLFOOTERCONTENT,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}});
     const dataFooter = await resFooterContent.json();
     const footerContent = dataFooter;
 

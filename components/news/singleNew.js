@@ -19,7 +19,7 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
               <h5>
                 {moment(singleNew?.fecha_publicacion).format("DD MMMM YYYY")} |
                 Por{" "}
-                {singleNew?.autores.data.map((autor) => (
+                {singleNew?.autores?.data.map((autor) => (
                   <a
                     href={autor.attributes?.Perfiles?.Principal}
                     target="_blank"
