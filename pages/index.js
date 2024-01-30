@@ -15,27 +15,27 @@ export async function getServerSideProps() {
     const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
     const URLFOOTERCONTENT = `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`;
 
-    const resBlog = await fetch(URLBLOG);
+    const resBlog = await fetch(URLBLOG,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}});
     const dataBlog = await resBlog.json();
     const dataNews = dataBlog;
 
-    const resDestacada = await fetch(URLBLOGDESTACADA);
+    const resDestacada = await fetch(URLBLOGDESTACADA,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}});
     const dataDestacada = await resDestacada.json();
     const dataDes = dataDestacada;
 
-    const resWebinars = await fetch(URLWEBINARS);
+    const resWebinars = await fetch(URLWEBINARS,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}});
     const dataWebinars = await resWebinars.json();
     const dataWebin = dataWebinars;
 
-    const resWebinarsDestacada = await fetch(URLWEBINARSDESTACADA);
+    const resWebinarsDestacada = await fetch(URLWEBINARSDESTACADA,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}});
     const dataWebinarsDestacada = await resWebinarsDestacada.json();
     const dataWebinDestacada = dataWebinarsDestacada;
 
-    const resInstitucional = await fetch(URLINSTITUCIONAL);
+    const resInstitucional = await fetch(URLINSTITUCIONAL,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}});
     const dataInstitucional = await resInstitucional.json();
     const data = dataInstitucional;
     
-    const resFooterContent = await fetch(URLFOOTERCONTENT);
+    const resFooterContent = await fetch(URLFOOTERCONTENT,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}});
     const dataFooter = await resFooterContent.json();
     const footerContent = dataFooter;
 

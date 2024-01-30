@@ -27,7 +27,7 @@ export default function Footer({ dataInstitutional, footerContent }) {
             return (
               <Col className="p-0" key={idx}>
                 <p className={styles.titleFooter}>{option.title}</p>
-                {option.multipleOptions.data.map((multipleOption) => (
+                {option.multipleOptions?.data.map((multipleOption) => (
                   <p
                     key={multipleOption.attributes.title}
                     className={styles.links}

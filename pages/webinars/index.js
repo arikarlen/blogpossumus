@@ -35,7 +35,7 @@ export default function Search() {
 
     useEffect(
         (data) => {
-            axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_WEBINARS}?populate=*&filters[isVisible][$eq]=true&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}&pagination%5BwithCount%5D=true&pagination%5Bpage%5D=${page}&pagination%5BpageSize%5D=${pageSize}&sort=id:desc`).then((res) => {
+            axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_WEBINARS}?populate=*&filters[isVisible][$eq]=true&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}&pagination%5BwithCount%5D=true&pagination%5Bpage%5D=${page}&pagination%5BpageSize%5D=${pageSize}&sort=id:desc`, {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}}).then((res) => {
                 setDataNews(res.data);
                 setDataPagination(res.data?.meta?.pagination);
             });
@@ -44,13 +44,13 @@ export default function Search() {
     );
 
     useEffect(() => {
-        axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`).then((res) => {
+        axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`, {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}}).then((res) => {
             setDataInstitucional(res.data);
         });
     }, []);
 
     useEffect(() => {
-        axios.get(`${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`).then((res) => {
+        axios.get(`${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}}).then((res) => {
             setShowFooter(true);
             setFooterContent(res.data);
         });
