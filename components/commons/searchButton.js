@@ -22,7 +22,7 @@ export default function SearchButton() {
     const keyword = getValues("keyword");
     await axios
       .get(
-        `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}`
+        `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}`,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}}
       )
       .then((res) => {
         setActualSearch(res.data.data);

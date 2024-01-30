@@ -37,7 +37,7 @@ export default function News() {
     (data) => {
       axios
         .get(
-          `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}&pagination%5BwithCount%5D=true&pagination%5Bpage%5D=${page}&pagination%5BpageSize%5D=${pageSize}&sort=id:desc`
+          `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}&pagination%5BwithCount%5D=true&pagination%5Bpage%5D=${page}&pagination%5BpageSize%5D=${pageSize}&sort=id:desc`,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}}
         )
         .then((res) => {
           setDataNews(res.data);
@@ -50,7 +50,7 @@ export default function News() {
   useEffect(() => {
     axios
       .get(
-        `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`
+        `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`, {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}}
       )
       .then((res) => {
         setFooterContent(res.data);
@@ -61,7 +61,7 @@ export default function News() {
   useEffect(() => {
     axios
       .get(
-        `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`
+        `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}}
       )
       .then((res) => {
         setDataInstitucional(res.data);

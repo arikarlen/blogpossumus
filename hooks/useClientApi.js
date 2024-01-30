@@ -12,7 +12,7 @@ export default function useClientApi(url){
       setIsLoading(true)
       async function getData() {
         return await axios
-        .get(url)
+        .get(url,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}})
         .then((res) => {
           setResponse(res.data.data)
           setActualUrl(url)
