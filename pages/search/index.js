@@ -23,19 +23,19 @@ export default function Search() {
 
     const onSubmit = (data) => {
         setKeyword(data.Keyword);
-        axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}`).then((res) => {
+        axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}`, {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}}).then((res) => {
             setDataNews(res.data);
         });
     };
 
     useEffect(() => {
-        axios.get(`${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`).then((res) => {
+        axios.get(`${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`, {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}}).then((res) => {
             setFooterContent(res.data);
         });
     }, []);
 
     useEffect(() => {
-        axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`).then((res) => {
+        axios.get(`${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`, {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}}).then((res) => {
             setDataInstitucional(res.data);
         });
     }, []);

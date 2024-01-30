@@ -7,7 +7,7 @@ export default function FeaturedNews({ dataNews, type, tag }) {
     const router = useRouter();
     return (
         <Container id="featuredNews">
-            {dataNews.map((data) => (
+            {dataNews?.map((data) => (
                 <Row key={data.attributes.slug}>
                     <Image src={data.attributes.Imagen_Destacada?.data.attributes.url} fluid alt={data.attributes.Titulo} onClick={() => router.push(type + data.attributes.slug)} />
                     <Col className="textContent">
