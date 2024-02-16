@@ -22,7 +22,7 @@ export default function useSeeMore({
       .get(
         `${
           process.env.NEXT_PUBLIC_API
-        }/${type}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&filters[Destacada][$eq]=false&sort=fecha_publicacion:desc&pagination[page]=0&pagination[pageSize]=${
+        }/${type}?populate=deep&pagination[page]=0&pagination[pageSize]=${
           actualPagination + 4
         }`,  {headers: {Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`}}
       )

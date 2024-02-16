@@ -1,13 +1,13 @@
 import { Col, Container, Image, Row } from "react-bootstrap";
 
-export default function Speakers({ speakers }) {
+export default function Speakers({ titulo, speakers }) {
     return (
         <Container id="speakers">
             <Row>
                 <Col md={{ span: 8, offset: 2 }}>
-                    <h4>Presentado por:</h4>
+                    <h4>{titulo}</h4>
                     <Row id="speakersContainer">
-                        {speakers.map((speaker) => (
+                        {speakers.data.map((speaker) => (
                             <Col key={speaker.attributes?.Nombre}>
                                 <Row>
                                     <Col md={4} className="d-flex align-items-center">
