@@ -1,10 +1,10 @@
 import { Container, Row } from "react-bootstrap";
 
-export default function Cta({ data, textColor }) {
+export default function Cta({ titulo, backgroundImage, textoColor }) {
     return (
-        <Container id="cta" style={{ backgroundImage: `url(${data.Image_Background.data.attributes.url})`, color: textColor }}>
+        <Container id="cta" style={{ backgroundImage: `url(${backgroundImage.url})`, color: textoColor }}>
             <Row>
-                <h2>{data.Titulo}</h2>
+                <h2>{titulo}</h2>
             </Row>
         </Container>
     );

@@ -10,35 +10,35 @@ import fCalendar from "../../assets/FCalendar.svg";
 import fClock from "../../assets/FClock.svg";
 import moment from "moment";
 import { useRouter } from "next/router";
-import FloatingLogo from "../commons/floatingLogo";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-export default function HeaderWebinar({
-  backgroundImage,
-  type,
-  title,
-  subtitle,
-  date,
-  textRegister,
-  textSeeWebinar,
-  status,
-  textColor,
-  btnHeader,
-  iconFilter,
-  headerLogo,
-}) {
+export default function HeaderWebinar({headerData, isPreWebinar}) {
+  const {
+    titulo,
+    backgroundHeader,
+    bajada,
+    fecha,
+    botonPreWebinar,
+    botonPostWebinar,
+    textoColor,
+    iconFilter
+  } = headerData
+
   const router = useRouter();
+  
   const [screenWidth, setWidth] = useState(0);
+
+  const headerButton = isPreWebinar ? botonPreWebinar : botonPostWebinar
 
   useEffect(() => setWidth(window.innerWidth), []);
   return (
     <Container
       style={{
         position: "relative",
-        backgroundImage: `url(${backgroundImage})`,
-        color: textColor,
-        "--bs-secondary-color": textColor,
-        "--text-color": textColor,
+        backgroundImage: `url(${backgroundHeader.data.attributes.url})`,
+        color: textoColor,
+        "--bs-secondary-color": textoColor,
+        "--text-color": textoColor,
       }}
       fluid
       id="headerWebinar"
@@ -49,8 +49,8 @@ export default function HeaderWebinar({
           <Breadcrumb.Item href="/webinars">Webinars</Breadcrumb.Item>
           <Breadcrumb.Item active>
             {screenWidth < 768
-              ? title.slice(0, 25).replaceAll("#", "") + "..."
-              : title.replaceAll("#", "")}
+              ? titulo.slice(0, 25).replaceAll("#", "") + "..."
+              : titulo.replaceAll("#", "")}
             {/* se remplazan los # porque este campo viene desde un tipo ricktext en Strapi */}
           </Breadcrumb.Item>
         </Breadcrumb>
@@ -58,12 +58,12 @@ export default function HeaderWebinar({
       <Container>
         <Row id="contentHeader">
           <Col md={9}>
-            <h2>{type}</h2>
-            <ReactMarkdown>{title}</ReactMarkdown>
-            <p>{subtitle}</p>
+            {/* <h2>{type}</h2> */}
+            <ReactMarkdown>{titulo}</ReactMarkdown>
+            <p>{bajada}</p>
           </Col>
         </Row>
-        {status && (
+        {isPreWebinar && (
           <Row id="contentDate">
             <Col lg={3} xxl={2}>
               <h2>
@@ -73,9 +73,9 @@ export default function HeaderWebinar({
                   alt="Date"
                   className="iconDate"
                 />{" "}
-                {moment(date).format("D") +
+                {moment(fecha).format("D") +
                   " de " +
-                  moment(date).format("MMMM ")}
+                  moment(fecha).format("MMMM ")}
               </h2>
             </Col>
             <Col lg={3}>
@@ -86,7 +86,7 @@ export default function HeaderWebinar({
                   alt="Date"
                   className="iconDate"
                 />{" "}
-                {moment.utc(date).format("HH:mm") + " H (GMT-3)"}
+                {moment.utc(fecha).format("HH:mm") + " H (GMT-3)"}
               </h2>
             </Col>
           </Row>
@@ -94,18 +94,16 @@ export default function HeaderWebinar({
         <Row className="participateButton">
           <Col md={6} lg={4}>
             <Button
-              variant="primary"
-              onClick={() => router.push("#cta")}
+              variant={headerButton.variante}
+              onClick={() => router.push(headerButton.href)}
               style={{
-                "--btnHeader-backgroundColor": btnHeader
-                  ? btnHeader.backgroundColor
-                  : "#2e2d31",
-                "--btnHeader-color": btnHeader ? btnHeader.color : "#FFF",
-                "--hover-color": btnHeader?.colorHover,
-                "--hover-backgroundColor": btnHeader?.backgroundColorHover,
+                "--btnHeader-backgroundColor": headerButton.backgroundColor || "#2e2d31",
+                "--btnHeader-color": headerButton.color || "#FFF",
+                "--hover-color": headerButton.hoverColor || "#FFF",
+                "--hover-backgroundColor": headerButton.hoverBackgroundColor || "#000",
               }}
             >
-              {status ? textRegister : textSeeWebinar}
+              {headerButton.texto}
             </Button>
           </Col>
         </Row>

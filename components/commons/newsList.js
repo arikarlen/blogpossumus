@@ -5,7 +5,7 @@ import "moment/locale/es";
 export default function ListNews({ dataNews, title }) {
     const router = useRouter();
 
-    const preRoute = window.location.href.includes('webinars') ? '/webinars/' : "/news/"
+    const preRoute = router.route.includes('webinars') ? '/webinars/' : "/news/"
     return (
         <Container id="listBlog">
             <h4>{title}</h4>
@@ -20,7 +20,7 @@ export default function ListNews({ dataNews, title }) {
                         <h1>{data.attributes.Titulo.replaceAll('#', '')}</h1> 
                         {/* se remplazan los # porque este campo viene desde un tipo ricktext en Strapi */}
                         <h5>
-                            {moment(data.attributes.publishedAt).format("DD MMMM YYYY")} | Por{" "}
+                            {moment(data.attributes.publishedAt).format("DD [de] MMMM [del] YYYY")} | Por{" "}
                             {data.attributes?.autores.data.map((autor) => (
                                 <>
                                     <a href={autor.attributes?.perfil} target="_blank" className="linkPerfil">
