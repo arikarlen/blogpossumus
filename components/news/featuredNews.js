@@ -2,6 +2,7 @@ import { Row, Image, Col, Container } from "react-bootstrap";
 import { useRouter } from "next/router";
 import moment from "moment";
 import "moment/locale/es";
+import AutoresList from "../commons/autoresList/AutoresList";
 
 export default function FeaturedNews({ dataNews, type, tag }) {
     const router = useRouter();
@@ -17,11 +18,7 @@ export default function FeaturedNews({ dataNews, type, tag }) {
                         <h1 onClick={() => router.push(type + data.attributes.slug)}>{data.attributes.Titulo.replaceAll('#', '')}</h1>
                         <h5>
                             {moment(data.attributes.publishedAt).format("DD MMMM YYYY")} | Por{" "}
-                            {data.attributes?.autores?.data.map((autor) => (
-                                <a href={autor.attributes?.Perfiles?.Principal} target="_blank" className="linkPerfil" key={autor.attributes?.Nombre}>
-                                    {autor.attributes?.Nombre},{" "}
-                                </a>
-                            ))}
+                            <AutoresList autores={data.attributes.autores.data} />
                         </h5>
                         <p>{data.attributes.Bajada}</p>
                     </Col>
