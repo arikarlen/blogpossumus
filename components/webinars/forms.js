@@ -5,7 +5,7 @@ import axios from "axios";
 import ShareNews from "../news/share";
 import countriesCod from "./data/countries.json";
 
-export default function Forms({ status, dataForm, title, subTitle }) {
+export default function Forms({ isPreWebinar, formularioData, titulo, bajada }) {
   const [success, setSuccess] = useState(false);
   const [prefix, setPrefix] = useState("");
   const {
@@ -16,7 +16,7 @@ export default function Forms({ status, dataForm, title, subTitle }) {
   } = useForm({
     mode: "onTouched",
     defaultValues: {
-      origin: "Webinar -" + title.replaceAll("\n", "").replaceAll("#", ""), //Se quitan caracteres provenientes de Strapi, ya que title es tipo richText
+      origin: "Webinar -" + titulo.replaceAll("\n", "").replaceAll("#", ""), //Se quitan caracteres provenientes de Strapi, ya que titulo es tipo richText
       source: "webinar",
       yourname: "",
       enterprise: "",
@@ -25,6 +25,9 @@ export default function Forms({ status, dataForm, title, subTitle }) {
       phone: "",
     },
   });
+
+  const actualTitle = isPreWebinar ? formularioData.tituloPreWebinar : formularioData.tituloPostWebinar
+  const actualButton = isPreWebinar ? formularioData.botonPreWebinar : formularioData.botonPostWebinar
 
   const onSubmit = (data) => {
     axios
@@ -42,7 +45,7 @@ export default function Forms({ status, dataForm, title, subTitle }) {
     <Container>
       <form onSubmit={handleSubmit(onSubmit)} id="formNews">
         <Row className="text-center">
-          <h1>{status ? dataForm.Titulo_pre : dataForm.Titulo_post}</h1>
+          <h1>{actualTitle}</h1>
         </Row>
         <Row>
           <Col md={{ span: 6, offset: 3 }}>
@@ -158,29 +161,29 @@ export default function Forms({ status, dataForm, title, subTitle }) {
               <Col md={6} className="d-flex flex-column justify-content-center">
                 {success && (
                   <Alert variant="success">
-                    {status
+                    {isPreWebinar
                       ? "¡Ya estás inscripto!"
                       : "¡Te vamos a avisar en proximos eventos!"}
                   </Alert>
                 )}
                 <Button
-                  variant="primary"
+                  variant={actualButton.variante}
                   type="Submit"
                   id="sendForm"
                   disabled={success}
                 >
                   {success
                     ? "Ya estás inscripto"
-                    : status
-                    ? dataForm.Boton_pre
-                    : dataForm.Boton_post}
+                    : isPreWebinar
+                    ? actualButton.texto
+                    : actualButton.texto}
                 </Button>
               </Col>
             </Row>
           </Col>
         </Row>
       </form>
-      <ShareNews title={title} subTitle={subTitle} />
+      <ShareNews titulo={titulo} bajada={bajada} />
     </Container>
   );
 }

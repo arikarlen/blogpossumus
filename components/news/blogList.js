@@ -4,6 +4,7 @@ import moment from "moment";
 import "moment/locale/es";
 import { Loader } from "../commons/loader/Loader";
 import useSeeMore from "../../hooks/useSeeMore";
+import AutoresList from "../commons/autoresList/AutoresList";
 
 export default function ListNews({
   dataNews,
@@ -13,7 +14,7 @@ export default function ListNews({
 }) {
   const [news, loadMoreNews, isLoadingMoreNotes, message] = useSeeMore({
     initialData: dataNews,
-    initialMessage: `Ver más ${type.includes('news') ? 'notas' : 'webinars'}`,
+    initialMessage: `Ver más notas`,
     type: `${type.replaceAll("/", "").replaceAll("news", "blogs")}`,
   });
 
@@ -52,16 +53,7 @@ export default function ListNews({
                   "DD MMMM YYYY"
                 )}{" "}
                 | {tag}
-                {data.attributes.autores.data.map((autor) => (
-                  <a
-                    href={autor.attributes?.Perfiles?.Principal}
-                    target="_blank"
-                    className="linkPerfil"
-                    key={autor.attributes?.Nombre}
-                  >
-                    {autor.attributes?.Nombre},{" "}
-                  </a>
-                ))}
+                <AutoresList autores={data.attributes.autores.data} />
               </h5>
               <p>{data.attributes.Bajada}</p>
             </div>

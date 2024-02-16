@@ -735,6 +735,7 @@ blockquote {
 }
 
 #description img {
+  margin: 30px 0;
   width: auto;
 }
 
