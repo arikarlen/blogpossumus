@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import { Col, Container, Row } from "react-bootstrap";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";

@@ -1,5 +1,6 @@
+"use client"
 import { Row, Image, Col, Container } from "react-bootstrap";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import moment from "moment";
 import "moment/locale/es";
 import AutoresList from "../commons/autoresList/AutoresList";

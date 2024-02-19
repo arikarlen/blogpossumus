@@ -1,5 +1,6 @@
+"use client"
 import { Col, Row, Image, Container, Button } from "react-bootstrap";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import moment from "moment";
 import "moment/locale/es";
 import { Loader } from "../commons/loader/Loader";

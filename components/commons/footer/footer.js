@@ -23,7 +23,7 @@ export default function Footer({ dataInstitutional, footerContent }) {
         className="d-flex flex-column-reverse flex-md-column"
       >
         <Row className={styles.primaryFooter}>
-          {footerContent?.data?.attributes.footer.options?.map((option, idx) => {
+          {footerContent?.attributes.footer.options?.map((option, idx) => {
             return (
               <Col className="p-0" key={idx}>
                 <p className={styles.titleFooter}>{option.title}</p>
@@ -49,7 +49,7 @@ export default function Footer({ dataInstitutional, footerContent }) {
             <a href="https://possumus.tech/">
               <Image
                 src={
-                  dataInstitutional?.data?.attributes.Assets.Logo_Alt.data
+                  dataInstitutional?.attributes.Assets.Logo_Alt.data
                     .attributes.url
                 }
                 alt="Possumus"
@@ -95,7 +95,7 @@ export default function Footer({ dataInstitutional, footerContent }) {
         </Col>
         <Col className={styles.redes}>
           <h4>Join Us</h4>
-          {footerContent?.data?.attributes.footer.socials.map((social) => (
+          {footerContent?.attributes.footer.socials.map((social) => (
             <a href={social.href} target="_blank" key={social.href}>
               <Image
                 src={social.image.data.attributes.url}

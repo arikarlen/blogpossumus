@@ -1,3 +1,4 @@
+"use client"
 import { Col, Row } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import useImageModal from "../../hooks/useImageModal";

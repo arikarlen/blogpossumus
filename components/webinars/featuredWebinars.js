@@ -1,7 +1,8 @@
+"use client"
 import { Col, Container, Image, Row } from "react-bootstrap";
 import AutoresList from "../commons/autoresList/AutoresList";
 import moment from "moment";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function FeaturedWebinars({ webinarsData }) {
     const router = useRouter()

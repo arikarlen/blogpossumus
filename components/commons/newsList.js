@@ -1,17 +1,17 @@
+"use client"
 import { Container, Col, Image, Row } from "react-bootstrap";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import moment from "moment";
 import "moment/locale/es";
 export default function ListNews({ dataNews, title }) {
     const router = useRouter();
 
-    const preRoute = router.route.includes('webinars') ? '/webinars/' : "/news/"
     return (
         <Container id="listBlog">
             <h4>{title}</h4>
 
             {dataNews.map((data) => (
-                <Row className="newsList blogItem" onClick={() => router.push(preRoute + data.attributes.slug)} key={data.attributes.slug}>
+                <Row className="newsList blogItem" onClick={() => router.push(`/news/${data.attributes.slug}`)} key={data.attributes.slug}>
                     <Col md={9}>
                         <h6 className="linkPerfil" onClick={() => router.push("/category/" + data.attributes.categoria?.data.attributes.Categoria)}>
                             {data.attributes.categoria?.data.attributes.Categoria}
@@ -33,7 +33,7 @@ export default function ListNews({ dataNews, title }) {
                         <p>{data.attributes.Bajada}</p>
                     </Col>
                     <Col md={3}>
-                        <Image src={data.attributes.Imagen_Destacada?.data.attributes.url} alt="" fluid />
+                        <Image src={data.attributes.Imagen_Destacada.data?.attributes.url} alt="" fluid />
                     </Col>
                 </Row>
             ))}

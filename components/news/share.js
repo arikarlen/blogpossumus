@@ -1,3 +1,4 @@
+"use client"
 import { Row, Col, Image } from "react-bootstrap";
 import facebook from "../../assets/share/facebook.svg";
 import twitter from "../../assets/share/x.svg";
@@ -8,7 +9,7 @@ import mail from "../../assets/share/correo.svg";
 import copyLink from "../../assets/share/enlace.svg";
 import moreShareOptions from "../../assets/share/moreShareOptions.svg";
 import closeMoreShareOptions from "../../assets/share/closeMoreShareOptions.svg";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CopyToClipboard } from "../../utils/functions";
 

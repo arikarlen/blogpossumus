@@ -2,6 +2,7 @@ import { Container, Row, Col, Pagination } from "react-bootstrap";
 import { useState } from "react";
 
 export default function PaginationBasic({ page, setPage, dataPagination }) {
+    console.log(dataPagination)
     const [activePage, setActivePage] = useState(page);
     let items = [];
 

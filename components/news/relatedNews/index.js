@@ -1,3 +1,4 @@
+"use client"
 import React, { Suspense, useRef } from "react";
 import useNearScreen from "../../../hooks/useNearScreen";
 import RelatedNewsSkeleton from "./relatedNewsSkeleton";

@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import { Col, Container, Image, Row, Button, Modal } from "react-bootstrap";
 import DownloadPdf from "./downloadPdf";

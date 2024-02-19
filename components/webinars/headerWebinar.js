@@ -1,3 +1,4 @@
+"use client"
 import {
   Container,
   Row,
@@ -9,7 +10,7 @@ import {
 import fCalendar from "../../assets/FCalendar.svg";
 import fClock from "../../assets/FClock.svg";
 import moment from "moment";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 export default function HeaderWebinar({headerData, isPreWebinar}) {

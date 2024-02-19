@@ -1,3 +1,4 @@
+"use client"
 import { Col, Container, Image, Row } from "react-bootstrap";
 
 export default function Speakers({ titulo, speakers }) {

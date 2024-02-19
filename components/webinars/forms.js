@@ -1,3 +1,4 @@
+"use client"
 import { Row, Container, Form, Button, Col, Alert } from "react-bootstrap";
 import { useState } from "react";
 import { useForm } from "react-hook-form";

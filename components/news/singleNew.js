@@ -1,4 +1,5 @@
-import { Container, Row, Col, Image } from "react-bootstrap";
+"use client";
+import { Container, Row, Col, Image, Breadcrumb } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/es";
 import ShareNews from "./share";
@@ -7,9 +8,15 @@ import NewBody from "./newBody";
 import RelatedNews from "./relatedNews";
 
 export default function SingleNew({ singleNew, absoluteUrl }) {
-
   return (
     <>
+      <Container>
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
+          <Breadcrumb.Item href="/news">News</Breadcrumb.Item>
+          <Breadcrumb.Item active>{singleNew?.Titulo}</Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
       <Container id="fullNewContent">
         <Container id="fullNew">
           <Row>
@@ -33,13 +40,13 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
               <Row id="dateContent">
                 <Col md={10}>{singleNew?.Bajada}</Col>
                 <Image
-                  src={singleNew?.Imagen_Destacada?.data.attributes.url}
+                  src={singleNew?.Imagen_Destacada.data?.attributes.url}
                   fluid
                   className="outstandingImg"
                   alt={singleNew?.Titulo}
                 />
               </Row>
-              <NewBody cuerpo={singleNew?.cuerpo}/>
+              <NewBody cuerpo={singleNew?.cuerpo} />
               <Row id="downloadPdf" className="text-center">
                 <Col md={9}>
                   {singleNew?.descarga?.data == null ? (
@@ -60,7 +67,11 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
                 title={singleNew?.Titulo}
                 subTitle={singleNew?.Bajada}
               />
-              <RelatedNews tags={singleNew?.tags} title="Notas relacionadas" actualNewTitle={singleNew?.Titulo}/>
+              <RelatedNews
+                tags={singleNew?.tags}
+                title="Notas relacionadas"
+                actualNewTitle={singleNew?.Titulo}
+              />
             </Col>
           </Row>
         </Container>

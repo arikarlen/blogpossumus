@@ -1,9 +1,10 @@
+"use client"
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import useSeeMore from "../../hooks/useSeeMore";
 import { Loader } from "../commons/loader/Loader";
 import moment from "moment";
 import AutoresList from "../commons/autoresList/AutoresList";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
   const [webinarsList, loadMoreWebinars, isLoadingMoreWebinars, message] =
@@ -42,7 +43,7 @@ export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
               {data.attributes.categoria?.data.attributes.Categoria}
             </h6> */}
 
-                <h1 onClick={() => router.push(type + data.attributes.slug)}>
+                <h1 onClick={() => router.push(`/webinars/${webinarInfo.slug}`)}>
                   {header.titulo.replaceAll("#", "")}
                 </h1>
                 <h5>
