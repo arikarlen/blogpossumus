@@ -1,50 +1,68 @@
-import { Container, Row, Col, Pagination } from "react-bootstrap";
-import { useState } from "react";
+"use client";
+import { useEffect, useState } from "react";
+import Container from "./container/Container";
 
-export default function PaginationBasic({ page, setPage, dataPagination }) {
-    const [activePage, setActivePage] = useState(page);
-    let items = [];
+export default function PaginationBasic({
+  dataPagination,
+  prevPage,
+  nextPage,
+  setPage,
+}) {
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const activePage = dataPagination.page;
 
-    const firstPage = () => {
-        setPage(1);
-        setActivePage(1);
-    };
+  const isFirstPage = activePage === 1;
+  const isLastPage = activePage === dataPagination.pageCount;
 
-    const lastPage = () => {
-        setPage(dataPagination?.pageCount);
-        setActivePage(dataPagination?.pageCount);
-    };
-
-    for (let number = 1; number <= dataPagination?.pageCount; number++) {
-        items.push(
-            <Pagination.Item
-                key={number}
-                active={number === activePage}
-                onClick={() => {
-                    setActivePage(number);
-                    setPage(number);
-                }}
+  useEffect(()=>{
+    setButtonDisabled(false)
+  },[activePage])
+  return (
+    <Container className="flex justify-center mt-12 mb-5">
+      <ul className="flex gap-0">
+        <li
+          onClick={() =>
+            !isFirstPage &&
+            !buttonDisabled &&
+            setButtonDisabled(true) & prevPage()
+          }
+          className={`${
+            isFirstPage || buttonDisabled
+              ? "opacity-40 cursor-not-allowed"
+              : "hover:bg-yellow hover:text-black"
+          } m-0 font-mulish text-xs border rounded-l border-gray bg-white px-2 py-1 w-8 text-center align-middle leading-8 cursor-pointer duration-500 ease-in-out`}
+        >{`<<`}</li>
+        {new Array(dataPagination?.pageCount).fill("").map((data, idx) => {
+          const dataPage = idx + 1;
+          return (
+            <li
+              key={dataPage}
+              className={`font-mulish m-0 text-m text-black border rounded-xs border-gray px-2 py-1 w-8 text-center leading-8 align-middle cursor-pointer duration-500 ease-in-out hover:bg-yellow hover:text-black hover:border-yellow ${
+                dataPage === activePage
+                  ? "bg-dark-gray border-dark-gray text-white cursor-default hover:text-white hover:border-dark-gray hover:bg-dark-gray"
+                  : ""
+              }`}
+              onClick={() => {
+                setPage(dataPage);
+              }}
             >
-                {number}
-            </Pagination.Item>
-        );
-    }
-
-    return (
-        <Container className="navigation">
-            <Row>
-                <Col md={3} className="newNews">
-                    {" "}
-                </Col>
-                <Col md={6} className="pageNumber" style={{ display: "flex", justifyContent: "center" }}>
-                    <Pagination size="sm">
-                        <Pagination.First onClick={firstPage} />
-                        {items}
-                        <Pagination.Last onClick={lastPage} />
-                    </Pagination>
-                </Col>
-                <Col md={3} className="oldNews"></Col>
-            </Row>
-        </Container>
-    );
+              {dataPage}
+            </li>
+          );
+        })}
+        <li
+          onClick={() =>
+            !isLastPage &&
+            !buttonDisabled &&
+            setButtonDisabled(true) & nextPage()
+          }
+          className={`${
+            isLastPage || buttonDisabled
+              ? "opacity-40 cursor-not-allowed"
+              : "hover:bg-yellow hover:text-black"
+          } m-0 font-mulish text-xs border rounded-r border-gray bg-white px-2 py-1 w-8 text-center align-middle leading-8 cursor-pointer duration-500 ease-in-out`}
+        >{`>>`}</li>
+      </ul>
+    </Container>
+  );
 }

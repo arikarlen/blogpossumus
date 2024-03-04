@@ -1,0 +1,32 @@
+.markdown h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.markdown ul{
+    list-style: disc !important;
+    list-style-position: inside !important;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+    max-width: 800px;
+}
+.markdown ul li{
+    font-family: "Mulish";
+    font-size: 26px;
+    line-height: 38px;
+    color: var(--color-black);
+}
+.markdown ul li::marker{
+    margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .markdown ul{
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
+    .markdown ul li{
+        font-size: 18px;
+        line-height: 28px;
+    }
+}

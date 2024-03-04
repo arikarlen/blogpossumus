@@ -1,8 +1,8 @@
 "use client";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import Container from "@/components/commons/container/Container";
 import certificaction from "../../../assets/certification.svg";
-import styles from "./footer.module.css";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Footer({ dataInstitutional, footerContent }) {
   const tel = "tel: " + dataInstitutional?.data?.attributes.Contacto.telefono;
@@ -17,20 +17,17 @@ export default function Footer({ dataInstitutional, footerContent }) {
     setIsClient(true);
   }, []);
   return (
-    <Container fluid className={styles.footer}>
-      <Container
-        style={{ padding: "0 50px" }}
-        className="d-flex flex-column-reverse flex-md-column"
-      >
-        <Row className={styles.primaryFooter}>
-          {footerContent?.data?.attributes.footer.options?.map((option, idx) => {
+    <Container fluid className="bg-gray">
+      <Container>
+        <section className="flex lg:flex-row flex-col lg:justify-between justify-center items-center md:items-start pt-20 gap-5 lg:gap-0">
+          {footerContent?.attributes.footer.options?.map((option, idx) => {
             return (
-              <Col className="p-0" key={idx}>
-                <p className={styles.titleFooter}>{option.title}</p>
+              <div className="flex flex-col justify-center lg:max-w-52 text-center lg:text-start" key={idx}>
+                <p className="font-gotham font-bold text-m">{option.title}</p>
                 {option.multipleOptions?.data.map((multipleOption) => (
                   <p
                     key={multipleOption.attributes.title}
-                    className={styles.links}
+                    className="font-s cursor-pointer duration-150 ease-in hover:opacity-80"
                   >
                     <a
                       href={`https://www.possumus.tech/es-es${multipleOption.attributes.href}`}
@@ -40,27 +37,33 @@ export default function Footer({ dataInstitutional, footerContent }) {
                     </a>
                   </p>
                 ))}
-              </Col>
+              </div>
             );
           })}
-        </Row>
-        <Row md={12} className={styles.secondaryFooter}>
-          <Col className="p-0">
+        </section>
+        <section className="flex lg:flex-row flex-col-reverse lg:justify-between justify-center py-20 gap-10 lg:gap-0">
+          <div className="flex justify-center">
             <a href="https://possumus.tech/">
               <Image
                 src={
-                  dataInstitutional?.data?.attributes.Assets.Logo_Alt.data
-                    .attributes.url
+                  dataInstitutional?.attributes.Assets.Logo_Alt.data.attributes
+                    .url
                 }
                 alt="Possumus"
-                fluid
+                width={200}
+                height={100}
               />
             </a>
-          </Col>
-          <Col className="justify-content-center d-flex align-items-center p-0">
-            <Image src={certificaction.src} alt="Possumus" fluid />
-          </Col>
-          <Col className="justify-content-center d-flex align-items-center p-0">
+          </div>
+          <div className="flex justify-center">
+            <Image
+              src={certificaction.src}
+              alt="Possumus"
+              width={260}
+              height={130}
+            />
+          </div>
+          <div className="flex justify-center min-w-52">
             {isClient && (
               <div
                 className="clutch-widget"
@@ -75,36 +78,41 @@ export default function Footer({ dataInstitutional, footerContent }) {
                 style={{ maxWidth: "200px" }}
               ></div>
             )}
-          </Col>
-          <Col className="d-grid justify-content-center p-0">
+          </div>
+          <div className="grid justify-center lg:min-w-60 text-center lg:text-start">
             <div>
-              <p className={styles.titleFooter}>Hablemos</p>
-              <p className={styles.links}>
+              <p className="font-gotham font-bold text-m">Hablemos</p>
+              <p className="font-s cursor-pointer duration-150 ease-in hover:opacity-80">
                 <a href="tel: 08103450562">0810 345 0562</a>
               </p>
-              <p className={styles.links}>
+              <p className="font-s cursor-pointer duration-150 ease-in hover:opacity-80">
                 <a href="mailto:info@possumus.tech">info@possumus.tech</a>
               </p>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </section>
       </Container>
-      <Row className={styles.disclaimer}>
-        <Col>
-          <p>Copyright © {year} Possumus. All Rigths Reserved.</p>
-        </Col>
-        <Col className={styles.redes}>
+      <Container className="flex lg:flex-row flex-col-reverse gap-5 lg:gap-0 justify-between items-center border-t border-t-gray-d8 py-6">
+        <div>
+          <p className="text-s">
+            Copyright © {year} Possumus. All Rigths Reserved.
+          </p>
+        </div>
+        <div className="flex justify-end items-center gap-4">
           <h4>Join Us</h4>
-          {footerContent?.data?.attributes.footer.socials.map((social) => (
+          {footerContent?.attributes.footer.socials.map((social) => (
             <a href={social.href} target="_blank" key={social.href}>
               <Image
+                width={40}
+                height={40}
+                className="hover:opacity-65 ease-in-out duration-700"
                 src={social.image.data.attributes.url}
                 alt={social.image.data.attributes.name}
               />
             </a>
           ))}
-        </Col>
-      </Row>
+        </div>
+      </Container>
     </Container>
   );
 }

@@ -1,7 +1,7 @@
-import React, { Suspense, useRef } from "react";
+"use client";
+import React, { Suspense } from "react";
 import useNearScreen from "../../../hooks/useNearScreen";
 import RelatedNewsSkeleton from "./relatedNewsSkeleton";
-import { Col, Row } from "react-bootstrap";
 import styles from "./relatedNews.module.css";
 
 const RelatedNews = React.lazy(() => import("./relatedNews"));
@@ -13,20 +13,18 @@ export default function LazyRelatedNews({ tags, title, actualNewTitle }) {
 
   return (
     <div ref={elementToObserveRef}>
-      <Row className={styles.container}>
-        <Col md={{ span: 8, offset: 2 }}>
-          <h3>{title}</h3>
-          <Row className={styles.grid}>
-            <Suspense fallback={<RelatedNewsSkeleton />}>
-              {isElementNearScreen ? (
-                <RelatedNews tags={tags} actualNewTitle={actualNewTitle}/>
-              ) : (
-                <RelatedNewsSkeleton />
-              )}
-            </Suspense>
-          </Row>
-        </Col>
-      </Row>
+      <div className={styles.container}>
+        <h3>{title}</h3>
+        <div className={styles.grid}>
+          <Suspense fallback={<RelatedNewsSkeleton />}>
+            {isElementNearScreen ? (
+              <RelatedNews tags={tags} actualNewTitle={actualNewTitle} />
+            ) : (
+              <RelatedNewsSkeleton />
+            )}
+          </Suspense>
+        </div>
+      </div>
     </div>
   );
 }

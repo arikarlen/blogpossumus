@@ -1,0 +1,17 @@
+.form input, .form select{
+    margin-top: 20px;
+    border-radius: 4px;
+    background-color: #f6f6f6;
+    margin-top: 20px;
+    font-family: "Gotham-book" ,sans-serif;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    outline: var(--color-yellow);
+    background-clip: padding-box;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
