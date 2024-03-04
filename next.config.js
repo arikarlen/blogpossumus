@@ -3,8 +3,17 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['possumustech.blob.core.windows.net', 'localhost']
-  }
-}
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "possumustech.blob.core.windows.net",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

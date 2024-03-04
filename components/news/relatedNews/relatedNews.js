@@ -1,3 +1,4 @@
+"use client"
 import useClientApi from "../../../hooks/useClientApi";
 import Note from "../../commons/note/Note";
 import RelatedNewsSkeleton from "./relatedNewsSkeleton";

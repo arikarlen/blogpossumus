@@ -13,6 +13,7 @@
   justify-items: center;
   position: relative;
   min-height: 200px;
+  margin-bottom: 50px;
 }
 
 .noRelatedNews {

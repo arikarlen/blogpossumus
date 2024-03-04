@@ -1,42 +1,55 @@
-import { Container, Col, Image, Row } from "react-bootstrap";
-import { useRouter } from "next/router";
-import moment from "moment";
+"use client";
+import Container from "@/components/commons/container/Container";
+import { useRouter } from "next/navigation";
 import "moment/locale/es";
+import Image from "next/image";
+import Title from "./titles";
+import Date from "./date/Date";
+import AutoresList from "./autoresList/AutoresList";
 export default function ListNews({ dataNews, title }) {
-    const router = useRouter();
+  const router = useRouter();
 
-    const preRoute = router.route.includes('webinars') ? '/webinars/' : "/news/"
-    return (
-        <Container id="listBlog">
-            <h4>{title}</h4>
+  return (
+    <Container>
+      <h4>{title}</h4>
 
-            {dataNews.map((data) => (
-                <Row className="newsList blogItem" onClick={() => router.push(preRoute + data.attributes.slug)} key={data.attributes.slug}>
-                    <Col md={9}>
-                        <h6 className="linkPerfil" onClick={() => router.push("/category/" + data.attributes.categoria?.data.attributes.Categoria)}>
-                            {data.attributes.categoria?.data.attributes.Categoria}
-                        </h6>
+      {dataNews.map((data) => (
+        <article
+          className="flex flex-col md:flex-row gap-8 justify-between items-center border-b border-b-gray-d8 pb-3 cursor-pointer md:hover:scale-101 md:hover:shadow-md duration-300 ease-in-out"
+          onClick={() => router.push(`/news/${data.attributes.slug}`)}
+          key={data.attributes.slug}
+        >
+          <div>
+            <h6
+              className="mt-6"
+              onClick={() =>
+                router.push(
+                  "/category/" +
+                    data.attributes.categoria?.data.attributes.Categoria
+                )
+              }
+            >
+              {data.attributes.categoria?.data.attributes.Categoria}
+            </h6>
+            <Title title={data.attributes.Titulo.replaceAll("#", "")} className="mb-2" fluid/>
+            {/* se remplazan los # porque este campo viene desde un tipo ricktext en Strapi */}
+            <h5>
+              <Date date={data.attributes.publishedAt} /> | Por{" "}
+              <AutoresList autores={data.attributes?.autores.data} />
+            </h5>
 
-                        <h1>{data.attributes.Titulo.replaceAll('#', '')}</h1> 
-                        {/* se remplazan los # porque este campo viene desde un tipo ricktext en Strapi */}
-                        <h5>
-                            {moment(data.attributes.publishedAt).format("DD [de] MMMM [del] YYYY")} | Por{" "}
-                            {data.attributes?.autores.data.map((autor) => (
-                                <>
-                                    <a href={autor.attributes?.perfil} target="_blank" className="linkPerfil">
-                                        {autor.attributes?.Nombre},{" "}
-                                    </a>
-                                </>
-                            ))}
-                        </h5>
-
-                        <p>{data.attributes.Bajada}</p>
-                    </Col>
-                    <Col md={3}>
-                        <Image src={data.attributes.Imagen_Destacada?.data.attributes.url} alt="" fluid />
-                    </Col>
-                </Row>
-            ))}
-        </Container>
-    );
+            <p>{data.attributes.Bajada}</p>
+          </div>
+          <div className="md:max-w-60">
+            <Image
+              src={data.attributes.Imagen_Destacada.data?.attributes.url}
+              alt={data.attributes.Titulo.replaceAll("#", "")}
+              width={1080}
+              height={532}
+            />
+          </div>
+        </article>
+      ))}
+    </Container>
+  );
 }

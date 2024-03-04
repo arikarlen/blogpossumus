@@ -1,18 +1,28 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
-import { useRouter } from "next/router";
+import Container from "@/components/commons/container/Container";
+import { Loader } from "@/components/commons/loader/Loader";
+import Button from "./button/Button";
 
-export default function SeeMoreeButton({ link }) {
-    const router = useRouter();
-    return (
-        <Container className="seeMoreButton">
-            <Row>
-                <Col className="d-flex justify-content-center">
-                    {" "}
-                    <Button variant="primary" onClick={() => router.push(link)}>
-                        Ver más notas
-                    </Button>
-                </Col>
-            </Row>
-        </Container>
-    );
+export default function SeeMoreButton({
+  isLoadingMoreData,
+  message,
+  loadMoreData,
+}) {
+  return (
+    <>
+      {isLoadingMoreData && <Loader />}
+      <Container className="pt-28 pb-7 border-b border-b-gray-d8">
+        <div>
+          <article className="flex justify-center">
+            {" "}
+            <Button
+              text={message.text}
+              variant="primary"
+              onClick={loadMoreData}
+              disabled={message.disabled}
+            />
+          </article>
+        </div>
+      </Container>
+    </>
+  );
 }

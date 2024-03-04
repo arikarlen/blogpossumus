@@ -1,9 +1,12 @@
-import { Button, Col, Container, Image, Row } from "react-bootstrap";
-import useSeeMore from "../../hooks/useSeeMore";
-import { Loader } from "../commons/loader/Loader";
-import moment from "moment";
-import AutoresList from "../commons/autoresList/AutoresList";
-import { useRouter } from "next/router";
+"use client";
+import Container from "@/components/commons/container/Container";
+import AutoresList from "@/components/commons/autoresList/AutoresList";
+import Title from "@/components/commons/titles";
+import SeeMoreButton from "@/components/commons/seeMoreButton";
+import useSeeMore from "@/hooks/useSeeMore";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Date from "../commons/date/Date";
 
 export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
   const [webinarsList, loadMoreWebinars, isLoadingMoreWebinars, message] =
@@ -13,68 +16,53 @@ export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
       type: "blog-webinars",
     });
 
-    const router = useRouter()
+  const router = useRouter();
 
   return (
-    <Container id="listBlog">
-      <Row>
+    <>
+      <Container className="grid md:grid-cols-2 gap-7 pt-12">
         {webinarsList?.map(({ attributes }) => {
           const { webinarInfo, header, autores } = attributes;
           return (
-            <Col md={6} className="blogItem" key={webinarInfo.slug}>
+            <article key={webinarInfo.slug}>
               <Image
                 src={webinarInfo.image?.data.attributes.url}
                 alt={header.titulo}
-                fluid
+                width={1920}
+                height={1080}
                 onClick={() => router.push(`/webinars/${webinarInfo.slug}`)}
+                className="cursor-pointer"
               />
 
-              <div className="textContent ">
-                {/* <h6
-              className="linkPerfil"
-              onClick={() =>
-                router.push(
-                  "/category/" +
-                    data.attributes.categoria?.data.attributes.Categoria
-                )
-              }
-            >
-              {data.attributes.categoria?.data.attributes.Categoria}
-            </h6> */}
-
-                <h1 onClick={() => router.push(type + data.attributes.slug)}>
-                  {header.titulo.replaceAll("#", "")}
-                </h1>
+              <div
+                onClick={() => router.push(`/webinars/${webinarInfo.slug}`)}
+                className="cursor-pointer"
+              >
+                <Title
+                  title={header.titulo.replaceAll("#", "")}
+                  className="my-6"
+                  fluid
+                />
                 <h5>
-                  {moment(header.fecha).format("DD [de] MMMM [del] YYYY")} |{" "}
+                  <Date date={header.fecha}/> |{" "}
                   {`Por: `}
                   <AutoresList autores={autores.colaboradores.data} />
                 </h5>
                 <p>{header.bajada}</p>
               </div>
-            </Col>
+            </article>
           );
         })}
+      </Container>
+      <Container className="mb-28">
         {withSeeMoreButton && !message.disabled && (
-          <>
-            {isLoadingMoreWebinars && <Loader />}
-            <Container className="seeMoreButton">
-              <Row>
-                <Col className="d-flex justify-content-center">
-                  {" "}
-                  <Button
-                    disabled={message.disabled}
-                    variant="primary"
-                    onClick={() => !message.disabled && loadMoreWebinars()}
-                  >
-                    {message.text}
-                  </Button>
-                </Col>
-              </Row>
-            </Container>
-          </>
+          <SeeMoreButton
+            isLoadingMoreData={isLoadingMoreWebinars}
+            message={message}
+            loadMoreData={loadMoreWebinars}
+          />
         )}
-      </Row>
-    </Container>
+      </Container>
+    </>
   );
 }
