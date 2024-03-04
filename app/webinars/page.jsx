@@ -1,17 +1,17 @@
 import Head from "next/head";
-import fetcher from "../../utils/fetcher";
-import Header from "../../components/commons/header";
 import SearchInput from "../../components/commons/searchInput/SearchInput";
-import Footer from "../../components/commons/footer/footer";
+import DataList from "@/components/commons/dataList/DataList";
+import PaginationBasic from "@/components/commons/paginationBasic";
+import {
+  getWebinars,
+  nextPageWebinars,
+  prevPageWebinars,
+  setPageWebinars,
+} from "./actions";
 
 export default async function Page() {
-  const webinarsURL = `${process.env.NEXT_PUBLIC_API}/blog-webinars?populate=deep&pagination%5BwithCount%5D=true&pagination%5Bpage%5D=0&pagination%5BpageSize%5D=10&sort=id:desc`;
-  const institucionalURL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
-  const footerURL = `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`;
-
-  const {data: webinarData, meta: webinarPagination } = await fetcher(webinarsURL);
-  const {data: institucionalData} = await fetcher(institucionalURL);
-  const {data: footerContent} = await fetcher(footerURL);
+  const { dataWebinars, pagination, keyword, resultsNotFounded } =
+    await getWebinars();
 
   return (
     <>
@@ -35,11 +35,19 @@ export default async function Page() {
           content="https://possumustech.blob.core.windows.net/staticfiles/assets/Possumus_d54fcb00ec.png"
         ></meta>
       </Head>
-      <Header title="Blog" style="mainNav" />
-      <SearchInput initialData={webinarData} type="Webinars" pagination={webinarPagination} />
-      <Footer
-        dataInstitutional={institucionalData}
-        footerContent={footerContent}
+      <SearchInput type="Webinars" />
+      <DataList
+        data={dataWebinars}
+        keyword={keyword}
+        resultsNotFounded={resultsNotFounded}
+        isWebinar
+      />
+
+      <PaginationBasic
+        dataPagination={pagination}
+        prevPage={prevPageWebinars}
+        nextPage={nextPageWebinars}
+        setPage={setPageWebinars}
       />
     </>
   );
