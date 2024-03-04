@@ -1,20 +1,16 @@
 import Image from "next/image";
-import { Container } from "react-bootstrap";
 import styles from "./ImageModal.module.css";
 import closeIcon from "../../../assets/close-circle.png";
 import { useState } from "react";
 import { Loader } from "../loader/Loader";
+import Container from "../container/Container";
 
 export default function ImageModal({ data, handleModal }) {
   const [isImageLoading, setIsLoading] = useState(true);
-  const handleKeyDown = (e) => {
-    console.log(e);
-  };
 
   return (
     <Container
       tabIndex={0}
-      onKeyDown={handleKeyDown}
       fluid
       className={styles.background}
       onClick={() => handleModal(false)}
