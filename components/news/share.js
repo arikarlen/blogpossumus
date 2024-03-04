@@ -1,5 +1,4 @@
-"use client"
-import { Row, Col, Image } from "react-bootstrap";
+"use client";
 import facebook from "../../assets/share/facebook.svg";
 import twitter from "../../assets/share/x.svg";
 import linkedin from "../../assets/share/linkedin.svg";
@@ -12,8 +11,10 @@ import closeMoreShareOptions from "../../assets/share/closeMoreShareOptions.svg"
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CopyToClipboard } from "../../utils/functions";
+import Image from "next/image";
+import Container from "../commons/container/Container";
 
-export default function ShareNews({ absoluteUrl, title, subTitle }) {
+export default function ShareNews({ title, subTitle }) {
   const { asPath } = useRouter();
 
   const [isMoreOptionsMobileVisible, setIsMoreOptionsMobileVisible] =
@@ -27,30 +28,66 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
   const urlWhatsApp = `https://api.whatsapp.com/send?text=${shareUrl}`;
   const urlTelegram = `https://t.me/share/url?url${shareUrl}&text=${title}`;
   const urlMail = `mailto:?subject=${title}&body=Te%20comparti%20esta%20nota${shareUrl}`;
-  
+
   return (
     <>
-      <Row id="share">
-        <Col md={{ span: 8, offset: 2 }} className="sharedLinks">
-          <Col className="d-flex justify-content-around align-items-center">
+      <Container className="flex md:justify-center my-14">
+        <div className="md:block hidden border-y w-full border-y-gray-d8 py-9">
+          <div className="flex justify-around w-full items-center">
             Compartir:
             <a href={urlFacebook} target="_blank">
-              <Image src={facebook.src} alt="Facebook" />
+              <Image
+                className="opacity-60 hover:opacity-100 ease-in-out duration-200"
+                width={40}
+                height={40}
+                src={facebook.src}
+                alt="Facebook"
+              />
             </a>
             <a href={urlTwitter} target="_blank">
-              <Image src={twitter.src} alt="Twitter" />
+              <Image
+                className="opacity-60 hover:opacity-100 ease-in-out duration-200"
+                width={40}
+                height={40}
+                src={twitter.src}
+                alt="Twitter"
+              />
             </a>
             <a href={urlLinkedin} target="_blank">
-              <Image src={linkedin.src} alt="Linkedin" />
+              <Image
+                className="opacity-60 hover:opacity-100 ease-in-out duration-200"
+                width={40}
+                height={40}
+                src={linkedin.src}
+                alt="Linkedin"
+              />
             </a>
             <a href={urlWhatsApp} target="_blank">
-              <Image src={whatsApp.src} alt="WhatsApp" />
+              <Image
+                className="opacity-60 hover:opacity-100 ease-in-out duration-200"
+                width={40}
+                height={40}
+                src={whatsApp.src}
+                alt="WhatsApp"
+              />
             </a>
             <a href={urlTelegram} target="_blank">
-              <Image src={telegram.src} alt="Telegram" />
+              <Image
+                className="opacity-60 hover:opacity-100 ease-in-out duration-200"
+                width={40}
+                height={40}
+                src={telegram.src}
+                alt="Telegram"
+              />
             </a>
             <a href={urlMail} target="_blank">
-              <Image src={mail.src} alt="Mail" />
+              <Image
+                className="opacity-60 hover:opacity-100 ease-in-out duration-200"
+                width={40}
+                height={40}
+                src={mail.src}
+                alt="Mail"
+              />
             </a>
             <a
               onClick={() => {
@@ -58,28 +95,56 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
               }}
               target="_blank"
             >
-              <Image src={copyLink.src} alt="Compartir" />
+              <Image
+                className="opacity-60 hover:opacity-100 ease-in-out duration-200 cursor-pointer"
+                width={40}
+                height={40}
+                src={copyLink.src}
+                alt="Compartir"
+              />
             </a>
-          </Col>
-        </Col>
-        <Col md={12} className="sharedLinks mobile">
+          </div>
+        </div>
+        <div className="flex md:hidden w-full border-y border-y-gray-d8 py-9">
+          <div className="flex justify-around w-full items-center">
             Compartir:
             <a href={urlTwitter} target="_blank">
-              <Image src={twitter.src} alt="Twitter" />
+              <Image
+                className="opacity-60 hover:opacity-100 ease-in-out duration-200"
+                width={40}
+                height={40}
+                src={twitter.src}
+                alt="Twitter"
+              />
             </a>
             <a href={urlLinkedin} target="_blank">
-              <Image src={linkedin.src} alt="Linkedin" />
+              <Image
+                className="opacity-60 hover:opacity-100 ease-in-out duration-200"
+                width={40}
+                height={40}
+                src={linkedin.src}
+                alt="Linkedin"
+              />
             </a>
             <a href={urlWhatsApp} target="_blank">
-              <Image src={whatsApp.src} alt="WhatsApp" />
+              <Image
+                className="opacity-60 hover:opacity-100 ease-in-out duration-200"
+                width={40}
+                height={40}
+                src={whatsApp.src}
+                alt="WhatsApp"
+              />
             </a>
-            <div className="more-options-container">
+            <div className="relative">
               <a
                 onClick={() =>
                   setIsMoreOptionsMobileVisible(!isMoreOptionsMobileVisible)
                 }
               >
                 <Image
+                  className="opacity-60 hover:opacity-100 ease-in-out duration-200"
+                  width={40}
+                  height={40}
                   src={
                     isMoreOptionsMobileVisible
                       ? closeMoreShareOptions.src
@@ -89,20 +154,30 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
                 />
               </a>
               <div
-                className={
+                className={`${
                   isMoreOptionsMobileVisible
-                    ? "more-options visible"
-                    : "more-options no-visible"
-                }
+                    ? "opacity-100 top-[-500%] z-10"
+                    : "opacity-0 top-[-300%] z-[-10]"
+                } absolute grid gap-2 ease-in-out duration-200`}
               >
                 <a href={urlFacebook} target="_blank">
-                  <Image src={facebook.src} alt="Facebook" />
+                  <Image
+                    width={40}
+                    height={40}
+                    src={facebook.src}
+                    alt="Facebook"
+                  />
                 </a>
                 <a href={urlTelegram} target="_blank">
-                  <Image src={telegram.src} alt="Telegram" />
+                  <Image
+                    width={40}
+                    height={40}
+                    src={telegram.src}
+                    alt="Telegram"
+                  />
                 </a>
                 <a href={urlMail} target="_blank">
-                  <Image src={mail.src} alt="Mail" />
+                  <Image width={40} height={40} src={mail.src} alt="Mail" />
                 </a>
                 <a
                   onClick={() => {
@@ -110,12 +185,18 @@ export default function ShareNews({ absoluteUrl, title, subTitle }) {
                   }}
                   target="_blank"
                 >
-                  <Image src={copyLink.src} alt="Compartir" />
+                  <Image
+                    width={40}
+                    height={40}
+                    src={copyLink.src}
+                    alt="Compartir"
+                  />
                 </a>
               </div>
             </div>
-        </Col>
-      </Row>
+          </div>
+        </div>
+      </Container>
     </>
   );
 }

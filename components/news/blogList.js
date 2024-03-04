@@ -1,11 +1,12 @@
-"use client"
-import { Col, Row, Image, Container, Button } from "react-bootstrap";
+"use client";
 import { useRouter } from "next/navigation";
-import moment from "moment";
-import "moment/locale/es";
-import { Loader } from "../commons/loader/Loader";
-import useSeeMore from "../../hooks/useSeeMore";
-import AutoresList from "../commons/autoresList/AutoresList";
+import useSeeMore from "@/hooks/useSeeMore";
+import AutoresList from "@/components/commons/autoresList/AutoresList";
+import Container from "@/components/commons/container/Container";
+import Title from "@/components/commons/titles";
+import Image from "next/image";
+import SeeMoreButton from "../commons/seeMoreButton";
+import Date from "../commons/date/Date";
 
 export default function ListNews({
   dataNews,
@@ -22,20 +23,23 @@ export default function ListNews({
   const router = useRouter();
 
   return (
-    <Container id="listBlog">
-      <Row>
+    <>
+      <Container className="grid md:grid-cols-2 gap-7 pt-12">
         {news.map((data) => (
-          <Col md={6} className="blogItem" key={data.attributes.slug}>
+          <article key={data.attributes.slug}>
             <Image
               src={data.attributes.Imagen_Destacada?.data.attributes.url}
               alt={data.attributes.Titulo}
-              fluid
+              width={1920}
+              height={1080}
               onClick={() => router.push(type + data.attributes.slug)}
             />
 
-            <div className="textContent ">
+            <div
+              onClick={() => router.push(type + data.attributes.slug)}
+              className="hover:cursor-pointer"
+            >
               <h6
-                className="linkPerfil"
                 onClick={() =>
                   router.push(
                     "/category/" +
@@ -45,41 +49,25 @@ export default function ListNews({
               >
                 {data.attributes.categoria?.data.attributes.Categoria}
               </h6>
-
-              <h1 onClick={() => router.push(type + data.attributes.slug)}>
-                {data.attributes.Titulo.replaceAll("#", "")}
-              </h1>
+              <Title title={data.attributes.Titulo.replaceAll("#", "")} fluid />
               <h5>
-                {moment(data.attributes.fecha_publicacion).format(
-                  "DD MMMM YYYY"
-                )}{" "}
-                | {tag}
+                <Date date={data.attributes.fecha_publicacion} /> | {tag}
                 <AutoresList autores={data.attributes.autores.data} />
               </h5>
               <p>{data.attributes.Bajada}</p>
             </div>
-          </Col>
+          </article>
         ))}
-        {withSeeMoreButton && !message.disabled && (
-          <>
-            {isLoadingMoreNotes && <Loader />}
-            <Container className="seeMoreButton">
-              <Row>
-                <Col className="d-flex justify-content-center">
-                  {" "}
-                  <Button
-                    disabled={message.disabled}
-                    variant="primary"
-                    onClick={() => !message.disabled && loadMoreNews()}
-                  >
-                    {message.text}
-                  </Button>
-                </Col>
-              </Row>
-            </Container>
-          </>
-        )}
-      </Row>
-    </Container>
+      </Container>
+      {withSeeMoreButton && !message.disabled && (
+        <>
+          <SeeMoreButton
+            isLoadingMoreData={isLoadingMoreNotes}
+            message={message}
+            loadMoreData={loadMoreNews}
+          />
+        </>
+      )}
+    </>
   );
 }
