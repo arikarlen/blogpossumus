@@ -1,8 +1,10 @@
-"use client"
+"use client";
 import { useState } from "react";
-import { Col, Container, Image, Row, Button, Modal } from "react-bootstrap";
 import DownloadPdf from "./downloadPdf";
-import closeIcon from "../../assets/close-circle.png";
+import Container from "../commons/container/Container";
+import Button from "../commons/button/Button";
+import Image from "next/image";
+import Modal from "../commons/modal/Modal";
 
 export default function PostWebinar({
   isPreWebinar,
@@ -10,67 +12,65 @@ export default function PostWebinar({
   bannerBrochureData,
   downloadBrochureData,
 }) {
-  const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
   const idVideo = "https://www.youtube.com/embed/" + videoData?.youtubeID;
   return (
     <>
       {!isPreWebinar && (
-        <Container id="postWebinar">
-          <h1>{videoData.titulo}</h1>
+        <Container className="mt-24">
+          <h1 className="text-center font-gotham font-bold !text-xl md:!text-[48px] md:!leading-10">
+            {videoData.titulo}
+          </h1>
           <iframe
             width="100%"
-            height="700"
+            height="400"
             src={idVideo}
             title="YouTube video player"
-            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
+            className="mt-8 rounded-md"
           ></iframe>
-          <Row id="downloadPdfWebinar" className="align-items-center">
-            <Col md={6}>
+          <div className="flex flex-col md:flex-row items-center gap-5 mt-24 bg-light-gray py-6 md:px-12">
+            <div className="md:w-6/12">
               <Image
                 src={bannerBrochureData.imagen.data.attributes.url}
                 alt="download webinar"
-                fluid
+                width={400}
+                height={200}
               />
-            </Col>
-            <Col md={6}>
-              <h1>{bannerBrochureData.titulo}</h1>
+            </div>
+            <div className="md:w-6/12 grid justify-items-center md:justify-items-start items-center">
+              <h1 className="font-bold text-m md:text-xl md:leading-10 text-center md:text-start">
+                {bannerBrochureData.titulo}
+              </h1>
               <Button
-                variant={bannerBrochureData.button.variante}
+                text={bannerBrochureData.button.texto}
+                variant="secondary"
                 onClick={handleShow}
-                style={{
-                  "--hover-color": bannerBrochureData.button.hoverColor || "#000",
-                }}
-              >
-                {bannerBrochureData.button.texto}
-              </Button>
-            </Col>
-          </Row>
-          <Modal show={show} onHide={handleClose} centered>
+                fullWidth={false}
+                className={`${
+                  bannerBrochureData.button.hoverColor
+                    ? `hover:text-[${bannerBrochureData.button.hoverColor}]`
+                    : `hover:text-black`
+                } font-gotham text-l`}
+              />
+            </div>
+          </div>
+          <Modal show={showModal} onHide={handleClose}>
             <Modal.Header
               style={{
                 backgroundImage: `url(${downloadBrochureData.backgroundImage.data.attributes.url})`,
               }}
-              className="modalTitle"
+              handleClose={handleClose}
             >
-              <Image
-                src={closeIcon.src}
-                alt="Close modal"
-                onClick={handleClose}
-              />
-              <Modal.Title id="contained-modal-title-vcenter">
-                {downloadBrochureData.titulo}
-              </Modal.Title>
+              <Modal.Title>{downloadBrochureData.titulo}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-              <DownloadPdf
-                file={downloadBrochureData.downloadFile.data.attributes.url}
-              />
-            </Modal.Body>
+            <DownloadPdf
+              file={downloadBrochureData.downloadFile.data.attributes.url}
+            />
           </Modal>
         </Container>
       )}

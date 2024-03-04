@@ -1,19 +1,14 @@
-"use client"
-import {
-  Container,
-  Row,
-  Col,
-  Breadcrumb,
-  Image,
-  Button,
-} from "react-bootstrap";
+"use client";
 import fCalendar from "../../assets/FCalendar.svg";
 import fClock from "../../assets/FClock.svg";
 import moment from "moment";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-export default function HeaderWebinar({headerData, isPreWebinar}) {
+import Container from "../commons/container/Container";
+import Breadcrumb from "../commons/breadCrumb/BreadCrumb";
+import Button from "../commons/button/Button";
+import Image from "next/image";
+export default function HeaderWebinar({ headerData, isPreWebinar }) {
   const {
     titulo,
     backgroundHeader,
@@ -22,94 +17,107 @@ export default function HeaderWebinar({headerData, isPreWebinar}) {
     botonPreWebinar,
     botonPostWebinar,
     textoColor,
-    iconFilter
-  } = headerData
+    iconFilter,
+  } = headerData;
 
   const router = useRouter();
-  
+
   const [screenWidth, setWidth] = useState(0);
 
-  const headerButton = isPreWebinar ? botonPreWebinar : botonPostWebinar
+  const headerButton = isPreWebinar ? botonPreWebinar : botonPostWebinar;
 
   useEffect(() => setWidth(window.innerWidth), []);
   return (
     <Container
+      fluid
       style={{
         position: "relative",
         backgroundImage: `url(${backgroundHeader.data.attributes.url})`,
         color: textoColor,
-        "--bs-secondary-color": textoColor,
-        "--text-color": textoColor,
       }}
-      fluid
-      id="headerWebinar"
+      className="lg:min-h-screen grid items-center bg-center lg:bg-right-bottom bg-cover bg-no-repeat lg:pb-96"
     >
-      <Container>
-        <Breadcrumb>
-          <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
-          <Breadcrumb.Item href="/webinars">Webinars</Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            {screenWidth < 768
-              ? titulo.slice(0, 25).replaceAll("#", "") + "..."
-              : titulo.replaceAll("#", "")}
-            {/* se remplazan los # porque este campo viene desde un tipo ricktext en Strapi */}
-          </Breadcrumb.Item>
-        </Breadcrumb>
-      </Container>
-      <Container>
-        <Row id="contentHeader">
-          <Col md={9}>
-            {/* <h2>{type}</h2> */}
-            <ReactMarkdown>{titulo}</ReactMarkdown>
-            <p>{bajada}</p>
-          </Col>
-        </Row>
+      <Container className="pt-32">
+        <Breadcrumb
+          className="absolute top-20 xs:top-10"
+          items={[
+            {
+              text: "Inicio",
+              href: "/",
+              active: false,
+            },
+            {
+              text: "Webinars",
+              href: "/webinars",
+              active: false,
+            },
+            {
+              text:
+                screenWidth < 768
+                  ? titulo.slice(0, 25).replaceAll("#", "") + "..."
+                  : titulo.replaceAll("#", ""),
+              href: null,
+              active: true,
+            },
+          ]}
+        />
+        <div className="max-w-2xl">
+          <h1 className="!text-xl md:!text-3xl leading-none tracking-tighter	">
+            {titulo.replaceAll("#", "")}
+          </h1>
+          <p>{bajada}</p>
+        </div>
         {isPreWebinar && (
-          <Row id="contentDate">
-            <Col lg={3} xxl={2}>
+          <section>
+            <div>
               <h2>
                 <Image
                   style={{ filter: iconFilter ? iconFilter : null }}
                   src={fCalendar.src}
                   alt="Date"
-                  className="iconDate"
+                  width={30}
+                  height={30}
                 />{" "}
                 {moment(fecha).format("D") +
                   " de " +
                   moment(fecha).format("MMMM ")}
               </h2>
-            </Col>
-            <Col lg={3}>
+            </div>
+            <div>
               <h2>
                 <Image
                   style={{ filter: iconFilter ? iconFilter : null }}
                   src={fClock.src}
                   alt="Date"
-                  className="iconDate"
+                  width={30}
+                  height={30}
                 />{" "}
                 {moment.utc(fecha).format("HH:mm") + " H (GMT-3)"}
               </h2>
-            </Col>
-          </Row>
+            </div>
+          </section>
         )}
-        <Row className="participateButton">
-          <Col md={6} lg={4}>
-            <Button
-              variant={headerButton.variante}
-              onClick={() => router.push(headerButton.href)}
-              style={{
-                "--btnHeader-backgroundColor": headerButton.backgroundColor || "#2e2d31",
-                "--btnHeader-color": headerButton.color || "#FFF",
-                "--hover-color": headerButton.hoverColor || "#FFF",
-                "--hover-backgroundColor": headerButton.hoverBackgroundColor || "#000",
-              }}
-            >
-              {headerButton.texto}
-            </Button>
-          </Col>
-        </Row>
+        <Container className="mb-10" fluid>
+          <Button
+            text={headerButton.texto}
+            variant="webinar"
+            onClick={() => router.push(headerButton.href)}
+            className={`w-10/12 md:w-4/12`}
+            styles={{
+              hover: {
+                backgroundColor: headerButton.hoverBackgroundColor,
+                borderColor: headerButton.hoverBackgroundColor,
+                color: headerButton.hoverColor,
+              },
+              default: {
+                backgroundColor: headerButton.backgroundColor,
+                borderColor: headerButton.backgroundColor,
+                color: headerButton.color,
+              },
+            }}
+          />
+        </Container>
       </Container>
-      {/* <FloatingLogo logo={headerLogo} /> */}
     </Container>
   );
 }
