@@ -1,9 +1,8 @@
-"use client"
-import { Container } from "react-bootstrap";
+import Container from "@/components/commons/container/Container";
 
-export default function Title({ title }) {
+export default function Title({ title, className = "mb-6", fluid=false }) {
     return (
-        <Container>
+        <Container className={className} fluid={fluid}>
             <h1>{title}</h1>
         </Container>
     );
