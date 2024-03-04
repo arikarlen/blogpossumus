@@ -1,102 +1,49 @@
-"use client";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Breadcrumb, Button, Col, Container, Form, Row } from "react-bootstrap";
-import ResultsNotFound from "../resultNotFound";
-import ListWebinars from "../../webinars/listWebinars";
-import StartSearch from "../startSearch";
-import PaginationBasic from "../paginationBasic";
-import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import ListNews from "../newsList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Container from "@/components/commons/container/Container";
+import Title from "../titles";
+import Breadcrumb from "../breadCrumb/BreadCrumb";
+import { filterNews } from "app/news/actions";
+import { filterWebinars } from "app/webinars/actions";
 
-export default function SearchInput({ initialData, type, pagination }) {
-  const [data, setData] = useState(initialData);
-  const [keyword, setKeyword] = useState("");
-  const [page, setPage] = useState(1);
-  const [dataPagination, setDataPagination] = useState(pagination);
-  const pageSize = 10;
-
-  const isWebinar = type === "Webinars";
-
-  const { register, handleSubmit } = useForm({
-    mode: "onTouched",
-    defaultValues: { Keyword: "" },
-  });
-
-  const onSubmit = (data) => {
-    setKeyword(data.Keyword);
-  };
-
-  useEffect(() => {
-    async function getData() {
-      const url = isWebinar
-        ? `${process.env.NEXT_PUBLIC_API}/blog-webinars?populate=deep&filters[$or][0][header][titulo][$contains]=${keyword}&filters[$or][1][header][bajada][$contains]=${keyword}&pagination%5BwithCount%5D=true&pagination%5Bpage%5D=${page}&pagination%5BpageSize%5D=${pageSize}&sort=id:desc`
-        : `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}&pagination%5BwithCount%5D=true&pagination%5Bpage%5D=${page}&pagination%5BpageSize%5D=${pageSize}&sort=id:desc`;
-
-      await axios
-        .get(url, {
-          headers: {
-            Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-          },
-        })
-        .then((res) => {
-          setData(res.data.data);
-          setDataPagination(res.data?.meta?.pagination);
-        })
-        .catch((error) =>
-          console.log(`Ocurrió un error en su busqueda: ${error.message}`)
-        );
+export default function SearchInput({ type }) {
+  async function onSubmit(FormData) {
+    "use server";
+    if (type === "News") {
+      await filterNews(FormData);
     }
-    getData();
-  }, [keyword, page, isWebinar]);
+    if (type === "Webinars") {
+      await filterWebinars(FormData);
+    }
+  }
+
   return (
     <>
-    <Container>
-        <Breadcrumb>
-          <Breadcrumb.Item href="/">Inicio</Breadcrumb.Item>
-          <Breadcrumb.Item active href="/news">
-            {type}
-          </Breadcrumb.Item>
-        </Breadcrumb>
-      </Container>
-      <Container fluid id="searchContainer">
-        <Row>
-          <Col md={{ span: 6, offset: 3 }}>
-            <h1 className="text-center">{type}</h1>
-            <form onSubmit={handleSubmit(onSubmit)} id="searchForm">
-              <Form.Control
-                type="text"
-                id="searchKeyword"
-                aria-describedby="passwordHelpBlock"
-                {...register("Keyword")}
-              />
-              <Button variant="primary" type="Submit" id="searchButton">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </Button>
-            </form>
-          </Col>
-        </Row>
-
-        {data ? (
-          data.data == "" ? (
-            <ResultsNotFound keyword={keyword} />
-          ) : isWebinar ? (
-            <ListWebinars webinarsData={data} title="Resultados" />
-          ) : (
-            <ListNews dataNews={data} title="Resultados" />
-          )
-        ) : (
-          <StartSearch />
-        )}
-
-        <PaginationBasic
-          page={page}
-          setPage={setPage}
-          dataPagination={dataPagination}
+      <Container className="pt-20 xs:pt-10">
+        <Breadcrumb
+          items={[
+            { text: "Inicio", href: "/", active: false },
+            { text: type, href: `/${type.toLowerCase()}`, active: true },
+          ]}
         />
+      </Container>
+      <Container className="mt-10 md:mt-0">
+        <Title title={type} className="text-center" />
+        <form action={onSubmit} className="w-full my-4 flex justify-center">
+          <input
+            type="text"
+            name="key"
+            aria-describedby="passwordHelpBlock"
+            className="py-1 px-1 rounded-l-2xl bg-light-gray border border-light-gray focus:border-yellow ease-in-out duration-150 w-auto md:w-96"
+          />
+          <button
+            type="Submit"
+            name="Buscar"
+            className={`rounded-r-2xl py-1 px-2 bg-yellow border-yellow`}
+          >
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </button>
+        </form>
       </Container>
     </>
   );
