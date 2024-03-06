@@ -5,7 +5,7 @@ import DataList from "@/components/commons/dataList/DataList";
 import PaginationBasic from "@/components/commons/paginationBasic";
 
 export default async function News() {
-  const { dataNews, pagination, keyword, resultsNotFounded } = await getNews();
+  const { pagination, keyword, resultsNotFounded } = await getNews();
   return (
     <>
       <Head>
@@ -30,7 +30,6 @@ export default async function News() {
       </Head>
       <SearchInput type="News" />
       <DataList
-        data={dataNews}
         keyword={keyword}
         isWebinar={false}
         resultsNotFounded={resultsNotFounded}

@@ -5,7 +5,7 @@ import AutoresList from "@/components/commons/autoresList/AutoresList";
 import Container from "@/components/commons/container/Container";
 import Title from "@/components/commons/titles";
 import Image from "next/image";
-import SeeMoreButton from "../commons/seeMoreButton";
+import SeeMoreButton from "@/components/commons/seeMoreButton";
 import Date from "../commons/date/Date";
 
 export default function ListNews({
