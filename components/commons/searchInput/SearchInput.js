@@ -3,16 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Container from "@/components/commons/container/Container";
 import Title from "../titles";
 import Breadcrumb from "../breadCrumb/BreadCrumb";
-import { filterNews } from "app/news/actions";
-import { filterWebinars } from "app/webinars/actions";
+import { filterNews, resetNews } from "app/news/actions";
+import { filterWebinars, resetWebinars } from "app/webinars/actions";
 
 export default function SearchInput({ type }) {
+  const isWebinar = type.toLowerCase() === "webinars";
+  const isNews = type.toLowerCase() === "news";
+
   async function onSubmit(FormData) {
     "use server";
-    if (type === "News") {
+    if (isNews) {
       await filterNews(FormData);
     }
-    if (type === "Webinars") {
+    if (isWebinar) {
       await filterWebinars(FormData);
     }
   }
@@ -23,7 +26,7 @@ export default function SearchInput({ type }) {
         <Breadcrumb
           items={[
             { text: "Inicio", href: "/", active: false },
-            { text: type, href: `/${type.toLowerCase()}`, active: true },
+            { text: type, href: `/${type.toLowerCase()}`, active: true, resetFunction: isNews ? resetNews : resetWebinars },
           ]}
         />
       </Container>

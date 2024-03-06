@@ -12,13 +12,16 @@ let keyword = "";
 
 let resultsNotFounded = false;
 
-export async function getDateAndSlugWebinars(){
-  const url = `${process.env.NEXT_PUBLIC_API}/blog-webinars?populate[webinarInfo][slug]`
-  const {data} = await fetcher(url)
+export async function getDateAndSlugWebinars() {
+  const url = `${process.env.NEXT_PUBLIC_API}/blog-webinars?populate[webinarInfo][slug]`;
+  const { data } = await fetcher(url);
 
-  return data.map(webinar => {
-    return {slug: webinar.attributes.webinarInfo.slug, date: webinar.attributes.updatedAt}
-  })
+  return data.map((webinar) => {
+    return {
+      slug: webinar.attributes.webinarInfo.slug,
+      date: webinar.attributes.updatedAt,
+    };
+  });
 }
 
 export async function getWebinars() {
@@ -72,7 +75,7 @@ export async function prevPageWebinars() {
   page = page - 1;
 }
 export async function setPageWebinars(newPage) {
-  if(page !== newPage){
+  if (page !== newPage) {
     page = newPage;
     revalidatePath("/webinars");
   }
