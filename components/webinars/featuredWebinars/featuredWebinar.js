@@ -8,11 +8,11 @@ import Link from "next/link";
 export default async function FeaturedWebinar() {
   const URLWEBINARSDESTACADA = `${process.env.NEXT_PUBLIC_API}/blog-webinars?populate=deep&filters[webinarInfo][preWebinar][$eq]=true&pagination[page]=0&pagination[pageSize]=4`;
   const data = await fetchFeatured(URLWEBINARSDESTACADA, 3600);
-  if(!data) return
+  if (!data) return;
   const { webinarInfo, header, autores } = data;
 
   return (
-    <div key={webinarInfo.slug}>
+    <>
       <Link href={`/webinars/${webinarInfo.slug}`}>
         <Image
           src={webinarInfo.image?.data.attributes.url}
@@ -22,19 +22,21 @@ export default async function FeaturedWebinar() {
           priority
           className="cursor-pointer"
         />
-        <article className="textContent">
+      </Link>
+      <article className="textContent">
+        <Link href={`/webinars/${webinarInfo.slug}`}>
           <Title
             title={header.titulo.replaceAll("#", "")}
             className="cursor-pointer mb-2"
             fluid
           />
-          <h5>
-            <Date date={header.fecha} /> | Por{" "}
-            <AutoresList autores={autores.colaboradores.data} />
-          </h5>
-          <p className="cursor-pointer">{header.bajada}</p>
-        </article>
-      </Link>
-    </div>
+        </Link>
+        <h5>
+          <Date date={header.fecha} /> | Por{" "}
+          <AutoresList autores={autores.colaboradores.data} />
+        </h5>
+        <p className="cursor-pointer">{header.bajada}</p>
+      </article>
+    </>
   );
 }
