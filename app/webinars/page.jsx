@@ -10,7 +10,7 @@ import {
 } from "./actions";
 
 export default async function Page() {
-  const { dataWebinars, pagination, keyword, resultsNotFounded } =
+  const { pagination, keyword, resultsNotFounded } =
     await getWebinars();
 
   return (
@@ -37,7 +37,6 @@ export default async function Page() {
       </Head>
       <SearchInput type="Webinars" />
       <DataList
-        data={dataWebinars}
         keyword={keyword}
         resultsNotFounded={resultsNotFounded}
         isWebinar
