@@ -5,8 +5,8 @@ import Title from "@/components/commons/titles";
 import SeeMoreButton from "@/components/commons/seeMoreButton";
 import useSeeMore from "@/hooks/useSeeMore";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Date from "../commons/date/Date";
+import CustomImage from "../commons/customImage/CustomImage";
 
 export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
   const [webinarsList, loadMoreWebinars, isLoadingMoreWebinars, message] =
@@ -24,16 +24,15 @@ export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
         {webinarsList?.map(({ attributes }) => {
           const { webinarInfo, header, autores } = attributes;
           return (
-            <article key={webinarInfo.slug}>
-              <Image
+            <article
+              key={webinarInfo.slug}
+              onClick={() => router.push(`/webinars/${webinarInfo.slug}`)}
+              className="cursor-pointer"
+            >
+              <CustomImage
                 src={webinarInfo.image?.data.attributes.url}
                 alt={header.titulo}
-                width={1920}
-                height={1080}
-                onClick={() => router.push(`/webinars/${webinarInfo.slug}`)}
-                className="cursor-pointer"
               />
-
               <div
                 onClick={() => router.push(`/webinars/${webinarInfo.slug}`)}
                 className="cursor-pointer"
@@ -44,8 +43,7 @@ export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
                   fluid
                 />
                 <h5>
-                  <Date date={header.fecha}/> |{" "}
-                  {`Por: `}
+                  <Date date={header.fecha} /> | {`Por: `}
                   <AutoresList autores={autores.colaboradores.data} />
                 </h5>
                 <p>{header.bajada}</p>
