@@ -1,10 +1,10 @@
 import Container from "@/components/commons/container/Container";
 import AutoresList from "@/components/commons/autoresList/AutoresList";
 import Title from "@/components/commons/titles";
-import Image from "next/image";
 import Date from "../commons/date/Date";
 import Link from "next/link";
 import { getWebinars } from "app/webinars/actions";
+import CustomImage from "../commons/customImage/CustomImage";
 
 export default async function ListWebinars() {
   const {dataWebinars} = await getWebinars()
@@ -35,11 +35,9 @@ export default async function ListWebinars() {
             </div>
             <div className="md:max-w-60">
               <Link href={`/webinars/${webinarInfo.slug}`}>
-                <Image
+                <CustomImage
                   src={webinarInfo?.image?.data?.attributes.url}
                   alt={header?.titulo}
-                  width={1080}
-                  height={532}
                 />
               </Link>
             </div>

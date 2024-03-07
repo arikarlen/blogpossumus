@@ -1,10 +1,10 @@
 import Container from "@/components/commons/container/Container";
-import Image from "next/image";
 import Title from "./titles";
 import Date from "./date/Date";
 import AutoresList from "./autoresList/AutoresList";
 import { getNews } from "app/news/actions";
 import Link from "next/link";
+import CustomImage from "./customImage/CustomImage";
 
 export default async function ListNews() {
   const { dataNews } = await getNews();
@@ -37,11 +37,9 @@ export default async function ListNews() {
           </div>
           <div className="md:max-w-60">
             <Link href={`/news/${data.attributes.slug}`}>
-              <Image
+              <CustomImage
                 src={data.attributes.Imagen_Destacada.data?.attributes.url}
                 alt={data.attributes.Titulo.replaceAll("#", "")}
-                width={1080}
-                height={532}
               />
             </Link>
           </div>
