@@ -7,8 +7,8 @@ import Link from "next/link";
 
 export default async function FeaturedWebinar() {
   const URLWEBINARSDESTACADA = `${process.env.NEXT_PUBLIC_API}/blog-webinars?populate=deep&filters[webinarInfo][preWebinar][$eq]=true&pagination[page]=0&pagination[pageSize]=4`;
-  const data = await fetchFeatured(URLWEBINARSDESTACADA, 3600);
-  if (!data) return;
+  const data = await fetchFeatured(URLWEBINARSDESTACADA);
+  if (!data) return
   const { webinarInfo, header, autores } = data.attributes;
 
   return (
@@ -38,5 +38,5 @@ export default async function FeaturedWebinar() {
         <p className="cursor-pointer">{header.bajada}</p>
       </article>
     </>
-  );
+  )
 }

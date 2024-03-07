@@ -8,7 +8,7 @@ export default async function FeaturedWebinars() {
     <>
       <Suspense fallback={<FeaturedUI />}>
         <Container>
-          <FeaturedWebinar />;
+          <FeaturedWebinar />
         </Container>
       </Suspense>
     </>
