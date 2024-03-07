@@ -25,6 +25,9 @@
   cursor: pointer;
 }
 
+.newsContent table th{
+  padding: 0 10px;
+}
 /* FRAGMENTOS DE CODIGO */
 .newsContent pre {
   text-wrap: wrap;

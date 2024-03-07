@@ -1,5 +1,5 @@
 //Por defecto la data se va a revaldiar cada 1 hora
-const fetcher = async (url, revalidate = 3600) => {
+const fetcher = async (url, revalidate = 0) => {
   try {
     const response = await fetch(`${url}`, {
       headers: { Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}` },
