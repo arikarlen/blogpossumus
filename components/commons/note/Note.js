@@ -1,18 +1,16 @@
-import Image from "next/image";
 import styles from "./Note.module.css";
 import { TrimText } from "../../../utils/functions";
 import Link from "next/link";
 import Date from "../date/Date";
+import CustomImage from "../customImage/CustomImage";
 
 export default function Note({ data }) {
   return (
     <article className={styles.note}>
       <Link href={`/news/${data.slug}`}>
-        <Image
+        <CustomImage
           src={data.Imagen_Destacada.data.attributes.url}
           alt={data.Imagen_Destacada.data.attributes.name}
-          width={1920}
-          height={1080}
         />
         <h5>
           <Date date={data.fecha_publicacion} />

@@ -4,9 +4,9 @@ import useSeeMore from "@/hooks/useSeeMore";
 import AutoresList from "@/components/commons/autoresList/AutoresList";
 import Container from "@/components/commons/container/Container";
 import Title from "@/components/commons/titles";
-import Image from "next/image";
 import SeeMoreButton from "@/components/commons/seeMoreButton";
 import Date from "../commons/date/Date";
+import CustomImage from "../commons/customImage/CustomImage";
 
 export default function ListNews({
   dataNews,
@@ -26,13 +26,14 @@ export default function ListNews({
     <>
       <Container className="grid md:grid-cols-2 gap-7 pt-12">
         {news.map((data) => (
-          <article key={data.attributes.slug}>
-            <Image
+          <article
+            key={data.attributes.slug}
+            onClick={() => router.push(type + data.attributes.slug)}
+            className="cursor-pointer"
+          >
+            <CustomImage
               src={data.attributes.Imagen_Destacada?.data.attributes.url}
               alt={data.attributes.Titulo}
-              width={1920}
-              height={1080}
-              onClick={() => router.push(type + data.attributes.slug)}
             />
 
             <div
