@@ -34,6 +34,7 @@ export default function SearchButton() {
       .then(async (response) => {
         const totalNews = response.data.meta.pagination.total;
         const random = Math.floor(Math.random() * parseInt(totalNews));
+        setActualSearch([]);
         setRecommendedArticle([response.data.data[random]]);
       })
       .catch((error) =>
@@ -57,10 +58,8 @@ export default function SearchButton() {
       .then((res) => {
         if (res?.data?.data?.length > 0) {
           setActualSearch(res.data.data);
-          setRecommendedArticle([])
         } else {
-          setActualSearch([]);
-          if(recommendedArticle.length === 0){
+          if (recommendedArticle.length === 0) {
             getRandomNew();
           }
         }
@@ -93,8 +92,7 @@ export default function SearchButton() {
           aria-describedby="passwordHelpBlock"
           className="py-1 px-1 rounded-l-2xl bg-light-gray border border-light-gray focus:border-yellow ease-in-out duration-150"
           {...register("keyword", {
-            onChange: (e) =>
-              e.target.value.length > 1 ? handleRequest() : setActualSearch([]),
+            onChange: (e) => e.target.value.length > 1 && handleRequest(),
           })}
         />
       )}
