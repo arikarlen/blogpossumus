@@ -5,6 +5,7 @@ import Container from "../commons/container/Container";
 import Button from "../commons/button/Button";
 import Image from "next/image";
 import Modal from "../commons/modal/Modal";
+import { motion } from "framer-motion";
 
 export default function PostWebinar({
   isPreWebinar,
@@ -21,10 +22,18 @@ export default function PostWebinar({
     <>
       {!isPreWebinar && (
         <Container className="mt-24">
-          <h1 className="text-center font-gotham font-bold !text-xl md:!text-[48px] md:!leading-10">
+          <motion.h1
+            initial={{ x: -60 }}
+            whileInView={{ x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="text-center font-gotham font-bold !text-xl md:!text-[48px] md:!leading-10"
+          >
             {videoData.titulo}
-          </h1>
-          <iframe
+          </motion.h1>
+          <motion.iframe
+            initial={{ x: -100 }}
+            whileInView={{ x: 0 }}
+            transition={{ duration: 0.8 }}
             width="100%"
             height="400"
             src={idVideo}
@@ -32,8 +41,13 @@ export default function PostWebinar({
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="mt-8 rounded-md"
-          ></iframe>
-          <div className="flex flex-col md:flex-row items-center gap-5 mt-24 bg-light-gray py-6 md:px-12">
+          ></motion.iframe>
+          <motion.div
+            initial={{ x: 100 }}
+            whileInView={{ x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col md:flex-row items-center gap-5 mt-24 bg-light-gray py-6 md:px-12"
+          >
             <div className="md:w-6/12">
               <Image
                 src={bannerBrochureData.imagen.data.attributes.url}
@@ -58,7 +72,7 @@ export default function PostWebinar({
                 } font-gotham text-l`}
               />
             </div>
-          </div>
+          </motion.div>
           <Modal show={showModal} onHide={handleClose}>
             <Modal.Header
               style={{

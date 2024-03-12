@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Container from "./container/Container";
+import Link from "next/link";
 
 export default function PaginationBasic({
   dataPagination,
@@ -14,9 +15,9 @@ export default function PaginationBasic({
   const isFirstPage = activePage === 1;
   const isLastPage = activePage === dataPagination.pageCount;
 
-  useEffect(()=>{
-    setButtonDisabled(false)
-  },[activePage])
+  useEffect(() => {
+    setButtonDisabled(false);
+  }, [activePage]);
   return (
     <Container className="flex justify-center mt-12 mb-5">
       <ul className="flex gap-0">
@@ -31,7 +32,9 @@ export default function PaginationBasic({
               ? "opacity-40 cursor-not-allowed"
               : "hover:bg-yellow hover:text-black"
           } m-0 font-mulish text-xs border rounded-l border-gray bg-white px-2 py-1 w-8 text-center align-middle leading-8 cursor-pointer duration-500 ease-in-out`}
-        >{`<<`}</li>
+        >
+          <Link href="#searcher">{`<<`}</Link>
+        </li>
         {new Array(dataPagination?.pageCount).fill("").map((data, idx) => {
           const dataPage = idx + 1;
           return (
@@ -46,7 +49,7 @@ export default function PaginationBasic({
                 setPage(dataPage);
               }}
             >
-              {dataPage}
+              <Link href="#searcher">{dataPage}</Link>
             </li>
           );
         })}
@@ -61,7 +64,9 @@ export default function PaginationBasic({
               ? "opacity-40 cursor-not-allowed"
               : "hover:bg-yellow hover:text-black"
           } m-0 font-mulish text-xs border rounded-r border-gray bg-white px-2 py-1 w-8 text-center align-middle leading-8 cursor-pointer duration-500 ease-in-out`}
-        >{`>>`}</li>
+        >
+          <Link href="#searcher">{`>>`}</Link>
+        </li>
       </ul>
     </Container>
   );

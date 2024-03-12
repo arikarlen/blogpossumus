@@ -1,3 +1,4 @@
+"use client"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Container from "@/components/commons/container/Container";
@@ -5,13 +6,25 @@ import Title from "../titles";
 import Breadcrumb from "../breadCrumb/BreadCrumb";
 import { filterNews, resetNews } from "app/news/actions";
 import { filterWebinars, resetWebinars } from "app/webinars/actions";
+import { motion } from "framer-motion";
 
 export default function SearchInput({ type }) {
   const isWebinar = type.toLowerCase() === "webinars";
   const isNews = type.toLowerCase() === "news";
 
+  const formAnimation = {
+    hidden: { opacity: 0, scale: 0},
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.6,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   async function onSubmit(FormData) {
-    "use server";
     if (isNews) {
       await filterNews(FormData);
     }
@@ -26,13 +39,24 @@ export default function SearchInput({ type }) {
         <Breadcrumb
           items={[
             { text: "Inicio", href: "/", active: false },
-            { text: type, href: `/${type.toLowerCase()}`, active: true, resetFunction: isNews ? resetNews : resetWebinars },
+            {
+              text: type,
+              href: `/${type.toLowerCase()}`,
+              active: true,
+              resetFunction: isNews ? resetNews : resetWebinars,
+            },
           ]}
         />
       </Container>
       <Container className="mt-10 md:mt-0">
-        <Title title={type} className="text-center" />
-        <form action={onSubmit} className="w-full my-4 flex justify-center">
+        <Title title={type} className="text-center" id="searcher" />
+        <motion.form
+          variants={formAnimation}
+          initial="hidden"
+          animate="visible"
+          action={onSubmit}
+          className="w-full my-4 flex justify-center"
+        >
           <input
             type="text"
             name="key"
@@ -46,7 +70,7 @@ export default function SearchInput({ type }) {
           >
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
-        </form>
+        </motion.form>
       </Container>
     </>
   );

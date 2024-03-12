@@ -3,10 +3,24 @@ import { TrimText } from "../../../utils/functions";
 import Link from "next/link";
 import Date from "../date/Date";
 import CustomImage from "../customImage/CustomImage";
+import { motion } from "framer-motion";
 
 export default function Note({ data }) {
+  const noteAnimation = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 1 },
+    },
+  };
   return (
-    <article className={styles.note}>
+    <motion.article
+      variants={noteAnimation}
+      initial="hidden"
+      whileInView="visible"
+      className={styles.note}
+    >
       <Link href={`/news/${data.slug}`}>
         <CustomImage
           src={data.Imagen_Destacada.data.attributes.url}
@@ -18,6 +32,6 @@ export default function Note({ data }) {
         <h2>{data.Titulo}</h2>
         {data.Bajada && <p>{TrimText(data.Bajada, 120)}</p>}
       </Link>
-    </article>
+    </motion.article>
   );
 }
