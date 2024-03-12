@@ -10,7 +10,7 @@ export default function Container({
     <section
       onClick={onClick}
       className={`${
-        !fluid && "container mr-auto ml-auto px-4"
+        !fluid && "container md:max-w-4xl lg:max-w-6xl mr-auto ml-auto px-4"
       } ${className} `}
       style={style}
       id={id}
