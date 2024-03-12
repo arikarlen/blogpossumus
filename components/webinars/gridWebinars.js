@@ -7,6 +7,7 @@ import useSeeMore from "@/hooks/useSeeMore";
 import { useRouter } from "next/navigation";
 import Date from "../commons/date/Date";
 import CustomImage from "../commons/customImage/CustomImage";
+import { motion } from "framer-motion";
 
 export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
   const [webinarsList, loadMoreWebinars, isLoadingMoreWebinars, message] =
@@ -18,13 +19,28 @@ export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
 
   const router = useRouter();
 
+  const animation = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        delayChildren: 0.6,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   return (
     <>
       <Container className="grid md:grid-cols-2 gap-7 pt-12">
         {webinarsList?.map(({ attributes }) => {
           const { webinarInfo, header, autores } = attributes;
           return (
-            <article
+            <motion.article
+              variants={animation}
+              initial="hidden"
+              whileInView="visible"
               key={webinarInfo.slug}
               onClick={() => router.push(`/webinars/${webinarInfo.slug}`)}
               className="cursor-pointer"
@@ -48,7 +64,7 @@ export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
                 </h5>
                 <p>{header.bajada}</p>
               </div>
-            </article>
+            </motion.article>
           );
         })}
       </Container>

@@ -8,6 +8,7 @@ import Container from "../commons/container/Container";
 import Breadcrumb from "../commons/breadCrumb/BreadCrumb";
 import Button from "../commons/button/Button";
 import Image from "next/image";
+import { motion } from "framer-motion";
 export default function HeaderWebinar({ headerData, isPreWebinar }) {
   const {
     titulo,
@@ -25,6 +26,26 @@ export default function HeaderWebinar({ headerData, isPreWebinar }) {
   const [screenWidth, setWidth] = useState(0);
 
   const headerButton = isPreWebinar ? botonPreWebinar : botonPostWebinar;
+
+  const textContainer = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const textAnimation = {
+    hidden: { x: 20, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+    },
+  };
 
   useEffect(() => setWidth(window.innerWidth), []);
   return (
@@ -61,12 +82,15 @@ export default function HeaderWebinar({ headerData, isPreWebinar }) {
             },
           ]}
         />
-        <div className="max-w-2xl">
-          <h1 className="!text-xl md:!text-3xl leading-none tracking-tighter	">
+        <motion.div variants={textContainer} initial="hidden" animate="visible" className="max-w-2xl">
+          <motion.h1
+            variants={textAnimation}
+            className="!text-xl md:!text-3xl leading-none tracking-tighter	"
+          >
             {titulo.replaceAll("#", "")}
-          </h1>
-          <p>{bajada}</p>
-        </div>
+          </motion.h1>
+          <motion.p variants={textAnimation}>{bajada}</motion.p>
+        </motion.div>
         {isPreWebinar && (
           <section>
             <div>
