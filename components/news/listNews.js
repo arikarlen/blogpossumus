@@ -7,6 +7,7 @@ import Title from "@/components/commons/titles";
 import SeeMoreButton from "@/components/commons/seeMoreButton";
 import Date from "../commons/date/Date";
 import CustomImage from "../commons/customImage/CustomImage";
+import { motion } from "framer-motion";
 
 export default function ListNews({
   dataNews,
@@ -20,13 +21,28 @@ export default function ListNews({
     type: `${type.replaceAll("/", "").replaceAll("news", "blogs")}`,
   });
 
+  const animation = {
+    hidden: { opacity: 0},
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: .6,
+        delayChildren: 0.6,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   const router = useRouter();
 
   return (
     <>
       <Container className="grid md:grid-cols-2 gap-7 pt-12">
         {news.map((data) => (
-          <article
+          <motion.article
+            variants={animation}
+            initial="hidden"
+            whileInView="visible"
             key={data.attributes.slug}
             onClick={() => router.push(type + data.attributes.slug)}
             className="cursor-pointer"
@@ -57,7 +73,7 @@ export default function ListNews({
               </h5>
               <p>{data.attributes.Bajada}</p>
             </div>
-          </article>
+          </motion.article>
         ))}
       </Container>
       {withSeeMoreButton && !message.disabled && (
