@@ -1,6 +1,9 @@
 import "../../styles/index.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import Header from "../../components/commons/header";
 import Footer from "../../components/commons/footer/footer";
+config.autoAddCss = false;
 
 export default async function RootLayout({ children, params }) {
   return (
