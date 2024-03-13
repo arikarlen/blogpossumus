@@ -1,7 +1,7 @@
 import Head from "next/head";
-import SingleNew from "../../../components/news/singleNew";
+import SingleNew from "../../../../components/news/singleNew";
 import { Toaster } from "sonner";
-import fetcher from "../../../utils/fetcher";
+import fetcher from "../../../../utils/fetcher";
 
 export default async function Page({ params: { slug } }) {
   const URL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?filters[slug][$eq]=${slug}&populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20descarga%2C%20categoria%2C%20img_descarga&sort=id:desc`;

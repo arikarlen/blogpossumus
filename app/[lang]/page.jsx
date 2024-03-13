@@ -1,10 +1,10 @@
-import fetcher from "../utils/fetcher";
-import Title from "../components/commons/titles";
-import FeaturedNews from "../components/news/featuredNews/featuredNews";
-import ListNews from "../components/news/listNews";
-import GridWebinars from "../components/webinars/gridWebinars";
-import FeaturedWebinars from "../components/webinars/featuredWebinars/featuredWebinars";
-import Analitycs from "../components/commons/analitycs";
+import fetcher from "../../utils/fetcher";
+import Title from "../../components/commons/titles";
+import FeaturedNews from "../../components/news/featuredNews/featuredNews";
+import ListNews from "../../components/news/listNews";
+import GridWebinars from "../../components/webinars/gridWebinars";
+import FeaturedWebinars from "../../components/webinars/featuredWebinars/featuredWebinars";
+import Analitycs from "../../components/commons/analitycs";
 
 export const metadata = {
   title: "Blog Possumus | Inicio",

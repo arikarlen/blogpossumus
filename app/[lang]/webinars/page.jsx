@@ -1,5 +1,5 @@
 import Head from "next/head";
-import SearchInput from "../../components/commons/searchInput/SearchInput";
+import SearchInput from "../../../components/commons/searchInput/SearchInput";
 import DataList from "@/components/commons/dataList/DataList";
 import PaginationBasic from "@/components/commons/paginationBasic";
 import {
