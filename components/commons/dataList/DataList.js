@@ -3,8 +3,8 @@ import ListWebinars from "@/components/webinars/listWebinars";
 import ListNews from "@/components/commons/newsList";
 import ResultsNotFound from "../resultNotFound";
 import Container from "../container/Container";
-import { resetWebinars } from "app/webinars/actions";
-import { resetNews } from "app/news/actions";
+import { resetWebinars } from "app/[lang]/webinars/actions";
+import { resetNews } from "app/[lang]/news/actions";
 import { Suspense } from "react";
 
 export default function DataList({ isWebinar, keyword, resultsNotFounded }) {

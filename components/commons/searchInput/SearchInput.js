@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Container from "@/components/commons/container/Container";
 import Title from "../titles";
 import Breadcrumb from "../breadCrumb/BreadCrumb";
-import { filterNews, resetNews } from "app/news/actions";
-import { filterWebinars, resetWebinars } from "app/webinars/actions";
+import { filterNews, resetNews } from "app/[lang]/news/actions";
+import { filterWebinars, resetWebinars } from "app/[lang]/webinars/actions";
 import { motion } from "framer-motion";
 
 export default function SearchInput({ type }) {

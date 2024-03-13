@@ -1,7 +1,7 @@
 import AutoresList from "@/components/commons/autoresList/AutoresList";
 import Date from "@/components/commons/date/Date";
 import Title from "@/components/commons/titles";
-import { fetchFeatured } from "app/actions";
+import { fetchFeatured } from "app/[lang]/actions";
 import Head from "next/head";
 import Link from "next/link";
 
