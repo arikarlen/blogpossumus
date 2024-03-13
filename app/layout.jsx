@@ -3,15 +3,9 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import Header from "../components/commons/header";
 import Footer from "../components/commons/footer/footer";
-import fetcher from "../utils/fetcher";
 config.autoAddCss = false;
 
 export default async function RootLayout({ children }) {
-  const URLFOOTERCONTENT = `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`;
-  const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
-
-  const {data: dataInstitucional} = await fetcher(URLINSTITUCIONAL);
-  const { data: footerContent } = await fetcher(URLFOOTERCONTENT);
   return (
     <html lang="es">
       <head>
@@ -49,10 +43,7 @@ export default async function RootLayout({ children }) {
       <body>
         <Header />
         <main className="pt-16">{children}</main>
-        <Footer
-          dataInstitutional={dataInstitucional}
-          footerContent={footerContent}
-        />
+        <Footer />
       </body>
     </html>
   );

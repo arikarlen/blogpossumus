@@ -1,28 +1,31 @@
-"use client";
 import Container from "@/components/commons/container/Container";
 import certificaction from "../../../assets/certification.svg";
-import { useEffect, useState } from "react";
 import Image from "next/image";
+import ClutchBlock from "../clutchBlock/clutchBlock";
+import fetcher from "utils/fetcher";
 
-export default function Footer({ dataInstitutional, footerContent }) {
+export default async function Footer() {
+  const URLFOOTERCONTENT = `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`;
+  const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
+
+  const { data: dataInstitutional } = await fetcher(URLINSTITUCIONAL);
+  const { data: footerContent } = await fetcher(URLFOOTERCONTENT);
   const tel = "tel: " + dataInstitutional?.data?.attributes.Contacto.telefono;
   const mailto = "mailto:" + dataInstitutional?.data?.attributes.Contacto.Email;
-
-  const [isClient, setIsClient] = useState(false);
 
   let newDate = new Date();
   let year = newDate.getFullYear();
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
   return (
     <Container fluid className="bg-gray">
       <Container>
         <section className="flex lg:flex-row flex-col lg:justify-between justify-center items-center md:items-start pt-20 gap-5 lg:gap-0">
           {footerContent?.attributes.footer.options?.map((option, idx) => {
             return (
-              <div className="flex flex-col justify-center lg:max-w-52 text-center lg:text-start" key={idx}>
+              <div
+                className="flex flex-col justify-center lg:max-w-52 text-center lg:text-start"
+                key={idx}
+              >
                 <p className="font-gotham font-bold text-m">{option.title}</p>
                 {option.multipleOptions?.data.map((multipleOption) => (
                   <p
@@ -64,20 +67,7 @@ export default function Footer({ dataInstitutional, footerContent }) {
             />
           </div>
           <div className="flex justify-center min-w-52">
-            {isClient && (
-              <div
-                className="clutch-widget"
-                data-url="https://widget.clutch.co"
-                data-widget-type="2"
-                data-height="45"
-                data-nofollow="true"
-                data-expandifr="true"
-                data-primary-color="#fcd702"
-                data-secondary-color="#fcd702"
-                data-clutchcompany-id="1572791"
-                style={{ maxWidth: "200px" }}
-              ></div>
-            )}
+            <ClutchBlock />
           </div>
           <div className="grid justify-center lg:min-w-60 text-center lg:text-start">
             <div>
