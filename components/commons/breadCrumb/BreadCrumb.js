@@ -43,7 +43,7 @@ export default function Breadcrumb({ items, className = "" }) {
             href={item.href}
             key={`${item.text}-${idx}`}
             className={`${
-              item.active ? "font-mulish" : "font-gotham font-bold"
+              item.active ? "font-mulish" : "font-bold"
             } hover:opacity-80`}
             onClick={() => item.resetFunction() || null}
           >

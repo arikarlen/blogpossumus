@@ -73,10 +73,10 @@ export default async function Footer() {
             <div>
               <p className="font-gotham font-bold text-m">Hablemos</p>
               <p className="font-s cursor-pointer duration-150 ease-in hover:opacity-80">
-                <a href="tel: 08103450562">0810 345 0562</a>
+                <a href={tel}>0810 345 0562</a>
               </p>
               <p className="font-s cursor-pointer duration-150 ease-in hover:opacity-80">
-                <a href="mailto:info@possumus.tech">info@possumus.tech</a>
+                <a href={mailto}>info@possumus.tech</a>
               </p>
             </div>
           </div>
