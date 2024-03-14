@@ -5,8 +5,8 @@ import { fetchFeatured } from "app/[lang]/actions";
 import Head from "next/head";
 import Link from "next/link";
 
-export default async function FeaturedNew() {
-  const URLBLOGDESTACADA = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&filters[Destacada][$eq]=true&sort=fecha_publicacion:desc`;
+export default async function FeaturedNew({lang}) {
+  const URLBLOGDESTACADA = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?locale=${lang}&populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&filters[Destacada][$eq]=true&sort=fecha_publicacion:desc`;
   const data = await fetchFeatured(URLBLOGDESTACADA);
 
   if (!data) return;
