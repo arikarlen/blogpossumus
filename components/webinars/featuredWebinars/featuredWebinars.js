@@ -3,12 +3,12 @@ import FeaturedWebinar from "./featuredWebinar";
 import { Suspense } from "react";
 import FeaturedUI from "@/components/skeletons/FeaturedUI";
 
-export default async function FeaturedWebinars() {
+export default async function FeaturedWebinars({lang}) {
   return (
     <>
       <Suspense fallback={<FeaturedUI />}>
         <Container>
-          <FeaturedWebinar />
+          <FeaturedWebinar lang={lang}/>
         </Container>
       </Suspense>
     </>

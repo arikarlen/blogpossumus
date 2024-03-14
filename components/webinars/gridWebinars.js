@@ -9,12 +9,13 @@ import Date from "../commons/date/Date";
 import CustomImage from "../commons/customImage/CustomImage";
 import { motion } from "framer-motion";
 
-export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
+export default function GridWebinars({ webinars, withSeeMoreButton = false, lang }) {
   const [webinarsList, loadMoreWebinars, isLoadingMoreWebinars, message] =
     useSeeMore({
       initialData: webinars,
       initialMessage: "Ver más webinars",
       type: "blog-webinars",
+      lang: lang,
     });
 
   const router = useRouter();

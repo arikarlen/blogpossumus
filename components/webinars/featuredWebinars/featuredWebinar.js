@@ -5,8 +5,8 @@ import { fetchFeatured } from "app/[lang]/actions";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function FeaturedWebinar() {
-  const URLWEBINARSDESTACADA = `${process.env.NEXT_PUBLIC_API}/blog-webinars?populate=deep&filters[webinarInfo][preWebinar][$eq]=true&pagination[page]=0&pagination[pageSize]=4`;
+export default async function FeaturedWebinar({lang}) {
+  const URLWEBINARSDESTACADA = `${process.env.NEXT_PUBLIC_API}/blog-webinars?locale=${lang}&populate=deep&filters[webinarInfo][preWebinar][$eq]=true&pagination[page]=0&pagination[pageSize]=4`;
   const data = await fetchFeatured(URLWEBINARSDESTACADA);
   if (!data) return
   const { webinarInfo, header, autores } = data.attributes;
