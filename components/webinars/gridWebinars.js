@@ -9,11 +9,11 @@ import Date from "../commons/date/Date";
 import CustomImage from "../commons/customImage/CustomImage";
 import { motion } from "framer-motion";
 
-export default function GridWebinars({ webinars, withSeeMoreButton = false, lang }) {
+export default function GridWebinars({ webinars, withSeeMoreButton = false, tag, lang }) {
   const [webinarsList, loadMoreWebinars, isLoadingMoreWebinars, message] =
     useSeeMore({
       initialData: webinars,
-      initialMessage: "Ver más webinars",
+      initialMessage: lang === 'en' ? "See more" : "Ver más webinars",
       type: "blog-webinars",
       lang: lang,
     });
@@ -60,7 +60,7 @@ export default function GridWebinars({ webinars, withSeeMoreButton = false, lang
                   fluid
                 />
                 <h5>
-                  <Date date={header.fecha} /> | {`Por: `}
+                  <Date date={header.fecha} /> | {tag}
                   <AutoresList autores={autores.colaboradores.data} />
                 </h5>
                 <p>{header.bajada}</p>

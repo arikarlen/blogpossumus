@@ -18,7 +18,7 @@ export default function ListNews({
 }) {
   const [news, loadMoreNews, isLoadingMoreNotes, message] = useSeeMore({
     initialData: dataNews,
-    initialMessage: `Ver más notas`,
+    initialMessage: lang === "en" ? "See more" : "Ver más notas",
     type: `${type.replaceAll("/", "").replaceAll("news", "blogs")}`,
     lang: lang,
   });

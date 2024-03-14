@@ -5,7 +5,7 @@ import Button from "./button/Button";
 export default function SeeMoreButton({
   isLoadingMoreData,
   message,
-  loadMoreData,
+  loadMoreData
 }) {
   return (
     <>

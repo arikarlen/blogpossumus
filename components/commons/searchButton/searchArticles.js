@@ -2,6 +2,7 @@ import { useOutsideListener } from "@/hooks/useOutsideListener";
 import { cva } from "class-variance-authority";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useRef } from "react";
 import { TrimText } from "utils/functions";
 
@@ -23,13 +24,17 @@ const articlesStyles = cva(
 export default function SearchArticles({ items, resetSearch, variant }) {
   const actualSearchRef = useRef(null);
 
+  const { lang } = useParams();
+
   useOutsideListener(actualSearchRef, resetSearch);
   return (
-    <aside className={articlesStyles({variant})} ref={actualSearchRef}>
+    <aside className={articlesStyles({ variant })} ref={actualSearchRef}>
       {variant === "recommended" && (
-        <p className=" font-gotham leading-5 text[14px]">
-          No se encontraron resultados pero te recomendamos:
-        </p>
+        <h3 className="!leading-5 !text-[17px]">
+          {lang === "en"
+            ? "No results were found but we recommend:"
+            : "No se encontraron resultados pero te recomendamos:"}
+        </h3>
       )}
       {items.map((search) => (
         <>

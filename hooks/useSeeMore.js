@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function useSeeMore({
   initialData,
-  initialMessage = "Ver más",
+  initialMessage,
   type,
   lang
 }) {
@@ -13,6 +13,8 @@ export default function useSeeMore({
     text: initialMessage,
     disabled: false,
   });
+
+  const isInEnglish = lang === "en";
 
   const [isLoadingMoreData, setIsLoadingMoreData] = useState(false);
 
@@ -35,7 +37,7 @@ export default function useSeeMore({
           res.data.meta.pagination.total + 4
         ) {
           // Ya no hay mas news
-          setButtonMessage({ text: "No hay más notas", disabled: true });
+          setButtonMessage({ text: isInEnglish ? "No more news" : "No hay más notas", disabled: true });
         } else {
           setActualData(res.data.data);
         }

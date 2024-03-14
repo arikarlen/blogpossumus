@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import SearchArticles from "./searchArticles";
+import { useParams } from "next/navigation";
 
 export default function SearchButton() {
   const { register, handleSubmit, getValues, setFocus } = useForm({
     mode: "onTouched",
     defaultValues: { keyword: "" },
   });
+
+  const {lang} = useParams()
 
   function resetSearch() {
     setSearchButtonActive(false);
@@ -24,7 +27,7 @@ export default function SearchButton() {
   const getRandomNew = async () => {
     await axios
       .get(
-        `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*`,
+        `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?locale=${lang}&populate=*`,
         {
           headers: {
             Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
@@ -48,7 +51,7 @@ export default function SearchButton() {
     const keyword = getValues("keyword");
     await axios
       .get(
-        `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?populate=*&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}`,
+        `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?locale=${lang}&populate=*&filters[$or][0][Titulo][$contains]=${keyword}&filters[$or][1][Bajada][$contains]=${keyword}`,
         {
           headers: {
             Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,

@@ -45,6 +45,7 @@ export default async function Home({ params }) {
       <GridWebinars
         webinars={dataWebinars}
         withSeeMoreButton
+        tag={actualDictionarie.home.listNewsTag}
         lang={params.lang}
       />
     </>
