@@ -2,12 +2,15 @@ import AutoresList from "@/components/commons/autoresList/AutoresList";
 import Date from "@/components/commons/date/Date";
 import Title from "@/components/commons/titles";
 import { fetchFeatured } from "app/[lang]/actions";
+import { getDictionary } from "app/[lang]/dictionaries";
 import Head from "next/head";
 import Link from "next/link";
 
-export default async function FeaturedNew({lang}) {
+export default async function FeaturedNew({ lang }) {
   const URLBLOGDESTACADA = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?locale=${lang}&populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&filters[Destacada][$eq]=true&sort=fecha_publicacion:desc`;
   const data = await fetchFeatured(URLBLOGDESTACADA);
+
+  const dictionary = await getDictionary(lang);
 
   if (!data) return;
 
@@ -44,7 +47,8 @@ export default async function FeaturedNew({lang}) {
             />
           </Link>
           <h5>
-            <Date date={data.attributes.publishedAt} /> | Por{" "}
+            <Date date={data.attributes.publishedAt} /> |{" "}
+            {dictionary.home.listNewsTag}{" "}
             <AutoresList autores={data.attributes.autores.data} />
           </h5>
           <p>{data.attributes.Bajada}</p>
