@@ -4,7 +4,8 @@
     },
     "home":{
         "mainTitle": "Last news",
-        "listNewsTag": "By "
+        "listNewsTag": "By ",
+        "webinarsTitle": "Webinars"
     },
     "webinars":{
 

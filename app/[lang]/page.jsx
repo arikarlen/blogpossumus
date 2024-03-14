@@ -18,7 +18,7 @@ export default async function Home({ params }) {
   const URLBLOG = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?locale=${params.lang}&populate=Imagen_Destacada%2C%20autores.Perfiles%2C%20tags%2C%20categoria%2C%20categoria&filters[Destacada][$eq]=false&sort=fecha_publicacion:desc&pagination[page]=0&pagination[pageSize]=4`;
   const { data: dataNotas } = await fetcher(URLBLOG);
 
-  const URLWEBINARS = `${process.env.NEXT_PUBLIC_API}/blog-webinars?populate=deep&filters[webinarInfo][preWebinar][$eq]=false&pagination[page]=0&pagination[pageSize]=4`;
+  const URLWEBINARS = `${process.env.NEXT_PUBLIC_API}/blog-webinars?locale=${params.lang}&populate=deep&filters[webinarInfo][preWebinar][$eq]=false&pagination[page]=0&pagination[pageSize]=4`;
   const { data: dataWebinars } = await fetcher(URLWEBINARS);
 
   const actualDictionarie = await getDictionary(params.lang);
@@ -29,7 +29,7 @@ export default async function Home({ params }) {
         title={actualDictionarie.home.mainTitle}
         className="pt-20 xs:pt-10 mb-6"
       />
-      <FeaturedNews lang={params.lang}/>
+      <FeaturedNews lang={params.lang} />
       <ListNews
         dataNews={dataNotas}
         type="/news/"
@@ -37,9 +37,16 @@ export default async function Home({ params }) {
         lang={params.lang}
         withSeeMoreButton
       />
-      <Title title="Webinars" className="mt-16 mb-6" />
-      <FeaturedWebinars />
-      <GridWebinars webinars={dataWebinars} withSeeMoreButton />
+      <Title
+        title={actualDictionarie.home.webinarsTitle}
+        className="mt-16 mb-6"
+      />
+      <FeaturedWebinars lang={params.lang} />
+      <GridWebinars
+        webinars={dataWebinars}
+        withSeeMoreButton
+        lang={params.lang}
+      />
     </>
   );
 }
