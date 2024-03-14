@@ -3,7 +3,8 @@
 
     },
     "home":{
-        "mainTitle": "Ultimas noticias"
+        "mainTitle": "Ultimas noticias",
+        "listNewsTag": "Por "
     },
     "webinars":{
 
