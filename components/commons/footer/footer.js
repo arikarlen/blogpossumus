@@ -26,7 +26,7 @@ export default async function Footer() {
                 className="flex flex-col justify-center lg:max-w-52 text-center lg:text-start"
                 key={idx}
               >
-                <p className="font-gotham font-bold text-m">{option.title}</p>
+                <h3 className="font-bold text-m leading-6 mb-2">{option.title}</h3>
                 {option.multipleOptions?.data.map((multipleOption) => (
                   <p
                     key={multipleOption.attributes.title}
@@ -58,6 +58,9 @@ export default async function Footer() {
               />
             </a>
           </div>
+          <div className="flex items-center justify-center min-w-52">
+            <ClutchBlock />
+          </div>
           <div className="flex justify-center">
             <Image
               src={certificaction.src}
@@ -66,12 +69,9 @@ export default async function Footer() {
               height={130}
             />
           </div>
-          <div className="flex justify-center min-w-52">
-            <ClutchBlock />
-          </div>
           <div className="grid justify-center lg:min-w-60 text-center lg:text-start">
             <div>
-              <p className="font-gotham font-bold text-m">Hablemos</p>
+              <h3 className="font-bold text-m leading-6 mb-2">Hablemos</h3>
               <p className="font-s cursor-pointer duration-150 ease-in hover:opacity-80">
                 <a href={tel}>0810 345 0562</a>
               </p>
