@@ -5,6 +5,7 @@ export default function useSeeMore({
   initialData,
   initialMessage = "Ver más",
   type,
+  lang
 }) {
   const [actualPagination, setActualPagination] = useState(4);
   const [data, setActualData] = useState(initialData || []);
@@ -19,7 +20,7 @@ export default function useSeeMore({
     setIsLoadingMoreData(true);
     await axios
       .get(
-        `${process.env.NEXT_PUBLIC_API}/${type}?populate=deep&${
+        `${process.env.NEXT_PUBLIC_API}/${type}?locale=${lang}&populate=deep&${
           type === "blogs" && "sort=fecha_publicacion:desc&"
         }pagination[page]=0&pagination[pageSize]=${actualPagination + 4}`,
         {

@@ -13,12 +13,14 @@ export default function ListNews({
   dataNews,
   type,
   tag,
+  lang,
   withSeeMoreButton = false,
 }) {
   const [news, loadMoreNews, isLoadingMoreNotes, message] = useSeeMore({
     initialData: dataNews,
     initialMessage: `Ver más notas`,
     type: `${type.replaceAll("/", "").replaceAll("news", "blogs")}`,
+    lang: lang,
   });
 
   const animation = {
