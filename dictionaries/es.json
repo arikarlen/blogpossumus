@@ -8,6 +8,12 @@
                 "title": "Hablemos"
             },
             "copy": "Todos los derechos reservados"
+        },
+        "share":{
+            "title": "Compartir: "
+        },
+        "relatedNews": {
+            "title": "Notas relacionadas"
         }
     },
     "home":{

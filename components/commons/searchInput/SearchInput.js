@@ -8,8 +8,7 @@ import { filterNews, resetNews } from "app/[lang]/news/actions";
 import { filterWebinars, resetWebinars } from "app/[lang]/webinars/actions";
 import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
-import esDictionary from '../../../dictionaries/es.json'
-import enDictionary from '../../../dictionaries/en.json'
+import useDictionary from "@/hooks/useDictionary";
 
 export default function SearchInput({ type }) {
   const isWebinar = type.toLowerCase() === "webinars";
@@ -17,7 +16,7 @@ export default function SearchInput({ type }) {
 
   const {lang} = useParams()
 
-  const dictionary = lang === 'es' ? esDictionary : enDictionary;
+  const dictionary = useDictionary(lang);
 
   const formAnimation = {
     hidden: { opacity: 0, scale: 0},
