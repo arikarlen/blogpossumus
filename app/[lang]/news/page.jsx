@@ -4,7 +4,7 @@ import { getNews, nextPageNews, prevPageNews, setPageNews } from "./actions";
 import DataList from "@/components/commons/dataList/DataList";
 import PaginationBasic from "@/components/commons/paginationBasic";
 
-export default async function News() {
+export default async function News({params}) {
   const { pagination, keyword, resultsNotFounded } = await getNews();
   return (
     <>
@@ -33,6 +33,7 @@ export default async function News() {
         keyword={keyword}
         isWebinar={false}
         resultsNotFounded={resultsNotFounded}
+        lang={params.lang}
       />
 
       <PaginationBasic

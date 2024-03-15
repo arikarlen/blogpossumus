@@ -6,7 +6,7 @@ import Title from "@/components/commons/titles";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-export default function NewInList({ dataNew }) {
+export default function NewInList({ dataNew, tag }) {
   const animation = {
     hidden: { opacity: 0, x: -20 },
     visible: {
@@ -39,7 +39,7 @@ export default function NewInList({ dataNew }) {
         </Link>
         {/* se remplazan los # porque este campo viene desde un tipo ricktext en Strapi */}
         <h5>
-          <Date date={dataNew.attributes.publishedAt} /> | Por{" "}
+          <Date date={dataNew.attributes.publishedAt} /> | {tag}{" "}
           <AutoresList autores={dataNew.attributes?.autores.data} />
         </h5>
 

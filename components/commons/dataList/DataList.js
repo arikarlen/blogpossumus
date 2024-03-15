@@ -6,11 +6,20 @@ import Container from "../container/Container";
 import { resetWebinars } from "app/[lang]/webinars/actions";
 import { resetNews } from "app/[lang]/news/actions";
 import { Suspense } from "react";
+import { getDictionary } from "app/[lang]/dictionaries";
 
-export default function DataList({ isWebinar, keyword, resultsNotFounded }) {
+export default async function DataList({
+  isWebinar,
+  keyword,
+  resultsNotFounded,
+  lang,
+}) {
+  const dictionary = await getDictionary(lang);
   return (
     <Container>
-      <h4>Resultados</h4>
+      <h4>
+        {isWebinar ? dictionary.webinars.results : dictionary.news.results}
+      </h4>
       <Suspense fallback={<ListDataSkeleton />}>
         {resultsNotFounded ? (
           <ResultsNotFound
@@ -18,9 +27,9 @@ export default function DataList({ isWebinar, keyword, resultsNotFounded }) {
             resetFunction={isWebinar ? resetWebinars : resetNews}
           />
         ) : isWebinar ? (
-          <ListWebinars />
+          <ListWebinars lang={lang} />
         ) : (
-          <ListNews />
+          <ListNews lang={lang} />
         )}
       </Suspense>
     </Container>

@@ -1,6 +1,8 @@
 {
     "commons":{
-
+        "breadCrumb": {
+            "home": "Inicio"
+        }
     },
     "home":{
         "mainTitle": "Ultimas noticias",
@@ -8,9 +10,11 @@
         "webinarsTitle": "Webinars"
     },
     "webinars":{
-
+        "title": "Webinars",
+        "results": "Resultados"
     },
     "news":{
-
+        "title": "Noticias",
+        "results": "Resultados"
     }
 }
