@@ -2,6 +2,12 @@
     "commons":{
         "breadCrumb": {
             "home": "Inicio"
+        },
+        "footer": {
+            "letsTalk": {
+                "title": "Hablemos"
+            },
+            "copy": "Todos los derechos reservados"
         }
     },
     "home":{

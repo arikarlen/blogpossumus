@@ -3,15 +3,18 @@ import certificaction from "../../../assets/certification.svg";
 import Image from "next/image";
 import ClutchBlock from "../clutchBlock/clutchBlock";
 import fetcher from "utils/fetcher";
+import { getDictionary } from "app/[lang]/dictionaries";
 
-export default async function Footer() {
-  const URLFOOTERCONTENT = `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=es`;
+export default async function Footer({lang}) {
+  const URLFOOTERCONTENT = `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=${lang}`;
   const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
 
   const { data: dataInstitutional } = await fetcher(URLINSTITUCIONAL);
   const { data: footerContent } = await fetcher(URLFOOTERCONTENT);
   const tel = "tel: " + dataInstitutional?.data?.attributes.Contacto.telefono;
   const mailto = "mailto:" + dataInstitutional?.data?.attributes.Contacto.Email;
+
+  const dictionary = await getDictionary(lang)
 
   let newDate = new Date();
   let year = newDate.getFullYear();
@@ -66,12 +69,12 @@ export default async function Footer() {
               src={certificaction.src}
               alt="Possumus"
               width={260}
-              height={130}
+              height={130}  
             />
           </div>
           <div className="grid justify-center lg:min-w-60 text-center lg:text-start">
             <div>
-              <h3 className="font-bold text-m leading-6 mb-2">Hablemos</h3>
+              <h3 className="font-bold text-m leading-6 mb-2">{dictionary.commons.footer.letsTalk.title}</h3>
               <p className="font-s cursor-pointer duration-150 ease-in hover:opacity-80">
                 <a href={tel}>0810 345 0562</a>
               </p>
@@ -85,7 +88,7 @@ export default async function Footer() {
       <Container className="flex lg:flex-row flex-col-reverse gap-5 lg:gap-0 justify-between items-center border-t border-t-gray-d8 py-6">
         <div>
           <p className="text-s">
-            Copyright © {year} Possumus. All Rigths Reserved.
+            Copyright © {year} Possumus. {dictionary.commons.footer.copy}
           </p>
         </div>
         <div className="flex justify-end items-center gap-4">
