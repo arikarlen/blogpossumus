@@ -47,10 +47,10 @@ export default function Speakers({ titulo, speakers }) {
               className="max-w-[100px] md:max-w-[150px]"
             />
             <div>
-              <h2 className="!font-gotham font-bold text-m md:!text-l">
+              <h2 className="!font-gotham !font-bold text-m md:!text-l">
                 {speaker.attributes?.Nombre}
               </h2>
-              <h3 className="!font-[gotham-book] !text-s md:!text-[19px] !font-light">
+              <h3 className="!font-[Gotham-book] !text-s md:!text-[19px] !font-light">
                 {speaker.attributes?.puesto?.data?.attributes?.Puesto},
                 <br /> Possumus
               </h3>

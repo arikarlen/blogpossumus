@@ -1,29 +1,35 @@
-"use client";
 import Container from "@/components/commons/container/Container";
 import certificaction from "../../../assets/certification.svg";
-import { useEffect, useState } from "react";
 import Image from "next/image";
+import ClutchBlock from "../clutchBlock/clutchBlock";
+import fetcher from "utils/fetcher";
+import { getDictionary } from "app/[lang]/dictionaries";
 
-export default function Footer({ dataInstitutional, footerContent }) {
+export default async function Footer({lang}) {
+  const URLFOOTERCONTENT = `${process.env.NEXT_PUBLIC_API}/page-web-layout?populate=deep&locale=${lang}`;
+  const URLINSTITUCIONAL = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_INSTITUTIONAL}?populate[0]=Contacto&populate[1]=Assets.Logo_Alt`;
+
+  const { data: dataInstitutional } = await fetcher(URLINSTITUCIONAL);
+  const { data: footerContent } = await fetcher(URLFOOTERCONTENT);
   const tel = "tel: " + dataInstitutional?.data?.attributes.Contacto.telefono;
   const mailto = "mailto:" + dataInstitutional?.data?.attributes.Contacto.Email;
 
-  const [isClient, setIsClient] = useState(false);
+  const dictionary = await getDictionary(lang)
 
   let newDate = new Date();
   let year = newDate.getFullYear();
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
   return (
     <Container fluid className="bg-gray">
       <Container>
         <section className="flex lg:flex-row flex-col lg:justify-between justify-center items-center md:items-start pt-20 gap-5 lg:gap-0">
           {footerContent?.attributes.footer.options?.map((option, idx) => {
             return (
-              <div className="flex flex-col justify-center lg:max-w-52 text-center lg:text-start" key={idx}>
-                <p className="font-gotham font-bold text-m">{option.title}</p>
+              <div
+                className="flex flex-col justify-center lg:max-w-52 text-center lg:text-start"
+                key={idx}
+              >
+                <h3 className="font-bold text-m leading-6 mb-2">{option.title}</h3>
                 {option.multipleOptions?.data.map((multipleOption) => (
                   <p
                     key={multipleOption.attributes.title}
@@ -55,38 +61,25 @@ export default function Footer({ dataInstitutional, footerContent }) {
               />
             </a>
           </div>
+          <div className="flex items-center justify-center min-w-52">
+            <ClutchBlock />
+          </div>
           <div className="flex justify-center">
             <Image
               src={certificaction.src}
               alt="Possumus"
               width={260}
-              height={130}
+              height={130}  
             />
-          </div>
-          <div className="flex justify-center min-w-52">
-            {isClient && (
-              <div
-                className="clutch-widget"
-                data-url="https://widget.clutch.co"
-                data-widget-type="2"
-                data-height="45"
-                data-nofollow="true"
-                data-expandifr="true"
-                data-primary-color="#fcd702"
-                data-secondary-color="#fcd702"
-                data-clutchcompany-id="1572791"
-                style={{ maxWidth: "200px" }}
-              ></div>
-            )}
           </div>
           <div className="grid justify-center lg:min-w-60 text-center lg:text-start">
             <div>
-              <p className="font-gotham font-bold text-m">Hablemos</p>
+              <h3 className="font-bold text-m leading-6 mb-2">{dictionary.commons.footer.letsTalk.title}</h3>
               <p className="font-s cursor-pointer duration-150 ease-in hover:opacity-80">
-                <a href="tel: 08103450562">0810 345 0562</a>
+                <a href={tel}>0810 345 0562</a>
               </p>
               <p className="font-s cursor-pointer duration-150 ease-in hover:opacity-80">
-                <a href="mailto:info@possumus.tech">info@possumus.tech</a>
+                <a href={mailto}>info@possumus.tech</a>
               </p>
             </div>
           </div>
@@ -95,7 +88,7 @@ export default function Footer({ dataInstitutional, footerContent }) {
       <Container className="flex lg:flex-row flex-col-reverse gap-5 lg:gap-0 justify-between items-center border-t border-t-gray-d8 py-6">
         <div>
           <p className="text-s">
-            Copyright © {year} Possumus. All Rigths Reserved.
+            Copyright © {year} Possumus. {dictionary.commons.footer.copy}
           </p>
         </div>
         <div className="flex justify-end items-center gap-4">

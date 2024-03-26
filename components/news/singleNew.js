@@ -9,6 +9,7 @@ import Container from "../commons/container/Container";
 import Breadcrumb from "../commons/breadCrumb/BreadCrumb";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import useDictionary from "@/hooks/useDictionary";
 
 export default function SingleNew({ singleNew, absoluteUrl }) {
   const textContainer = {
@@ -30,6 +31,9 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
       opacity: 1,
     },
   };
+
+  const dictionary = useDictionary();
+
   return (
     <>
       <Container className="pt-32 xs:pt-20 relative">
@@ -37,7 +41,7 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
           className="absolute top-20 xs:top-10 left-5 xl:left-0 overflow-hidden"
           items={[
             {
-              text: "Inicio",
+              text: dictionary.commons.breadCrumb.home,
               href: "/",
               active: false,
             },
@@ -47,7 +51,7 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
               active: false,
             },
             {
-              text: singleNew.Titulo,
+              text: singleNew?.Titulo,
               href: null,
               active: true,
             },
@@ -69,7 +73,7 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
             {singleNew?.Titulo}
           </motion.h1>
           <motion.h5 variants={textAnimation} className="my-5">
-            <Date date={singleNew?.fecha_publicacion} /> | Por{" "}
+            <Date date={singleNew?.fecha_publicacion} /> | {dictionary.home.listNewsTag}{" "}
             <AutoresList autores={singleNew?.autores?.data} />
           </motion.h5>
           <motion.p variants={textAnimation} className="mb-5">
@@ -103,7 +107,7 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
         />
         <RelatedNews
           tags={singleNew?.tags}
-          title="Notas relacionadas"
+          title={dictionary.commons.relatedNews.title}
           actualNewTitle={singleNew?.Titulo}
         />
       </Container>

@@ -1,0 +1,32 @@
+{
+    "commons":{
+        "breadCrumb": {
+            "home": "Inicio"
+        },
+        "footer": {
+            "letsTalk": {
+                "title": "Hablemos"
+            },
+            "copy": "Todos los derechos reservados"
+        },
+        "share":{
+            "title": "Compartir: "
+        },
+        "relatedNews": {
+            "title": "Notas relacionadas"
+        }
+    },
+    "home":{
+        "mainTitle": "Ultimas noticias",
+        "listNewsTag": "Por ",
+        "webinarsTitle": "Webinars"
+    },
+    "webinars":{
+        "title": "Webinars",
+        "results": "Resultados"
+    },
+    "news":{
+        "title": "Noticias",
+        "results": "Resultados"
+    }
+}

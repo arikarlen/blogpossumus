@@ -4,13 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Container from "@/components/commons/container/Container";
 import Title from "../titles";
 import Breadcrumb from "../breadCrumb/BreadCrumb";
-import { filterNews, resetNews } from "app/news/actions";
-import { filterWebinars, resetWebinars } from "app/webinars/actions";
+import { filterNews, resetNews } from "app/[lang]/news/actions";
+import { filterWebinars, resetWebinars } from "app/[lang]/webinars/actions";
 import { motion } from "framer-motion";
+import useDictionary from "@/hooks/useDictionary";
 
 export default function SearchInput({ type }) {
   const isWebinar = type.toLowerCase() === "webinars";
   const isNews = type.toLowerCase() === "news";
+
+  const dictionary = useDictionary();
 
   const formAnimation = {
     hidden: { opacity: 0, scale: 0},
@@ -38,7 +41,7 @@ export default function SearchInput({ type }) {
       <Container className="pt-20 xs:pt-10">
         <Breadcrumb
           items={[
-            { text: "Inicio", href: "/", active: false },
+            { text: dictionary.commons.breadCrumb.home, href: "", active: false },
             {
               text: type,
               href: `/${type.toLowerCase()}`,
@@ -49,7 +52,7 @@ export default function SearchInput({ type }) {
         />
       </Container>
       <Container className="mt-10 md:mt-0">
-        <Title title={type} className="text-center" id="searcher" />
+        <Title title={dictionary[type.toLowerCase()].title} className="text-center" id="searcher" />
         <motion.form
           variants={formAnimation}
           initial="hidden"
