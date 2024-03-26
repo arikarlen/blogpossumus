@@ -9,9 +9,10 @@ import {
   setPageWebinars,
 } from "./actions";
 
-export default async function Page({params}) {
-  const { pagination, keyword, resultsNotFounded } =
-    await getWebinars();
+export default async function Page({ params }) {
+  const { pagination, keyword, resultsNotFounded } = await getWebinars(
+    params.lang
+  );
 
   return (
     <>
