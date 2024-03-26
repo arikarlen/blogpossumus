@@ -32,8 +32,7 @@ export async function middleware(request) {
     locale
       ? `/${locale}/${pathname}${
           locale === "es" &&
-          !pathname.includes("webinars") &&
-          !pathname.includes("news") &&
+          (pathname.includes("/webinars/") || pathname.includes("/news/")) &&
           pathname !== "/"
             ? "-es"
             : ""

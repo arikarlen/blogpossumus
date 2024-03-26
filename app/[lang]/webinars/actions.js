@@ -23,7 +23,7 @@ export async function getDateAndSlugWebinars() {
       return {
         slug: webinar.attributes.webinarInfo.slug,
         date: webinar.attributes.updatedAt,
-        locale: 'es',
+        locale: "es",
       };
     })
     .concat(
@@ -31,14 +31,14 @@ export async function getDateAndSlugWebinars() {
         return {
           slug: webinar.attributes.webinarInfo.slug,
           date: webinar.attributes.updatedAt,
-          locale: 'en',
+          locale: "en",
         };
       })
     );
 }
 
-export async function getWebinars() {
-  const url = `${process.env.NEXT_PUBLIC_API}/blog-webinars?populate=deep&pagination%5BwithCount%5D=true&pagination%5Bpage%5D=0&pagination%5BpageSize%5D=10&sort=id:desc`;
+export async function getWebinars(lang) {
+  const url = `${process.env.NEXT_PUBLIC_API}/blog-webinars?locale=${lang}&populate=deep&pagination%5BwithCount%5D=true&pagination%5Bpage%5D=0&pagination%5BpageSize%5D=10&sort=id:desc`;
   if (!keyword) {
     const { data, meta } = await fetcher(url);
     const { pagination: newPagination } = meta;
@@ -47,7 +47,7 @@ export async function getWebinars() {
     pagination = newPagination;
     resultsNotFounded = false;
   }
-
+  
   return { dataWebinars, pagination, keyword, resultsNotFounded };
 }
 
