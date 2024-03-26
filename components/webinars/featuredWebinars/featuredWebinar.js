@@ -13,7 +13,7 @@ export default async function FeaturedWebinar({lang}) {
 
   return (
     <>
-      <Link href={`/webinars/${webinarInfo.slug}`}>
+      <Link href={`/${lang}/webinars/${webinarInfo.slug}`}>
         <Image
           src={webinarInfo.image?.data.attributes.url}
           width={1080}
@@ -24,7 +24,7 @@ export default async function FeaturedWebinar({lang}) {
         />
       </Link>
       <article className="textContent">
-        <Link href={`/webinars/${webinarInfo.slug}`}>
+        <Link href={`/${lang}/webinars/${webinarInfo.slug}`}>
           <Title
             title={header.titulo.replaceAll("#", "")}
             className="cursor-pointer mb-2"
