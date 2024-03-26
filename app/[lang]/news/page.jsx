@@ -28,7 +28,7 @@ export default async function News({params}) {
           content="https://possumustech.blob.core.windows.net/staticfiles/assets/Possumus_d54fcb00ec.png"
         ></meta>
       </Head>
-      <SearchInput type="News" />
+      <SearchInput type="News"/>
       <DataList
         keyword={keyword}
         isWebinar={false}
