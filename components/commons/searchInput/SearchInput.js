@@ -7,16 +7,13 @@ import Breadcrumb from "../breadCrumb/BreadCrumb";
 import { filterNews, resetNews } from "app/[lang]/news/actions";
 import { filterWebinars, resetWebinars } from "app/[lang]/webinars/actions";
 import { motion } from "framer-motion";
-import { useParams } from "next/navigation";
 import useDictionary from "@/hooks/useDictionary";
 
 export default function SearchInput({ type }) {
   const isWebinar = type.toLowerCase() === "webinars";
   const isNews = type.toLowerCase() === "news";
 
-  const {lang} = useParams()
-
-  const dictionary = useDictionary(lang);
+  const dictionary = useDictionary();
 
   const formAnimation = {
     hidden: { opacity: 0, scale: 0},
@@ -44,7 +41,7 @@ export default function SearchInput({ type }) {
       <Container className="pt-20 xs:pt-10">
         <Breadcrumb
           items={[
-            { text: dictionary.commons.breadCrumb.home, href: "/", active: false },
+            { text: dictionary.commons.breadCrumb.home, href: "", active: false },
             {
               text: type,
               href: `/${type.toLowerCase()}`,
