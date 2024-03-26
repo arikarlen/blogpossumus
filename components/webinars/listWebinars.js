@@ -3,7 +3,7 @@ import WebinarInList from "./webinarInList/webinarInList";
 import { getDictionary } from "app/[lang]/dictionaries";
 
 export default async function ListWebinars({ lang }) {
-  const { dataWebinars } = await getWebinars();
+  const { dataWebinars } = await getWebinars(lang);
   const dictionary = await getDictionary(lang);
   return (
     <>
