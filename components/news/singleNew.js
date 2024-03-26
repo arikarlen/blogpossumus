@@ -9,7 +9,6 @@ import Container from "../commons/container/Container";
 import Breadcrumb from "../commons/breadCrumb/BreadCrumb";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useParams } from "next/navigation";
 import useDictionary from "@/hooks/useDictionary";
 
 export default function SingleNew({ singleNew, absoluteUrl }) {
@@ -33,9 +32,7 @@ export default function SingleNew({ singleNew, absoluteUrl }) {
     },
   };
 
-  const { lang } = useParams();
-
-  const dictionary = useDictionary(lang);
+  const dictionary = useDictionary();
 
   return (
     <>

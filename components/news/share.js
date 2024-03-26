@@ -8,7 +8,7 @@ import mail from "../../assets/share/correo.svg";
 import copyLink from "../../assets/share/enlace.svg";
 import moreShareOptions from "../../assets/share/moreShareOptions.svg";
 import closeMoreShareOptions from "../../assets/share/closeMoreShareOptions.svg";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CopyToClipboard } from "../../utils/functions";
 import Image from "next/image";
@@ -18,7 +18,6 @@ import useDictionary from "@/hooks/useDictionary";
 
 export default function ShareNews({ title, subTitle }) {
   const { asPath } = useRouter();
-  const {lang} = useParams()
 
   const [isMoreOptionsMobileVisible, setIsMoreOptionsMobileVisible] =
     useState(false);
@@ -32,7 +31,7 @@ export default function ShareNews({ title, subTitle }) {
   const urlTelegram = `https://t.me/share/url?url${shareUrl}&text=${title}`;
   const urlMail = `mailto:?subject=${title}&body=Te%20comparti%20esta%20nota${shareUrl}`;
 
-  const dictionary = useDictionary(lang)
+  const dictionary = useDictionary()
 
   return (
     <>

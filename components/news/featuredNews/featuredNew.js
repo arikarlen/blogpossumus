@@ -23,7 +23,7 @@ export default async function FeaturedNew({ lang }) {
         <link rel="preload" href={imagenDestacada} as="image" />
       </Head>
       <article key={data.attributes.slug}>
-        <Link href={`/news/${data.attributes.slug}`}>
+        <Link href={`/${lang}/news/${data.attributes.slug}`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             width={1920}
@@ -34,12 +34,12 @@ export default async function FeaturedNew({ lang }) {
           />
         </Link>
         <div className="textContent">
-          <Link href={`/news/${data.attributes.slug}`}>
+          <Link href={`/${lang}/news/${data.attributes.slug}`}>
             <h6 className="linkPerfil">
               {data.attributes.categoria?.data.attributes.Categoria}
             </h6>
           </Link>
-          <Link href={`/news/${data.attributes.slug}`}>
+          <Link href={`/${lang}/news/${data.attributes.slug}`}>
             <Title
               title={data.attributes.Titulo.replaceAll("#", "")}
               className="mb-2"

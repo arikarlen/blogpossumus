@@ -8,6 +8,7 @@ import SeeMoreButton from "@/components/commons/seeMoreButton";
 import Date from "../commons/date/Date";
 import CustomImage from "../commons/customImage/CustomImage";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function ListNews({
   dataNews,
@@ -24,11 +25,11 @@ export default function ListNews({
   });
 
   const animation = {
-    hidden: { opacity: 0},
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        duration: .6,
+        duration: 0.6,
         delayChildren: 0.6,
         staggerChildren: 0.2,
       },
@@ -45,35 +46,40 @@ export default function ListNews({
             variants={animation}
             initial="hidden"
             whileInView="visible"
-            key={data.attributes.slug}
-            onClick={() => router.push(type + data.attributes.slug)}
             className="cursor-pointer"
+            key={data.attributes.slug}
           >
             <CustomImage
               src={data.attributes.Imagen_Destacada?.data.attributes.url}
               alt={data.attributes.Titulo}
             />
 
-            <div
-              onClick={() => router.push(type + data.attributes.slug)}
-              className="hover:cursor-pointer"
-            >
-              <h6
-                onClick={() =>
-                  router.push(
-                    "/category/" +
-                      data.attributes.categoria?.data.attributes.Categoria
-                  )
-                }
-              >
-                {data.attributes.categoria?.data.attributes.Categoria}
-              </h6>
-              <Title title={data.attributes.Titulo.replaceAll("#", "")} fluid />
+            <div className="hover:cursor-pointer">
+              <Link href={`/${lang}/news/${data.attributes.slug}`}>
+                <h6
+                  onClick={() =>
+                    router.push(
+                      "/category/" +
+                        data.attributes.categoria?.data.attributes.Categoria
+                    )
+                  }
+                >
+                  {data.attributes.categoria?.data.attributes.Categoria}
+                </h6>
+              </Link>
+              <Link href={`/${lang}/news/${data.attributes.slug}`}>
+                <Title
+                  title={data.attributes.Titulo.replaceAll("#", "")}
+                  fluid
+                />
+              </Link>
               <h5>
                 <Date date={data.attributes.fecha_publicacion} /> | {tag}
                 <AutoresList autores={data.attributes.autores.data} />
               </h5>
-              <p>{data.attributes.Bajada}</p>
+              <Link href={`/${lang}/news/${data.attributes.slug}`}>
+                <p>{data.attributes.Bajada}</p>
+              </Link>
             </div>
           </motion.article>
         ))}
