@@ -2,9 +2,12 @@
 import { Fragment, useEffect, useState } from "react";
 import { TrimText } from "utils/functions";
 import { motion } from "framer-motion";
+import { useParams } from "next/navigation";
 
 export default function Breadcrumb({ items, className = "" }) {
   const [screenWidth, setScreenWidth] = useState(1800);
+
+  const {lang} = useParams()
 
   const containerAnimation = {
     hidden: { opacity: 1, scale: 0 },
@@ -40,12 +43,12 @@ export default function Breadcrumb({ items, className = "" }) {
         <Fragment key={`${item.text}-${idx}`}>
           <motion.a
             variants={itemAnimation}
-            href={item.href}
+            href={`/${lang}/${item.href}`}
             key={`${item.text}-${idx}`}
             className={`${
-              item.active ? "font-mulish" : "font-gotham font-bold"
+              item.active ? "font-mulish" : "font-bold"
             } hover:opacity-80`}
-            onClick={() => item.resetFunction() || null}
+            onClick={() => item?.resetFunction() || null}
           >
             {screenWidth < 768 && item.active && item.text.length > 25
               ? TrimText(item.text, 25)

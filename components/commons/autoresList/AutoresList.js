@@ -1,4 +1,10 @@
+"use client";
+
+import { useParams } from "next/navigation";
+
 export default function AutoresList({ autores }) {
+  const { lang } = useParams();
+  const isInEnglish = lang === "en";
   const lastAuthorAndPenultimateAuthor = (id) => {
     const lastPosition = autores.length - 1;
     return {
@@ -24,7 +30,9 @@ export default function AutoresList({ autores }) {
               ? `${autor.attributes?.Nombre}`
               : lastAuthor
               ? ` ${
-                  autor.attributes?.Nombre.charAt(0).toLowerCase() === "i"
+                  isInEnglish
+                    ? "and"
+                    : autor.attributes?.Nombre.charAt(0).toLowerCase() === "i"
                     ? "e"
                     : "y"
                 } ${autor.attributes?.Nombre}`

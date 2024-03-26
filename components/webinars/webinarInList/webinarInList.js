@@ -6,7 +6,7 @@ import Title from "@/components/commons/titles";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-export default function WebinarInList({ webinarInfo, header, autores }) {
+export default function WebinarInList({ webinarInfo, header, autores, tag }) {
   const animation = {
     hidden: { opacity: 0, x: 20 },
     visible: {
@@ -36,7 +36,7 @@ export default function WebinarInList({ webinarInfo, header, autores }) {
         </Link>
         {/* se remplazan los # porque este campo viene desde un tipo ricktext en Strapi */}
         <h5>
-          <Date date={header?.fecha} /> | Por{" "}
+          <Date date={header?.fecha} /> | {tag}{" "}
           <AutoresList autores={autores.colaboradores?.data} />
         </h5>
 

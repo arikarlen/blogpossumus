@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 
 export default function useSeeMore({
   initialData,
-  initialMessage = "Ver más",
+  initialMessage,
   type,
+  lang
 }) {
   const [actualPagination, setActualPagination] = useState(4);
   const [data, setActualData] = useState(initialData || []);
@@ -13,13 +14,15 @@ export default function useSeeMore({
     disabled: false,
   });
 
+  const isInEnglish = lang === "en";
+
   const [isLoadingMoreData, setIsLoadingMoreData] = useState(false);
 
   const loadMoreData = async () => {
     setIsLoadingMoreData(true);
     await axios
       .get(
-        `${process.env.NEXT_PUBLIC_API}/${type}?populate=deep&${
+        `${process.env.NEXT_PUBLIC_API}/${type}?locale=${lang}&populate=deep&${
           type === "blogs" && "sort=fecha_publicacion:desc&"
         }pagination[page]=0&pagination[pageSize]=${actualPagination + 4}`,
         {
@@ -34,7 +37,7 @@ export default function useSeeMore({
           res.data.meta.pagination.total + 4
         ) {
           // Ya no hay mas news
-          setButtonMessage({ text: "No hay más notas", disabled: true });
+          setButtonMessage({ text: isInEnglish ? "No more news" : "No hay más notas", disabled: true });
         } else {
           setActualData(res.data.data);
         }

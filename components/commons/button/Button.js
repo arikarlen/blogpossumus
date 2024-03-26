@@ -9,7 +9,7 @@ const buttonStyles = cva(
       variant: {
         primary: `border-black hover:cursor-pointer hover:bg-yellow hover:border-yellow`,
         secondary: `bg-black border-black text-white cursor-pointer hover:bg-yellow hover:border-yellow hover:text-black`,
-        webinar: `font-gotham text-l font-bold cursor-pointer bg-black text-white border-black hover:bg-yellow hover:border-yellow hover:text-black`,
+        webinar: `text-l font-bold cursor-pointer bg-black text-white border-black hover:bg-yellow hover:border-yellow hover:text-black`,
       },
       fullWidth: {
         true: "w-full",

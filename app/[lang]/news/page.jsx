@@ -1,10 +1,10 @@
 import Head from "next/head";
-import SearchInput from "../../components/commons/searchInput/SearchInput";
+import SearchInput from "../../../components/commons/searchInput/SearchInput";
 import { getNews, nextPageNews, prevPageNews, setPageNews } from "./actions";
 import DataList from "@/components/commons/dataList/DataList";
 import PaginationBasic from "@/components/commons/paginationBasic";
 
-export default async function News() {
+export default async function News({params}) {
   const { pagination, keyword, resultsNotFounded } = await getNews();
   return (
     <>
@@ -28,11 +28,12 @@ export default async function News() {
           content="https://possumustech.blob.core.windows.net/staticfiles/assets/Possumus_d54fcb00ec.png"
         ></meta>
       </Head>
-      <SearchInput type="News" />
+      <SearchInput type="News"/>
       <DataList
         keyword={keyword}
         isWebinar={false}
         resultsNotFounded={resultsNotFounded}
+        lang={params.lang}
       />
 
       <PaginationBasic

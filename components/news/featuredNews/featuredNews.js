@@ -3,12 +3,12 @@ import Container from "../../commons/container/Container";
 import FeaturedNew from "./featuredNew";
 import FeaturedUI from "@/components/skeletons/FeaturedUI";
 
-export default async function FeaturedNews() {
+export default async function FeaturedNews({lang}) {
   return (
     <>
       <Suspense fallback={<FeaturedUI />}>
         <Container>
-          <FeaturedNew />
+          <FeaturedNew lang={lang}/>
         </Container>
       </Suspense>
     </>

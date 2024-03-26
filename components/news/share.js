@@ -13,6 +13,8 @@ import { useState } from "react";
 import { CopyToClipboard } from "../../utils/functions";
 import Image from "next/image";
 import Container from "../commons/container/Container";
+import useDictionary from "@/hooks/useDictionary";
+
 
 export default function ShareNews({ title, subTitle }) {
   const { asPath } = useRouter();
@@ -29,12 +31,14 @@ export default function ShareNews({ title, subTitle }) {
   const urlTelegram = `https://t.me/share/url?url${shareUrl}&text=${title}`;
   const urlMail = `mailto:?subject=${title}&body=Te%20comparti%20esta%20nota${shareUrl}`;
 
+  const dictionary = useDictionary()
+
   return (
     <>
       <Container className="flex md:justify-center my-14">
         <div className="md:block hidden border-y w-full border-y-gray-d8 py-9">
           <div className="flex justify-around w-full items-center">
-            Compartir:
+            {dictionary.commons.share.title}
             <a href={urlFacebook} target="_blank">
               <Image
                 className="opacity-60 hover:opacity-100 ease-in-out duration-200"

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import SearchInput from "../../components/commons/searchInput/SearchInput";
+import SearchInput from "../../../components/commons/searchInput/SearchInput";
 import DataList from "@/components/commons/dataList/DataList";
 import PaginationBasic from "@/components/commons/paginationBasic";
 import {
@@ -9,7 +9,7 @@ import {
   setPageWebinars,
 } from "./actions";
 
-export default async function Page() {
+export default async function Page({params}) {
   const { pagination, keyword, resultsNotFounded } =
     await getWebinars();
 
@@ -40,6 +40,7 @@ export default async function Page() {
         keyword={keyword}
         resultsNotFounded={resultsNotFounded}
         isWebinar
+        lang={params.lang}
       />
 
       <PaginationBasic
