@@ -7,23 +7,40 @@ export async function middleware(request) {
   let locales = ["en", "es"];
   // Check if there is any supported locale in the pathname
   const { pathname } = request.nextUrl;
+  // Check if pathname is for fonts, in this case dont apply changes
+  if (pathname.includes("Gotham-Font")) {
+    return;
+  }
+
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
   if (pathnameHasLocale) return;
-  // const actualHeaders = headers();
-  // let langs = new Array(actualHeaders.get('accept-language'));
+
   let actualHeaders = headers();
   let langsHeaders = actualHeaders.get("accept-language");
-  let langs = new Negotiator({ headers:{"accept-language":langsHeaders} }).languages();
+  let langs = new Negotiator({
+    headers: { "accept-language": langsHeaders },
+  }).languages();
 
   let defaultLocale = "en";
 
   const locale = match(langs, locales, defaultLocale);
   // Redirect if there is no locale
   request.nextUrl.pathname = `${
-    locale ? `/${locale}/${pathname}` : `/en/${pathname}`
+    locale
+      ? `/${locale}/${pathname}${
+          locale === "es" &&
+          !pathname.includes("webinars") &&
+          !pathname.includes("news") &&
+          pathname !== "/"
+            ? "-es"
+            : ""
+        }`
+      : `/en/${
+          pathname.includes("-es") ? pathname.replace("-es", "") : pathname
+        }`
   }`;
 
   return NextResponse.redirect(request.nextUrl);
