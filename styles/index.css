@@ -1,19 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,700;1,400&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,700;1,400&display=swap");
+@layer base {
+  @font-face {
+    font-family: "Gotham-bold";
+    src: url("/Gotham-Font/gotham_bold-webfont.woff"),
+      url("/Gotham-Font/gotham_bold-webfont.woff2"),
+      url("/Gotham-Font/Gotham-Bold.otf"),
+      url("/Gotham-Font/GothamBold.ttf");
+  }
+  @font-face {
+    font-family: "Gotham-book";
+    src: url("/Gotham-Font/gotham_book-webfont.woff"),
+      url("/Gotham-Font/gotham_book-webfont.woff2"),
+      url("/Gotham-Font/GothamBook.ttf");
+  }
+}
 
-@font-face {
-  font-family: "Gotham-bold";
-  src: url("/fonts/gotham_bold-webfont.woff"),
-    url("/fonts/gotham_bold-webfont.woff2");
-}
-@font-face {
-  font-family: "Gotham-book";
-  src: url("/fonts/gotham_book-webfont.woff"),
-    url("/fonts/gotham_book-webfont.woff2");
-}
 :root {
   --color-yellow: #fcd702;
   --color-black: #2e2d31;
@@ -44,10 +49,10 @@ html[data-theme="dark"] {
 }
 
 body {
-  background-color: var(--background-color) !important;
-  color: var(--color-black) !important;
-  overflow-x: hidden !important;
-  scroll-behavior: smooth !important;
+  background-color: var(--background-color);
+  color: var(--color-black);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 p {
@@ -56,47 +61,47 @@ p {
 }
 
 h1 {
-  font-family: "Gotham-bold", sans-serif !important;
-  font-size: 27px !important;
-  font-style: normal !important;
-  font-weight: 700 !important;
-  line-height: 120% !important; /* 32.4px */
-  letter-spacing: -0.162px !important;
+  font-family: "Gotham-bold", sans-serif;
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 32.4px */
+  letter-spacing: -0.162px;
 }
 
 h2 {
-  font-family: "Mulish", sans-serif !important;
-  font-size: 20px !important;
-  font-style: normal !important;
-  font-weight: 500 !important;
+  font-family: "Mulish", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
 }
 
 h3 {
-  font-family: "Gotham-bold", sans-serif !important;
-  font-size: 24px !important;
-  font-style: normal !important;
-  font-weight: 700 !important;
-  line-height: 100% !important; /* 32.4px */
-  letter-spacing: -0.48px !important;
+  font-family: "Gotham-bold", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 32.4px */
+  letter-spacing: -0.48px;
 }
 
 h4 {
-  font-family: "Gotham-bold", sans-serif !important;
-  font-size: 18px !important;
-  font-style: normal !important;
-  line-height: 21px !important;
-  font-weight: 700 !important;
+  font-family: "Gotham-bold", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 21px;
+  font-weight: 700;
 }
 
 h5 {
-  font-family: "Mulish", sans-serif !important;
-  font-size: 14px !important;
-  font-style: normal !important;
-  line-height: 27px !important;
+  font-family: "Mulish", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 27px;
 }
 
 h6 {
-  font-family: "Mulish", sans-serif !important;
+  font-family: "Mulish", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -104,10 +109,35 @@ h6 {
 }
 
 ul {
-  list-style: none !important;
-  padding: 0 !important;
+  list-style: none;
+  padding: 0;
 }
 
-input{
-  outline: none !important;
+input {
+  outline: none;
+}
+
+[type="checkbox"] {
+  display: none;
+}
+[type="checkbox"]:checked + .app .toggle {
+  transform: translateX(100%);
+  background: linear-gradient(180deg, #434247 0%, #000000 100%);
+}
+
+[type="checkbox"]:checked + .app .espanol {
+  color: white;
+  padding-left: 17px;
+}
+
+[type="checkbox"]:checked + .app .english {
+  color: #737373;
+  padding-left: 1px;
+}
+
+/* PAGE NOT FOUND */
+.page404{
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }

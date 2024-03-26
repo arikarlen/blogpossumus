@@ -6,7 +6,7 @@ import Title from "@/components/commons/titles";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-export default function NewInList({ dataNew }) {
+export default function NewInList({ dataNew, tag, lang }) {
   const animation = {
     hidden: { opacity: 0, x: -20 },
     visible: {
@@ -30,7 +30,7 @@ export default function NewInList({ dataNew }) {
         <h6 className="mt-6">
           {dataNew.attributes.categoria?.data.attributes.Categoria}
         </h6>
-        <Link href={`/news/${dataNew.attributes.slug}`}>
+        <Link href={`/${lang}/news/${dataNew.attributes.slug}${lang === "es" ? "-es" : ""}`}>
           <Title
             title={dataNew.attributes.Titulo.replaceAll("#", "")}
             className="mb-2"
@@ -39,7 +39,7 @@ export default function NewInList({ dataNew }) {
         </Link>
         {/* se remplazan los # porque este campo viene desde un tipo ricktext en Strapi */}
         <h5>
-          <Date date={dataNew.attributes.publishedAt} /> | Por{" "}
+          <Date date={dataNew.attributes.publishedAt} /> | {tag}{" "}
           <AutoresList autores={dataNew.attributes?.autores.data} />
         </h5>
 

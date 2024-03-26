@@ -13,15 +13,28 @@ let keyword = "";
 let resultsNotFounded = false;
 
 export async function getDateAndSlugWebinars() {
-  const url = `${process.env.NEXT_PUBLIC_API}/blog-webinars?populate[webinarInfo][slug]`;
-  const { data } = await fetcher(url);
+  const urlEs = `${process.env.NEXT_PUBLIC_API}/blog-webinars?locale=es&populate[webinarInfo][slug]`;
+  const urlEn = `${process.env.NEXT_PUBLIC_API}/blog-webinars?locale=en&populate[webinarInfo][slug]`;
+  const { data: dataEs } = await fetcher(urlEs);
+  const { data: dataEn } = await fetcher(urlEn);
 
-  return data.map((webinar) => {
-    return {
-      slug: webinar.attributes.webinarInfo.slug,
-      date: webinar.attributes.updatedAt,
-    };
-  });
+  return dataEs
+    .map((webinar) => {
+      return {
+        slug: webinar.attributes.webinarInfo.slug,
+        date: webinar.attributes.updatedAt,
+        locale: 'es',
+      };
+    })
+    .concat(
+      dataEn.map((webinar) => {
+        return {
+          slug: webinar.attributes.webinarInfo.slug,
+          date: webinar.attributes.updatedAt,
+          locale: 'en',
+        };
+      })
+    );
 }
 
 export async function getWebinars() {

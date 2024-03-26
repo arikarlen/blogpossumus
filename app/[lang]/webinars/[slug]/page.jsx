@@ -1,13 +1,13 @@
 import Head from "next/head";
-import HeaderWebinar from "../../../components/webinars/headerWebinar";
-import Description from "../../../components/webinars/description/description";
-import Speakers from "../../../components/webinars/speakers";
-import Cta from "../../../components/webinars/cta";
-import PostWebinar from "../../../components/webinars/postWebinar";
-import MoreInfo from "../../../components/webinars/moreInfo";
-import fetcher from "../../../utils/fetcher";
+import HeaderWebinar from "../../../../components/webinars/headerWebinar";
+import Description from "../../../../components/webinars/description/description";
+import Speakers from "../../../../components/webinars/speakers";
+import Cta from "../../../../components/webinars/cta";
+import PostWebinar from "../../../../components/webinars/postWebinar";
+import MoreInfo from "../../../../components/webinars/moreInfo";
+import fetcher from "../../../../utils/fetcher";
 import Container from "@/components/commons/container/Container";
-import WebinarForm from "../../../components/webinars/forms/WebinarForm";
+import WebinarForm from "../../../../components/webinars/forms/WebinarForm";
 
 export default async function Page({ params: { slug } }) {
   const URL = `${process.env.NEXT_PUBLIC_API}/blog-webinars?filters[webinarInfo][slug][$eq]=${slug}&populate=deep`;

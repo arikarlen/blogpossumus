@@ -8,13 +8,20 @@ import { useRouter } from "next/navigation";
 import Date from "../commons/date/Date";
 import CustomImage from "../commons/customImage/CustomImage";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
-export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
+export default function GridWebinars({
+  webinars,
+  withSeeMoreButton = false,
+  tag,
+  lang,
+}) {
   const [webinarsList, loadMoreWebinars, isLoadingMoreWebinars, message] =
     useSeeMore({
       initialData: webinars,
-      initialMessage: "Ver más webinars",
+      initialMessage: lang === "en" ? "See more" : "Ver más webinars",
       type: "blog-webinars",
+      lang: lang,
     });
 
   const router = useRouter();
@@ -42,27 +49,31 @@ export default function GridWebinars({ webinars, withSeeMoreButton = false }) {
               initial="hidden"
               whileInView="visible"
               key={webinarInfo.slug}
-              onClick={() => router.push(`/webinars/${webinarInfo.slug}`)}
-              className="cursor-pointer"
             >
-              <CustomImage
-                src={webinarInfo.image?.data.attributes.url}
-                alt={header.titulo}
-              />
+              <Link href={`/${lang}/webinars/${webinarInfo.slug}`}>
+                <CustomImage
+                  src={webinarInfo.image?.data.attributes.url}
+                  alt={header.titulo}
+                />
+              </Link>
               <div
                 onClick={() => router.push(`/webinars/${webinarInfo.slug}`)}
                 className="cursor-pointer"
               >
-                <Title
-                  title={header.titulo.replaceAll("#", "")}
-                  className="my-6"
-                  fluid
-                />
+                <Link href={`/${lang}/webinars/${webinarInfo.slug}`}>
+                  <Title
+                    title={header.titulo.replaceAll("#", "")}
+                    className="my-6"
+                    fluid
+                  />
+                </Link>
                 <h5>
-                  <Date date={header.fecha} /> | {`Por: `}
+                  <Date date={header.fecha} /> | {tag}
                   <AutoresList autores={autores.colaboradores.data} />
                 </h5>
-                <p>{header.bajada}</p>
+                <Link href={`/${lang}/webinars/${webinarInfo.slug}`}>
+                  <p>{header.bajada}</p>
+                </Link>
               </div>
             </motion.article>
           );

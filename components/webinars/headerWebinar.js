@@ -9,6 +9,7 @@ import Breadcrumb from "../commons/breadCrumb/BreadCrumb";
 import Button from "../commons/button/Button";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import useDictionary from "@/hooks/useDictionary";
 export default function HeaderWebinar({ headerData, isPreWebinar }) {
   const {
     titulo,
@@ -26,6 +27,8 @@ export default function HeaderWebinar({ headerData, isPreWebinar }) {
   const [screenWidth, setWidth] = useState(0);
 
   const headerButton = isPreWebinar ? botonPreWebinar : botonPostWebinar;
+
+  const dictionary = useDictionary()
 
   const textContainer = {
     hidden: { opacity: 1, scale: 0 },
@@ -63,7 +66,7 @@ export default function HeaderWebinar({ headerData, isPreWebinar }) {
           className="absolute top-20 xs:top-10"
           items={[
             {
-              text: "Inicio",
+              text: dictionary.commons.breadCrumb.home,
               href: "/",
               active: false,
             },

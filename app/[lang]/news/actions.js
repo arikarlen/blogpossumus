@@ -13,12 +13,16 @@ let keyword = "";
 let resultsNotFounded = false;
 
 export async function getDateAndSlugNews(){
-  const url = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}`
-  const {data} = await fetcher(url)
+  const urlEs = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?locale=es`
+  const urlEn = `${process.env.NEXT_PUBLIC_API}/${process.env.NEXT_PUBLIC_API_BLOG}?locale=en`
+  const {data: dataEs} = await fetcher(urlEs)
+  const {data: dataEn} = await fetcher(urlEn)
 
-  return data.map(actualNew => {
-    return {slug: actualNew.attributes.slug, date: actualNew.attributes.updatedAt}
-  })
+  return dataEs.map(actualNewEs => {
+    return {locale: 'es', slug: actualNewEs.attributes.slug, date: actualNewEs.attributes.updatedAt}
+  }).concat(dataEn.map(actualNewEn => {
+    return {locale: 'en', slug: actualNewEn.attributes.slug, date: actualNewEn.attributes.updatedAt}
+  }))
 }
 
 export async function getNews() {
