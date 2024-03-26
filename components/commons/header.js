@@ -18,7 +18,7 @@ export default function Header() {
     <nav
       className={`fixed top-0 left-[-7px] w-screen py-5 xl:px-0 bg-white z-10 shadow-md`}
     >
-      <Container className="flex justify-between">
+      <Container className="flex flex-col items-center gap-4 justify-between md:flex-row">
         <ul>
           <li className="flex gap-3">
             <Link
@@ -35,11 +35,16 @@ export default function Header() {
                 {isWebinar ? "Webinars" : "Blog"}
               </p>
             </Link>
+            <div className="md:hidden">
+              <SwitchLang />
+            </div>
           </li>
         </ul>
         <div className="flex">
           <SearchButton />
-          <SwitchLang />
+          <div className="hidden md:block">
+            <SwitchLang />
+          </div>
         </div>
       </Container>
     </nav>
