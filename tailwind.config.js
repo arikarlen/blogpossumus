@@ -19,7 +19,7 @@ module.exports = {
       'danger': "#D62627"
     },
     fontFamily: {
-      'gotham': ['Gotham-bold', 'serif'],
+      'gotham': ["Gotham-bold", 'serif'],
       'mulish': ['Mulish', 'sans-serif']
     },
     fontSize: {
